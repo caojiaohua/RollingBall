@@ -1,0 +1,28 @@
+{
+    "target": [
+        {
+            "ID": 1,
+            "propSourceName": "resIcon",
+            "Discription": "Ball can be revived when the level Failed",
+            "purchaseLimitNum": 3,
+            "gold_Price": 10000,
+            "diamond_Price": -1
+        },
+        {
+            "ID": 2,
+            "propSourceName": "timeIcon",
+            "Discription": "Extend time",
+            "purchaseLimitNum": 6,
+            "gold_Price": 5000,
+            "diamond_Price": -1
+        },
+        {
+            "ID": 3,
+            "propSourceName": "magnetIcon",
+            "Discription": "Adsorb gold coins and DIA near the ball",
+            "purchaseLimitNum": 6,
+            "gold_Price": 500,
+            "diamond_Price": -1
+        }
+    ]
+}

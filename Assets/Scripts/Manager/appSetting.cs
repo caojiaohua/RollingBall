@@ -12,13 +12,19 @@ public class appSetting : MonoBehaviour
     public static string dataPath = Application.streamingAssetsPath + "/";
 #endif
 
+    public static string goldDataName_PlayerPrefs = "goldValue";
+    public static string diamondDataName_PlayerPrefs = "DiamondValue";
 
-    #region  等级颜色
-    public static Color level_A = Color.red;//new Color(136f/255f,77/255f,126f/255f,255f/255f);
-    public static Color level_B = Color.magenta;
-    public static Color level_C = Color.yellow;
-    public static Color level_D = Color.green;
-    public static Color level_S = Color.blue;
-    public static Color level_Splus = Color.cyan;
-    #endregion
+    public static int initGoldNum = 0;
+    public static int initDiamondNum = 0;
+
+
+    public static string levelDataTableName = "levelData";
+    public static string mapComponentTableName = "mapCompoment";
+    public static string MATTableName = "allMAT";
+    public static string propTableName = "prop";
+    public static string ornamentTableName = "ornament";
+
+
+
 }
