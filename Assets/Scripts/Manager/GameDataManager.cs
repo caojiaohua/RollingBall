@@ -41,8 +41,8 @@ public class GameDataManager : MonoBehaviour
     /// <summary>
     /// 所有的组件 资源加载
     /// </summary>
-    public List<Object> allCompentObject;
-
+    
+    private Dictionary<int, Object> allCompentObject;
     /// <summary>
     /// 所有的道具 资源加载
     /// </summary>
@@ -159,11 +159,11 @@ public class GameDataManager : MonoBehaviour
 
         if (allMapCompenentData != null)
         {
-            allCompentObject = new List<Object>();
+            allCompentObject = new Dictionary<int, Object>();
 
             for (int i = 0; i < allMapCompenentData.Count; i++)
             {
-                allCompentObject.Add(Resources.Load("prefabs/map/"+allMapCompenentData[i].componentResourceName));
+                allCompentObject.Add(allMapCompenentData[i].mapComponentId, Resources.Load("prefabs/map/"+allMapCompenentData[i].componentResourceName));
             }
         }
     }
@@ -213,6 +213,13 @@ public class GameDataManager : MonoBehaviour
     /// <returns></returns>
     public Object getMapCompomentForId(int id)
     {
+       foreach(int xx in allCompentObject.Keys)
+        {
+            if(xx == id)
+            {
+                return allCompentObject[xx];
+            }
+        }
         return null;
     }
 

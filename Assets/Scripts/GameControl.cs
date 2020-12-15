@@ -23,7 +23,8 @@ public class GameControl : MonoBehaviour
         {
             ///根据ID获取resource name
             ///
-            GameObject compoment = Instantiate(Resources.Load(GameDataManager._instance.allCompentObject[i-1].ToString())) as GameObject;
+            Object xx = GameDataManager._instance.getMapCompomentForId(int.Parse(curLevelValue[i]));
+            GameObject compoment = Instantiate(xx) as GameObject;
             nowPosition += new Vector3(0, 0, (float)System.Math.Round(compoment.transform.GetComponent<Renderer>().bounds.size.z / 1, 2));
             compoment.transform.localPosition = new Vector3(nowPosition.x, nowPosition.y, nowPosition.z);
         }
