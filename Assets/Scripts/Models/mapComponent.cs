@@ -13,11 +13,6 @@ namespace Assets.Scripts.Models
     public class mapComponent
     {
         /// <summary>
-        /// 组件ID
-        /// </summary>
-        public int mapComponentId;
-
-        /// <summary>
         /// 组件类型
         /// </summary>
         public int mapComponentType;
@@ -28,26 +23,14 @@ namespace Assets.Scripts.Models
         public string discription;
 
         /// <summary>
+        /// 组件难度
+        /// </summary>
+        public int componentDifficulty;
+
+        /// <summary>
         /// 组件资源名称
         /// </summary>
         public string componentResourceName;
-
-        /// <summary>
-        /// 材质1
-        /// </summary>
-        public int matResources1;
-
-        /// <summary>
-        /// 材质2
-        /// </summary>
-        public int matResources2;
-
-        /// <summary>
-        /// 材质3
-        /// </summary>
-        public int matResources3;
-
-
 
     }
 }

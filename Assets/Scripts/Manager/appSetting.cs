@@ -13,13 +13,13 @@ public class appSetting : MonoBehaviour
 #endif
 
     public static string goldDataName_PlayerPrefs = "goldValue";
-    public static string diamondDataName_PlayerPrefs = "DiamondValue";
+    
 
     public static int initGoldNum = 0;
     public static int initDiamondNum = 0;
 
 
-    public static string levelDataTableName = "levelData";
+    public static string mapDataTableName = "levelData";
     public static string mapComponentTableName = "mapCompoment";
     public static string MATTableName = "allMAT";
     public static string propTableName = "prop";

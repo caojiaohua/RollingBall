@@ -14,6 +14,7 @@ public class GameControl : MonoBehaviour
 
     void setGameMap()
     {
+        /*
         int curGameLevel = GameDataManager._instance.getCurGameLevel();
 
         LevelData curLevelData = GameDataManager._instance.getMapInfoForID(curGameLevel);
@@ -28,6 +29,7 @@ public class GameControl : MonoBehaviour
             nowPosition += new Vector3(0, 0, (float)System.Math.Round(compoment.transform.GetComponent<Renderer>().bounds.size.z / 1, 2));
             compoment.transform.localPosition = new Vector3(nowPosition.x, nowPosition.y, nowPosition.z);
         }
+        */
     }
    
 }
