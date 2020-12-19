@@ -1,0 +1,154 @@
+{
+  "target": [
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0.0,
+      "discription": "小球起点",
+      "componentResourceName": "startingPoint"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0.0,
+      "discription": "小球终点",
+      "componentResourceName": "destination"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 2,
+      "discription": "",
+      "componentResourceName": "narrowRoad230"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "sBend1"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "sBend2"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 1,
+      "discription": "",
+      "componentResourceName": "sBend3"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "cBend1"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "cBend2"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "skewBend"
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "sBend4"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 1,
+      "discription": "",
+      "componentResourceName": "woodShake"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 1,
+      "discription": "",
+      "componentResourceName": "woodRotate"
+    },
+    {
+      "mapComponentType": 3,
+      "componentDifficulty": 2,
+      "discription": "小球经过玻璃时玻璃会塌陷",
+      "componentResourceName": "avoidGlass"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 1,
+      "discription": "",
+      "componentResourceName": "crossRotate1"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 2,
+      "discription": "",
+      "componentResourceName": "crossRotate2"
+    },
+    {
+      "mapComponentType": 4,
+      "componentDifficulty": 1,
+      "discription": "小球可通过两边格子跳跃",
+      "componentResourceName": "jump1"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 1,
+      "discription": "",
+      "componentResourceName": "pieceMove1"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 3,
+      "discription": "",
+      "componentResourceName": "pieceMove2"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 2,
+      "discription": "",
+      "componentResourceName": "triMove"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 3,
+      "discription": "",
+      "componentResourceName": "triMove2"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 2,
+      "discription": "",
+      "componentResourceName": "triRotate"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 2,
+      "discription": "",
+      "componentResourceName": "woodMove"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 1,
+      "discription": "",
+      "componentResourceName": "woodSwing"
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 3,
+      "discription": "",
+      "componentResourceName": "pieceMove3"
+    }
+  ]
+}
