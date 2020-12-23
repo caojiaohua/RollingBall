@@ -13,18 +13,26 @@ public class appSetting : MonoBehaviour
 #endif
 
     public static string goldDataName_PlayerPrefs = "goldValue";
+
+    public static string loginDayNum_playerprefs = "loginDayNum";
+    public static string loginDayTime_playerprefs = "loginDayTime";
+    public static string reviveNum_playerprefs = "reviveNum";
+    public static string gameProgress_playerprefs = "gameProgress"; 
+    public static string NOT_KillAI_InFirst10P_playerprefs = "NOT_KillAI_InFirst10P"; 
+    public static string killAINum_playerprefs = "killAINum";
+    public static int initGoldNum = 0;
     
 
-    public static int initGoldNum = 0;
-    public static int initDiamondNum = 0;
 
-
-    public static string mapDataTableName = "levelData";
+    public static string mapDataTableName = "mapData";
     public static string mapComponentTableName = "mapCompoment";
-    public static string MATTableName = "allMAT";
-    public static string propTableName = "prop";
-    public static string ornamentTableName = "ornament";
+    public static string goldIncomeUpgardeTableName = "goldIncomeUpgrade";
+    public static string ballSkinTaskTableName = "ballSkinTask";
+    public static string ballSkillsTableName = "ballSkills";
 
+    public static string ballSkinGameDataTableName = "ballSkinGameData";
+
+    public static string UIPanelTypeTableName = "UIPanelType";
 
 
 }

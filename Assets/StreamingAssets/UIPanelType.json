@@ -1,0 +1,24 @@
+{
+    "target": [
+        {
+            "panelType": "start",
+            "path": "ui/StartPanel"
+        },
+        {
+            "panelType": "joystick",
+            "path": "ui/Joystick"
+        },
+        {
+            "panelType": "gameover",
+            "path": "ui/GameOver"
+        },
+        {
+            "panelType": "setting",
+            "path": "ui/SettingPanel"
+        },
+        {
+            "panelType": "Task",
+            "path": "ui/TaskPanel"
+        }
+    ]
+}

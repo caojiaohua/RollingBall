@@ -14,7 +14,7 @@ namespace zFrame.UI
         [EnumFlags]
         public Direction activatedAxis = (Direction)(-1); //选择激活的轴向
         [SerializeField] bool dynamic = true; // 动态摇杆
-        [SerializeField] Transform handle; //摇杆
+        [SerializeField] public Transform handle; //摇杆
         [SerializeField] Transform backGround; //背景
         public JoystickEvent OnValueChanged = new JoystickEvent(); //事件 ： 摇杆被 拖拽时
         public JoystickEvent OnPointerDown = new JoystickEvent(); // 事件： 摇杆被按下时

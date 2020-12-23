@@ -4,7 +4,11 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: end
+    100004: start
     400000: //RootNode
+    400002: end
+    400004: start
     2100000: floor
     2300000: //RootNode
     3300000: //RootNode

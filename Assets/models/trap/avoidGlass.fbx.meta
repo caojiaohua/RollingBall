@@ -8,11 +8,15 @@ ModelImporter:
     100004: glass
     100006: glass_2
     100008: glass_3
+    100010: end
+    100012: start
     400000: //RootNode
     400002: floor
     400004: glass
     400006: glass_2
     400008: glass_3
+    400010: end
+    400012: start
     2100000: glass
     2100002: floor
     2300000: floor
@@ -27,6 +31,10 @@ ModelImporter:
     4300002: glass_2
     4300004: glass_3
     4300006: floor
+    6400000: floor
+    6400002: glass
+    6400004: glass_2
+    6400006: glass_3
     7400000: CINEMA_4D___
     9500000: //RootNode
   externalObjects: {}
@@ -56,7 +64,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: CINEMA_4D___
+      takeName: CINEMA_4D___
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

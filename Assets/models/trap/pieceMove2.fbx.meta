@@ -14,6 +14,9 @@ ModelImporter:
     100016: move_6
     100018: move_7
     100020: //RootNode
+    100022: end
+    100024: floor_1
+    100026: start
     400000: floor
     400002: mechanism
     400004: move
@@ -25,6 +28,9 @@ ModelImporter:
     400016: move_6
     400018: move_7
     400020: //RootNode
+    400022: end
+    400024: floor_1
+    400026: start
     2100000: Roadblocks
     2100002: floor
     2300000: floor
@@ -36,6 +42,7 @@ ModelImporter:
     2300012: move_5
     2300014: move_6
     2300016: move_7
+    2300018: floor_1
     3300000: floor
     3300002: move
     3300004: move_1
@@ -45,6 +52,7 @@ ModelImporter:
     3300012: move_5
     3300014: move_6
     3300016: move_7
+    3300018: floor_1
     4300000: move
     4300002: move_1
     4300004: move_2
@@ -54,6 +62,7 @@ ModelImporter:
     4300012: move_6
     4300014: move_7
     4300016: floor
+    4300018: floor_1
     7400000: CINEMA_4D___
     9500000: //RootNode
   externalObjects: {}
@@ -83,7 +92,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: CINEMA_4D___
+      takeName: CINEMA_4D___
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

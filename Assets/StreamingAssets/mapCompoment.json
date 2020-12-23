@@ -2,13 +2,13 @@
   "target": [
     {
       "mapComponentType": 1,
-      "componentDifficulty": 0.0,
+      "componentDifficulty": 4,
       "discription": "小球起点",
       "componentResourceName": "startingPoint"
     },
     {
       "mapComponentType": 1,
-      "componentDifficulty": 0.0,
+      "componentDifficulty": 5,
       "discription": "小球终点",
       "componentResourceName": "destination"
     },

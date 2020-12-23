@@ -1,7 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 小球皮肤任务表
+/// </summary>
+[Serializable]
 public class ballSkinTask 
 {
     /// <summary>

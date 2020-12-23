@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Models
 {
-   public class ballSkills
+    /// <summary>
+    /// 小球能力升级配置表
+    /// </summary>
+    [Serializable]
+    public class ballSkills
     {
         /// <summary>
         /// 小球能力等级
@@ -16,11 +20,11 @@ namespace Assets.Scripts.Models
         /// <summary>
         /// 速度（cm/s）
         /// </summary>
-        public float speed;
+        public int speed;
         /// <summary>
         /// 力量
         /// </summary>
-        public float power;
+        public int power;
         /// <summary>
         /// 能力升级花费
         /// </summary>
