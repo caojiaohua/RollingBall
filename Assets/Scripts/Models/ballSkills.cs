@@ -20,11 +20,11 @@ namespace Assets.Scripts.Models
         /// <summary>
         /// 速度（cm/s）
         /// </summary>
-        public int speed;
+        public double speed;
         /// <summary>
         /// 力量
         /// </summary>
-        public int power;
+        public double power;
         /// <summary>
         /// 能力升级花费
         /// </summary>

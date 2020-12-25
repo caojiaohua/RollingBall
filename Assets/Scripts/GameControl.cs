@@ -4,27 +4,53 @@ using UnityEngine;
 
 public class GameControl : MonoBehaviour
 {
+
+    List<GameObject> allMapComponent;
+    public static GameControl _instance;
+    /// <summary>
+    /// 地图组件的父物体
+    /// </summary>
+    public Transform mapComponentParent;
+
+    /// <summary>
+    /// 当前地图加载的进度  curMapRating / mapData.Count
+    /// </summary>
     int curMapRating = 0;
 
-    Transform obj1;
+
+    int loadedComponentMum;
+
+    /// <summary>
+    /// 上一个组件
+    /// </summary>
+    Transform lastComponent;
+
+    List<MapData> mapData;
     // Start is called before the first frame update
     void Start()
     {
-         setGameMap();
+        _instance = this;
+        allMapComponent = new List<GameObject>();
+         setGameMap(curMapRating);
+
+      
+
     }
   
     /// <summary>
-    /// 加载地图   分段加载
+    /// 加载地图   分段加载   2
     /// </summary>
-    void setGameMap()
+    void setGameMap(int _loadMapProgress)
     {
         List<GameObject> test = new List<GameObject>();
-        List<MapData> mapData = GameDataManager._instance.mapDatas;
+        mapData = GameDataManager._instance.mapDatas;
+        
         if(curMapRating == 0)
         {
             GameObject startPoint = Instantiate( GameDataManager._instance.startPointObject) as GameObject;
+            startPoint.transform.parent = mapComponentParent;
             startPoint.transform.localPosition = new Vector3(0,0,0);
-            obj1 = startPoint.transform;
+            lastComponent = startPoint.transform;
 
 
         }
@@ -63,28 +89,58 @@ public class GameControl : MonoBehaviour
                 }
                 GameObject compoment = Instantiate(xx) as GameObject;
 
+                compoment.transform.parent = mapComponentParent;
+                allMapComponent.Add(compoment);
+                checkMapComponentList();
 
-                
-                //compoment.name = (j * i+j).ToString();
-                
-                compoment.transform.localPosition = getEndPoint(obj1).position - getStartPoint(compoment.transform).position;
+                compoment.GetComponent<componentControl>().mapID = i * mapData[i].compenentNumb + j;
+                compoment.GetComponent<componentControl>().AILevel = mapData[i].AILevel;
+                compoment.GetComponent<componentControl>().AIRating = mapData[i].AIRating;
+
+                compoment.name = (i * mapData[i].compenentNumb + j).ToString();
+
+                compoment.transform.localPosition = getEndPoint(lastComponent).position - getStartPoint(compoment.transform).position;
 
 
-              
-                obj1 = compoment.transform;
+
+                lastComponent = compoment.transform;
                
             }
+            loadedComponentMum += mapData[i].compenentNumb;
         }
 
         curMapRating += 2;
-
+        
         if (curMapRating == mapData.Count-1)
         {
             GameObject endPoint = Instantiate(GameDataManager._instance.endPointObject) as GameObject;
-            endPoint.transform.localPosition = getEndPoint(obj1).position - getStartPoint(endPoint.transform).position;
+            endPoint.transform.parent = mapComponentParent;
+
+            endPoint.transform.localPosition = getEndPoint(lastComponent).position - getStartPoint(endPoint.transform).position;
         }
 
 
+    }
+
+    /// <summary>
+    /// 保持总共不超过50个组件
+    /// </summary>
+    void checkMapComponentList()
+    {
+        if(allMapComponent.Count > 50)
+        {
+            Destroy(allMapComponent[0]);
+            allMapComponent.RemoveAt(0);
+        }
+    }
+
+    public void checkMapProgress(int mapId)
+    {
+        if(loadedComponentMum-mapId<=10)
+        {
+            //继续加载
+            setGameMap(curMapRating);
+        }
     }
 
     Transform getStartPoint(Transform parent)

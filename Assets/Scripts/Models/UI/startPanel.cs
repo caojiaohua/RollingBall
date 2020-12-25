@@ -19,13 +19,18 @@ public class startPanel : BasePanel
     /// </summary>
     public Button btnUpgradePower;
 
+    public Text txt_goldLevel;
+    public Text txt_goldUpgradePrice;
+
+    public Text txt_powerLevel;
+    public Text txt_powerUpgradePrice;
 
     private void Start()
     {
         btnSetting.onClick.AddListener(OnSettingButtonClick);
         btnTask.onClick.AddListener(OnTaskButtonClick);
         btnStart.onClick.AddListener(OnStartButtonClick);
-        btnUpgradeCoin.onClick.AddListener(btnUpgradePowerClick);
+        btnUpgradeCoin.onClick.AddListener(btnUpgradeCoinClick);
         btnUpgradePower.onClick.AddListener(btnUpgradePowerClick);
         canvasGroup = transform.GetComponent<CanvasGroup>();
     }
@@ -35,7 +40,7 @@ public class startPanel : BasePanel
         btnSetting.onClick.RemoveListener(OnSettingButtonClick);
         btnTask.onClick.RemoveListener(OnTaskButtonClick);
         btnStart.onClick.RemoveListener(OnStartButtonClick);
-        btnUpgradeCoin.onClick.RemoveListener(btnUpgradePowerClick);
+        btnUpgradeCoin.onClick.RemoveListener(btnUpgradeCoinClick);
         btnUpgradePower.onClick.RemoveListener(btnUpgradePowerClick);
     }
 
@@ -53,16 +58,35 @@ public class startPanel : BasePanel
     {
         UIPanelManager.Instance.PushPanel(UIPanelType.setting);
     }
+
+    /// <summary>
+    /// 升级金币收益能力
+    /// </summary>
     private void btnUpgradeCoinClick()
     {
+
     }
+
+    /// <summary>
+    /// 升级小球重力
+    /// </summary>
     private void btnUpgradePowerClick()
     {
         
     }
     public override void OnEnter()
     {
+        GameDataManager._instance.gameState = GAMESTATE.start;
+        gameObject.SetActive(true);
         ///开始界面的数据 更新
+        ///
+        int goldLevel = GameDataManager._instance.getGoldMultipleLevel();
+        int ballPowerLevel = GameDataManager._instance.getBallPowerLevel();
+        txt_goldLevel.text = goldLevel.ToString();
+        txt_goldUpgradePrice.text = GameDataManager._instance.getGoldUpgradeForLevel(goldLevel).price.ToString();
+        txt_powerLevel.text = ballPowerLevel.ToString();
+        txt_powerUpgradePrice.text = GameDataManager._instance.getBallSkillForLevel(ballPowerLevel).price.ToString();
+
     }
 
     public override void OnPause()

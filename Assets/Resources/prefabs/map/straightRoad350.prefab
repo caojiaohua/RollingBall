@@ -72,9 +72,10 @@ GameObject:
   - component: {fileID: 6617515708600517759}
   - component: {fileID: 6617515708599420607}
   - component: {fileID: 6348816985342618844}
+  - component: {fileID: 8587863343481436233}
   m_Layer: 0
   m_Name: straightRoad350
-  m_TagString: Untagged
+  m_TagString: component
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,8 +112,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6617515708597164159}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -154,3 +155,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: f706235eab51b0743b790c3e420a0b99, type: 3}
+--- !u!114 &8587863343481436233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6617515708597164159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e67337f2700dc40b633e8812a1d3b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapID: 0
+  AILevel: 
+  AIRating: 

@@ -20,6 +20,8 @@ public class appSetting : MonoBehaviour
     public static string gameProgress_playerprefs = "gameProgress"; 
     public static string NOT_KillAI_InFirst10P_playerprefs = "NOT_KillAI_InFirst10P"; 
     public static string killAINum_playerprefs = "killAINum";
+    public static string BallPowerLevel_playerprefs = "BallPowerLevel";
+    public static string GoldMultipleLevel_playerprefs = "curGoldMultipleLevel";
     public static int initGoldNum = 0;
     
 
@@ -28,7 +30,8 @@ public class appSetting : MonoBehaviour
     public static string mapComponentTableName = "mapCompoment";
     public static string goldIncomeUpgardeTableName = "goldIncomeUpgrade";
     public static string ballSkinTaskTableName = "ballSkinTask";
-    public static string ballSkillsTableName = "ballSkills";
+    public static string ballSkillsTableName = "ballSkills"; 
+    public static string AIBallDataTableName = "AIBallData"; 
 
     public static string ballSkinGameDataTableName = "ballSkinGameData";
 

@@ -804,6 +804,10 @@ MonoBehaviour:
   btnStart: {fileID: 8152927442285639740}
   btnUpgradeCoin: {fileID: 8152927443727327498}
   btnUpgradePower: {fileID: 8152927443440287520}
+  txt_goldLevel: {fileID: 8152927442132079694}
+  txt_goldUpgradePrice: {fileID: 8152927442581886082}
+  txt_powerLevel: {fileID: 8152927443568653106}
+  txt_powerUpgradePrice: {fileID: 8152927443522364233}
 --- !u!225 &2907403172143378267
 CanvasGroup:
   m_ObjectHideFlags: 0

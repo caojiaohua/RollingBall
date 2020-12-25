@@ -2,302 +2,302 @@
   "target": [
     {
       "level": 1,
-      "speed": 100,
-      "power": 1,
+      "speed": 1,
+      "power": 0.5,
       "price": 5
     },
     {
       "level": 2,
-      "speed": 105,
-      "power": 2,
+      "speed": 1,
+      "power": 0.8,
       "price": 68
     },
     {
       "level": 3,
-      "speed": 110,
-      "power": 3,
+      "speed": 1,
+      "power": 1,
       "price": 131
     },
     {
       "level": 4,
-      "speed": 115,
-      "power": 4,
+      "speed": 1,
+      "power": 1.1,
       "price": 194
     },
     {
       "level": 5,
-      "speed": 120,
-      "power": 5,
+      "speed": 1,
+      "power": 1.18,
       "price": 257
     },
     {
       "level": 6,
-      "speed": 124,
-      "power": 6,
+      "speed": 1,
+      "power": 1.23,
       "price": 320
     },
     {
       "level": 7,
-      "speed": 128,
-      "power": 7,
+      "speed": 1,
+      "power": 1.28,
       "price": 383
     },
     {
       "level": 8,
-      "speed": 132,
-      "power": 8,
+      "speed": 1,
+      "power": 1.33,
       "price": 446
     },
     {
       "level": 9,
-      "speed": 135,
-      "power": 9,
+      "speed": 1,
+      "power": 1.38,
       "price": 509
     },
     {
       "level": 10,
-      "speed": 138,
-      "power": 10,
+      "speed": 1,
+      "power": 1.43,
       "price": 572
     },
     {
       "level": 11,
-      "speed": 140,
-      "power": 10,
+      "speed": 1,
+      "power": 1.48,
       "price": 635
     },
     {
       "level": 12,
-      "speed": 142,
-      "power": 10,
+      "speed": 1,
+      "power": 1.53,
       "price": 698
     },
     {
       "level": 13,
-      "speed": 144,
-      "power": 11,
+      "speed": 1,
+      "power": 1.58,
       "price": 761
     },
     {
       "level": 14,
-      "speed": 146,
-      "power": 12,
+      "speed": 1,
+      "power": 1.63,
       "price": 824
     },
     {
       "level": 15,
-      "speed": 148,
-      "power": 13,
+      "speed": 1,
+      "power": 1.68,
       "price": 887
     },
     {
       "level": 16,
-      "speed": 150,
-      "power": 14,
+      "speed": 1,
+      "power": 1.73,
       "price": 950
     },
     {
       "level": 17,
-      "speed": 152,
-      "power": 15,
+      "speed": 1,
+      "power": 1.78,
       "price": 1013
     },
     {
       "level": 18,
-      "speed": 154,
-      "power": 16,
+      "speed": 1,
+      "power": 1.83,
       "price": 1076
     },
     {
       "level": 19,
-      "speed": 156,
-      "power": 17,
+      "speed": 1,
+      "power": 1.88,
       "price": 1139
     },
     {
       "level": 20,
-      "speed": 158,
-      "power": 18,
+      "speed": 1,
+      "power": 1.93,
       "price": 1202
     },
     {
       "level": 21,
-      "speed": 160,
-      "power": 18,
+      "speed": 1,
+      "power": 1.98,
       "price": 1265
     },
     {
       "level": 22,
-      "speed": 162,
-      "power": 18,
+      "speed": 1,
+      "power": 2.03,
       "price": 1328
     },
     {
       "level": 23,
-      "speed": 164,
-      "power": 19,
+      "speed": 1,
+      "power": 2.08,
       "price": 1391
     },
     {
       "level": 24,
-      "speed": 166,
-      "power": 20,
+      "speed": 1,
+      "power": 2.13,
       "price": 1454
     },
     {
       "level": 25,
-      "speed": 168,
-      "power": 21,
+      "speed": 1,
+      "power": 2.18,
       "price": 1517
     },
     {
       "level": 26,
-      "speed": 170,
-      "power": 22,
+      "speed": 1,
+      "power": 2.23,
       "price": 1580
     },
     {
       "level": 27,
-      "speed": 172,
-      "power": 23,
+      "speed": 1,
+      "power": 2.28,
       "price": 1643
     },
     {
       "level": 28,
-      "speed": 174,
-      "power": 24,
+      "speed": 1,
+      "power": 2.33,
       "price": 1706
     },
     {
       "level": 29,
-      "speed": 176,
-      "power": 25,
+      "speed": 1,
+      "power": 2.38,
       "price": 1769
     },
     {
       "level": 30,
-      "speed": 178,
-      "power": 26,
+      "speed": 1,
+      "power": 2.43,
       "price": 1832
     },
     {
       "level": 31,
-      "speed": 180,
-      "power": 26,
+      "speed": 1,
+      "power": 2.48,
       "price": 1895
     },
     {
       "level": 32,
-      "speed": 182,
-      "power": 26,
+      "speed": 1,
+      "power": 2.53,
       "price": 1958
     },
     {
       "level": 33,
-      "speed": 184,
-      "power": 27,
+      "speed": 1,
+      "power": 2.58,
       "price": 2021
     },
     {
       "level": 34,
-      "speed": 186,
-      "power": 28,
+      "speed": 1,
+      "power": 2.63,
       "price": 2084
     },
     {
       "level": 35,
-      "speed": 188,
-      "power": 29,
+      "speed": 1,
+      "power": 2.68,
       "price": 2147
     },
     {
       "level": 36,
-      "speed": 190,
-      "power": 30,
+      "speed": 1,
+      "power": 2.73,
       "price": 2210
     },
     {
       "level": 37,
-      "speed": 192,
-      "power": 31,
+      "speed": 1,
+      "power": 2.78,
       "price": 2273
     },
     {
       "level": 38,
-      "speed": 194,
-      "power": 32,
+      "speed": 1,
+      "power": 2.83,
       "price": 2336
     },
     {
       "level": 39,
-      "speed": 196,
-      "power": 33,
+      "speed": 1,
+      "power": 2.88,
       "price": 2399
     },
     {
       "level": 40,
-      "speed": 198,
-      "power": 34,
+      "speed": 1,
+      "power": 2.93,
       "price": 2462
     },
     {
       "level": 41,
-      "speed": 200,
-      "power": 34,
+      "speed": 1,
+      "power": 2.98,
       "price": 2525
     },
     {
       "level": 42,
-      "speed": 202,
-      "power": 34,
+      "speed": 1,
+      "power": 3.03,
       "price": 2588
     },
     {
       "level": 43,
-      "speed": 204,
-      "power": 35,
+      "speed": 1,
+      "power": 3.08,
       "price": 2651
     },
     {
       "level": 44,
-      "speed": 206,
-      "power": 36,
+      "speed": 1,
+      "power": 3.13,
       "price": 2714
     },
     {
       "level": 45,
-      "speed": 208,
-      "power": 37,
+      "speed": 1,
+      "power": 3.18,
       "price": 2777
     },
     {
       "level": 46,
-      "speed": 210,
-      "power": 38,
+      "speed": 1,
+      "power": 3.23,
       "price": 2840
     },
     {
       "level": 47,
-      "speed": 212,
-      "power": 39,
+      "speed": 1,
+      "power": 3.28,
       "price": 2903
     },
     {
       "level": 48,
-      "speed": 214,
-      "power": 40,
+      "speed": 1,
+      "power": 3.33,
       "price": 2966
     },
     {
       "level": 49,
-      "speed": 216,
-      "power": 40,
+      "speed": 1,
+      "power": 3.38,
       "price": 3029
     },
     {
       "level": 50,
-      "speed": 218,
-      "power": 40,
+      "speed": 1,
+      "power": 3.43,
       "price": 3092
     }
   ]

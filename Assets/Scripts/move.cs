@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class move : MonoBehaviour
 {
-    private float moveSpeed = 2f;
+    private float moveSpeed;
     float angle_copy = 999;
+
+    private void Start()
+    {
+        transform.GetComponent<Rigidbody>().mass = (float)GameDataManager._instance.getBallSkillForLevel(GameDataManager._instance.getBallPowerLevel()).power;
+        moveSpeed = 2;
+        //moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(GameDataManager._instance.getBallPowerLevel()).speed;
+    }
+
+
     public void onJoystickValueChanged(Vector2 eventPointerData)
     {
 #if UNITY_IOS || UNITY_ANDROID
@@ -107,10 +116,12 @@ public class move : MonoBehaviour
     private void RotateMove(Vector3 vet3)
     {
 
-     transform.Translate(0, 0, moveSpeed * Time.deltaTime);
+        transform.Translate(0, 0, moveSpeed * Time.deltaTime);
+        transform.eulerAngles = vet3;
+        //transform.
 
-        
-     transform.eulerAngles = vet3;
+
+
     }
 
 

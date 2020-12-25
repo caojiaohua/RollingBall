@@ -4,79 +4,79 @@
       "id": 0,
       "skinSourceName": "ball",
       "Discription": "初始皮肤",
-      "task": ""
+      "taskInfo": ""
     },
     {
       "id": 1,
       "skinSourceName": "blue",
       "Discription": "连续上线游戏3天获得",
-      "task": "Play 3 consecutive day"
+      "taskInfo": "Play 3 consecutive day"
     },
     {
       "id": 2,
       "skinSourceName": "basketball",
       "Discription": "连续上线游戏5天获得",
-      "task": "Play 5 consecutive day"
+      "taskInfo": "Play 5 consecutive day"
     },
     {
       "id": 3,
       "skinSourceName": "christmas",
       "Discription": "连续上线游戏7天获得",
-      "task": "Play 7 consecutive day"
+      "taskInfo": "Play 7 consecutive day"
     },
     {
       "id": 4,
       "skinSourceName": "dragonRgg",
       "Discription": "游戏累计复活10次",
-      "task": "revive 10 time"
+      "taskInfo": "revive 10 time"
     },
     {
       "id": 5,
       "skinSourceName": "wavy",
       "Discription": "游戏累计复活20次",
-      "task": "review 20 time"
+      "taskInfo": "review 20 time"
     },
     {
       "id": 6,
       "skinSourceName": "lava",
       "Discription": "完成地图10%路程",
-      "task": "Complete at least 10% of the map"
+      "taskInfo": "Complete at least 10% of the map"
     },
     {
       "id": 7,
       "skinSourceName": "mummypaint",
       "Discription": "完成地图30%路程",
-      "task": "Complete at least 30% of the map"
+      "taskInfo": "Complete at least 30% of the map"
     },
     {
       "id": 8,
       "skinSourceName": "punctate",
       "Discription": "完成地图50%路程",
-      "task": "Complete at least 50% of the map"
+      "taskInfo": "Complete at least 50% of the map"
     },
     {
       "id": 9,
       "skinSourceName": "science",
       "Discription": "完成地图80%路程",
-      "task": "Complete at least 80% of the map"
+      "taskInfo": "Complete at least 80% of the map"
     },
     {
       "id": 10,
       "skinSourceName": "submarine",
       "Discription": "击杀10个AI球",
-      "task": "Kill 10 enemies in a game"
+      "taskInfo": "Kill 10 enemies in a game"
     },
     {
       "id": 11,
       "skinSourceName": "earth",
       "Discription": "完成10%路程且不杀AI球",
-      "task": "Complete 10% with 0 kill"
+      "taskInfo": "Complete 10% with 0 kill"
     },
     {
       "id": 12,
       "skinSourceName": "paint",
       "Discription": "完成地图100%路程",
-      "task": "Complete 100% of the map"
+      "taskInfo": "Complete 100% of the map"
     }
   ]
 }

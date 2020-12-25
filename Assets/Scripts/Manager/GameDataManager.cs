@@ -4,9 +4,15 @@ using Assets.Scripts.Models;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum GAMESTATE
+{
+    start = 0,
+    game,
+    over
+}
 public class GameDataManager : MonoBehaviour
 {
+    public GAMESTATE gameState;
     public static GameDataManager _instance;
 
     /// <summary>
@@ -22,11 +28,15 @@ public class GameDataManager : MonoBehaviour
     [HideInInspector]
     public Object endPointObject;
 
-
+    /// <summary>
+    /// 地图组件总数
+    /// </summary>
+    public int componentTotalNum;
 
     /// <summary>
     /// 地图信息
     /// </summary>
+    [HideInInspector]
     public List<MapData> mapDatas;
 
     /// <summary>
@@ -41,8 +51,14 @@ public class GameDataManager : MonoBehaviour
     private List<ballSkills> BallSkillsData;
 
     /// <summary>
+    /// AI球数据
+    /// </summary>
+    private List<AIBallData> AIBallDatas;
+
+    /// <summary>
     /// 小球皮肤数据
     /// </summary>
+    [HideInInspector]
     public  List<ballSkinTask> BallSkinTaskData;
 
     private Dictionary<int,Material> ballMaterials;
@@ -79,13 +95,15 @@ public class GameDataManager : MonoBehaviour
     /// </summary>
     private int iNOT_KillAI_InFirst10P;
 
+    
 
     /// <summary>
     /// 检查游戏进度 - 任务开启时调用即可
     /// </summary>
-    void checkGameProgress()
+    public int getGameProgress()
     {
         iGameProgress = PlayerPrefs.GetInt(appSetting.gameProgress_playerprefs,0);
+        return iGameProgress;
     }
 
     /// <summary>
@@ -99,9 +117,10 @@ public class GameDataManager : MonoBehaviour
     /// <summary>
     /// 检查击杀AI球的数量  默认为0  未完成
     /// </summary>
-   void checkKillAINum()
+   public int  getKillAINum()
     {
         iKillAINum = PlayerPrefs.GetInt(appSetting.killAINum_playerprefs,0);
+        return iKillAINum;
     }
 
     /// <summary>
@@ -179,6 +198,24 @@ public class GameDataManager : MonoBehaviour
         PlayerPrefs.SetInt(appSetting.killAINum_playerprefs,PlayerPrefs.GetInt(appSetting.killAINum_playerprefs)+1);
     }
 
+    /// <summary>
+    /// 获取金币收益能力
+    /// </summary>
+    /// <returns></returns>
+    public int getGoldMultipleLevel()
+    {
+        return PlayerPrefs.GetInt(appSetting.GoldMultipleLevel_playerprefs,1);
+    }
+
+    /// <summary>
+    /// 获取小球power 等级
+    /// </summary>
+    /// <returns></returns>
+    public int getBallPowerLevel()
+    {
+        return PlayerPrefs.GetInt(appSetting.BallPowerLevel_playerprefs,1);
+    }
+
 
     private void Awake()
     {
@@ -195,13 +232,7 @@ public class GameDataManager : MonoBehaviour
 
     void init()
     {
-        #region  初始化金币余额
-        if (!PlayerPrefs.HasKey(appSetting.goldDataName_PlayerPrefs))
-        {
-            PlayerPrefs.SetInt(appSetting.goldDataName_PlayerPrefs,appSetting.initGoldNum);
-        }
-    
-        #endregion
+
 
 
         getMapCompenentInfo();
@@ -209,18 +240,23 @@ public class GameDataManager : MonoBehaviour
         getBallSkillsData();
         getGoldIncomeUpgradeData();
         getBallTasksInfo();
-        ///初始化当前关卡进度
-        if (!PlayerPrefs.HasKey("curGameLevel"))
-            PlayerPrefs.SetInt("curGameLevel", 1);
+        getAIBallData();
+
 
     }
 
     /// <summary>
     /// 获取地图信息
     /// </summary>
-    public void getMapDataInfo()
+    private void getMapDataInfo()
     {
         mapDatas = JsonDataTool.GetListFromJson<MapData>(appSetting.mapDataTableName);
+        ///计算地图组件总数
+        ///
+        for (int i = 0; i < mapDatas.Count; i++)
+        {
+            componentTotalNum += mapDatas[i].compenentNumb;
+        }
 
     }
 
@@ -241,7 +277,7 @@ public class GameDataManager : MonoBehaviour
     /// <returns></returns>
     public int getGoldNum()
     {
-        return PlayerPrefs.GetInt(appSetting.goldDataName_PlayerPrefs) ;
+        return PlayerPrefs.GetInt(appSetting.goldDataName_PlayerPrefs,0) ;
     }
 
 
@@ -388,9 +424,9 @@ public class GameDataManager : MonoBehaviour
     public List<ballTask> get_change_BallSkinTaskGameData()
     {
         List<ballTask> data = JsonDataTool.GetListFromJson<ballTask>(appSetting.ballSkinGameDataTableName);
-        checkGameProgress();
+        getGameProgress();
         checkReviveNum();
-        checkKillAINum();
+        getKillAINum();
         checkNOT_KillAI_InFirst10P();
         foreach (var item in data)
         {
@@ -483,6 +519,21 @@ public class GameDataManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 根据等级获取数据
+    /// </summary>
+    /// <param name="_level"></param>
+    /// <returns></returns>
+    public goldUpgrade getGoldUpgradeForLevel(int _level)
+    {
+        foreach (var item in goldIncomeUpgradeData)
+        {
+            if (item.goldLevel == _level)
+                return item;
+        }
+        return null;
+    }
+
+    /// <summary>
     /// 获取小球能力等级数据
     /// </summary>
     private void getBallSkillsData()
@@ -490,9 +541,44 @@ public class GameDataManager : MonoBehaviour
         BallSkillsData = JsonDataTool.GetListFromJson<ballSkills>(appSetting.ballSkillsTableName);
     }
 
+    /// <summary>
+    /// 获取AI小球等级数据
+    /// </summary>
+    private void getAIBallData()
+    {
+        AIBallDatas = JsonDataTool.GetListFromJson<AIBallData>(appSetting.AIBallDataTableName);
+    }
 
 
+    /// <summary>
+    /// 根据AI球的等级获取AI的数据
+    /// </summary>
+    /// <param name="_level"></param>
+    public AIBallData getAIBallDataForLevel(int _level)
+    {
+        foreach (var item in AIBallDatas)
+        {
+            if (item.level == _level)
+                return item;
+        }
+        return null;
+    }
 
+
+    /// <summary>
+    /// 根据level 查找对应数据
+    /// </summary>
+    /// <param name="_level"></param>
+    /// <returns></returns>
+    public ballSkills getBallSkillForLevel(int _level)
+    {
+        foreach (var item in BallSkillsData)
+        {
+            if (item.level == _level)
+                return item;
+        }
+        return null;
+    }
 
 
 
