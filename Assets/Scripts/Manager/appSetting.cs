@@ -18,6 +18,7 @@ public class appSetting : MonoBehaviour
     public static string loginDayTime_playerprefs = "loginDayTime";
     public static string reviveNum_playerprefs = "reviveNum";
     public static string gameProgress_playerprefs = "gameProgress"; 
+    public static string curGameProgress_playerprefs = "curGameProgress";
     public static string NOT_KillAI_InFirst10P_playerprefs = "NOT_KillAI_InFirst10P"; 
     public static string killAINum_playerprefs = "killAINum";
     public static string BallPowerLevel_playerprefs = "BallPowerLevel";

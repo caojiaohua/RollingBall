@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 8722645594214596929}
   m_Layer: 0
   m_Name: mechanism_4
-  m_TagString: Untagged
+  m_TagString: trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 8592750725531495608}
   m_Layer: 0
   m_Name: mechanism_3
-  m_TagString: Untagged
+  m_TagString: trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 9037434786706160068}
   m_Layer: 0
   m_Name: mechanism_2
-  m_TagString: Untagged
+  m_TagString: trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 3657568298167838162}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: component
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

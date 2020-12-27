@@ -18,25 +18,5 @@ public class move_cube : MonoBehaviour
         transform.position = new Vector3(ball.transform.position.x,ball.transform.position.y -2,ball.transform.position.z);
     }
 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "AIBall")
-        {
-            ///更新金币
-            ///
-
-          //  GameDataManager._instance.setGoldNum((int)(GameDataManager._instance.getGoldUpgradeForLevel(GameDataManager._instance.getGoldMultipleLevel()).killEnemyIncome));
-
-            ///更新杀敌数
-            ///
-            GameDataManager._instance.setKillAINum();
-            JoystickPanel._instance.setKillAINum();
-
-        }
-        else if(other.tag == "ball")
-        {
-            Debug.Log("game over");
-        }
-    }
+    
 }

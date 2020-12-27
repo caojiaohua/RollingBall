@@ -36,9 +36,8 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
 
     public override void OnPause()
     {
-        UIPanelManager.Instance.PopPanel();
+        //UIPanelManager.Instance.PopPanel();
         gameObject.SetActive(false);
-       // Destroy(gameObject);
     }
 
     public override void OnResume()
@@ -95,7 +94,7 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
 
                 txt_taskInfo.text = task.taskInfo;
                 txt_taskProgress.text = task.taskProgress.ToString() + "%";
-                img_taskProgress.fillAmount = task.taskProgress / 1;
+                img_taskProgress.fillAmount = (float)task.taskProgress / 1;
             }
             else
             {

@@ -18,21 +18,27 @@ public class componentControl : MonoBehaviour
     public string AIRating;
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "component")
-        {
-            //更新地图进度
-            if (GameDataManager._instance.gameState == GAMESTATE.game)
-                JoystickPanel._instance.setGameProgress(mapID);
-            GameControl._instance.checkMapProgress(mapID);
-        }
-        else if(collision.gameObject.tag == "aiball")
-        {
+        //if(collision.gameObject.tag == "ball")
+        //{
+        //    //更新地图进度
+        //    if (GameDataManager._instance.gameState == GAMESTATE.game)
+        //        JoystickPanel._instance.setGameProgress(mapID);
+        //    GameControl._instance.checkMapProgress(mapID);
+        //}
+        //else if(collision.gameObject.tag == "aiball")
+        //{
 
-        }
+        //}
 
     }
+
+
+
+
+
     private void Start()
     {
+        if(mapID != 0)
         cloneAI();
     }
 

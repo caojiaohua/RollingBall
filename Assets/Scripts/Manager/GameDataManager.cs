@@ -1,19 +1,35 @@
 ﻿using Assets.Scripts.EnumFlags;
 using Assets.Scripts.Models;
-//using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum GAMESTATE
+
+
+
+
+public class GameDataManager :MonoBehaviour
 {
-    start = 0,
-    game,
-    over
-}
-public class GameDataManager : MonoBehaviour
-{
-    public GAMESTATE gameState;
+
+    private gamedata gamedatas;
     public static GameDataManager _instance;
+    void  Awake()
+    {
+        _instance = this;
+
+        gamedatas = new gamedata();
+        Debug.Log(gameObject.name);
+        gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
+
+        DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
+        ///任务数据检查
+        checkLoginDay();
+
+        init();
+    }
+
+
+    
 
     /// <summary>
     /// 所有的组件 资源加载
@@ -25,19 +41,11 @@ public class GameDataManager : MonoBehaviour
 
     [HideInInspector]
     public Object startPointObject;
+
+
     [HideInInspector]
     public Object endPointObject;
 
-    /// <summary>
-    /// 地图组件总数
-    /// </summary>
-    public int componentTotalNum;
-
-    /// <summary>
-    /// 地图信息
-    /// </summary>
-    [HideInInspector]
-    public List<MapData> mapDatas;
 
     /// <summary>
     /// 所有的地图组件信息
@@ -58,8 +66,7 @@ public class GameDataManager : MonoBehaviour
     /// <summary>
     /// 小球皮肤数据
     /// </summary>
-    [HideInInspector]
-    public  List<ballSkinTask> BallSkinTaskData;
+    private  List<ballSkinTask> BallSkinTaskData;
 
     private Dictionary<int,Material> ballMaterials;
 
@@ -69,140 +76,104 @@ public class GameDataManager : MonoBehaviour
     private List<goldUpgrade> goldIncomeUpgradeData;
 
 
-    #region  游戏任务完成情况的数据统计
     /// <summary>
-    /// 累计登陆天数
+    /// 获取全局游戏进度 
     /// </summary>
-    private int iLoginDayNum;
-
-    /// <summary>
-    /// 游戏累计复活次数
-    /// </summary>
-    private int iReviveNum;
-
-    /// <summary>
-    /// 游戏进度 0%-100%
-    /// </summary>
-    private int iGameProgress;
-
-    /// <summary>
-    /// 击杀AI的数量
-    /// </summary>
-    private int iKillAINum;
-
-    /// <summary>
-    /// 完成前百分之十的路程且不击杀AI球
-    /// </summary>
-    private int iNOT_KillAI_InFirst10P;
-
-    
-
-    /// <summary>
-    /// 检查游戏进度 - 任务开启时调用即可
-    /// </summary>
-    public int getGameProgress()
+    public static  float getGameProgress()
     {
-        iGameProgress = PlayerPrefs.GetInt(appSetting.gameProgress_playerprefs,0);
-        return iGameProgress;
+        return PlayerPrefs.GetInt(appSetting.gameProgress_playerprefs,0);
+        
     }
 
     /// <summary>
-    /// 检查是否完成前百分之十的路程且不击杀AI球
+    /// 获取是否完成前百分之十的路程且不击杀AI球
     /// </summary>
-    void checkNOT_KillAI_InFirst10P()
+    public static  int getNOT_KillAI_InFirst10P()
     {
-        iNOT_KillAI_InFirst10P = PlayerPrefs.GetInt(appSetting.NOT_KillAI_InFirst10P_playerprefs, 0);
+        return PlayerPrefs.GetInt(appSetting.NOT_KillAI_InFirst10P_playerprefs, 0);
     }
 
     /// <summary>
-    /// 检查击杀AI球的数量  默认为0  未完成
+    /// 获取历史总击杀AI球的数量  默认为0  未完成
     /// </summary>
-   public int  getKillAINum()
+   public static int  getKillAINum_total()
     {
-        iKillAINum = PlayerPrefs.GetInt(appSetting.killAINum_playerprefs,0);
-        return iKillAINum;
+        return  PlayerPrefs.GetInt(appSetting.killAINum_playerprefs,0);
+         
     }
 
+    /// <summary>
+    /// 获取地图总数
+    /// </summary>
+    /// <returns></returns>
+    public static int getMapComponentNum()
+    {
+        List<MapData> mapDatas = getMapDataInfo();
+        int num = 0;
+        foreach (var item in mapDatas)
+        {
+            num += item.compenentNumb;
+        }
+
+        return num;
+    }
     /// <summary>
     /// 检查登陆天数
     /// </summary>
-    void checkLoginDay()
+    private void checkLoginDay()
     {
         System.DateTime date_now = System.DateTime.UtcNow;
         System.DateTime date_lastLogin = System.DateTime.Parse(PlayerPrefs.GetString(appSetting.loginDayTime_playerprefs, System.DateTime.UtcNow.ToString()));
 
-        iLoginDayNum = PlayerPrefs.GetInt(appSetting.loginDayNum_playerprefs, 1);
 
         System.TimeSpan spanDay = date_now.Subtract(date_lastLogin);
 
         if (spanDay.Days == 1)//累加1
         {
-            iLoginDayNum += 1;
-            PlayerPrefs.SetInt(appSetting.loginDayNum_playerprefs, iLoginDayNum);
+            gamedatas.iLoginDayNum += 1;
+            
         }
         else if (spanDay.Days > 1)//重新计数
         {
-            iLoginDayNum = 1;
-            PlayerPrefs.SetInt(appSetting.loginDayNum_playerprefs, 1);
+            gamedatas.iLoginDayNum = 1;
         }
 
         PlayerPrefs.SetString(appSetting.loginDayTime_playerprefs, System.DateTime.UtcNow.ToString());
     }
 
+
+    /// <summary>
+    /// 获取游戏登陆天数
+    /// </summary>
+    /// <returns></returns>
+    public static int getLoginDayNum()
+    {
+        return PlayerPrefs.GetInt(appSetting.loginDayNum_playerprefs,1);
+    }
+
     /// <summary>
     /// 检查复活次数 - 开启任务时调用即可
     /// </summary>
-    void checkReviveNum()
+    public static int getReviveNum()
     {
-        iReviveNum = PlayerPrefs.GetInt(appSetting.reviveNum_playerprefs);
-    }
-
-    /// <summary>
-    ///  设置任务完成  1 为完成  
-    /// </summary>
-    void setNOT_KillAI_InFirst10P()
-    {
-        PlayerPrefs.SetInt(appSetting.NOT_KillAI_InFirst10P_playerprefs, 1);
+        return  PlayerPrefs.GetInt(appSetting.reviveNum_playerprefs);
     }
 
 
-
-    #endregion
-
     /// <summary>
-    /// 记录复活次数 +1
-    /// </summary>
-    public void  setReviveNum()
-    {
-        PlayerPrefs.SetInt(appSetting.reviveNum_playerprefs, PlayerPrefs.GetInt(appSetting.reviveNum_playerprefs) + 1);
-    }
-
-    /// <summary>
-    /// 更新游戏进度
-    /// </summary>
-    /// <param name="_progress"></param>
-    void setGameProgress(int _progress)
-    {
-        iGameProgress = PlayerPrefs.GetInt(appSetting.gameProgress_playerprefs, 0);
-        if (_progress > iGameProgress)
-            PlayerPrefs.SetInt(appSetting.gameProgress_playerprefs, _progress);
-
-
-    }
-
-    /// <summary>
-    /// 更新击杀AI球的数量
-    /// </summary>
-    public void setKillAINum()
-    {
-        PlayerPrefs.SetInt(appSetting.killAINum_playerprefs,PlayerPrefs.GetInt(appSetting.killAINum_playerprefs)+1);
-    }
-
-    /// <summary>
-    /// 获取金币收益能力
+    /// 获取当局游戏进度
     /// </summary>
     /// <returns></returns>
-    public int getGoldMultipleLevel()
+    public static float getCurGameProgress()
+    {
+        return PlayerPrefs.GetFloat(appSetting.curGameProgress_playerprefs);
+    }
+
+    /// <summary>
+    /// 获取金币收益能力 等级
+    /// </summary>
+    /// <returns></returns>
+    public static int getGoldMultipleLevel()
     {
         return PlayerPrefs.GetInt(appSetting.GoldMultipleLevel_playerprefs,1);
     }
@@ -211,32 +182,45 @@ public class GameDataManager : MonoBehaviour
     /// 获取小球power 等级
     /// </summary>
     /// <returns></returns>
-    public int getBallPowerLevel()
+    public static int getBallPowerLevel()
     {
         return PlayerPrefs.GetInt(appSetting.BallPowerLevel_playerprefs,1);
     }
 
 
-    private void Awake()
+
+ 
+
+    private void OnRefresh(object[] param)
     {
-        _instance = this;
-        ///任务数据检查
-        checkLoginDay();
+        var data = param[0] as gamedata;
+
+        ///小球重力  等级
+        PlayerPrefs.SetInt(appSetting.BallPowerLevel_playerprefs,data.ballPowerLevel);
+        ///金币收益能力  等级
+        PlayerPrefs.SetInt(appSetting.GoldMultipleLevel_playerprefs, data.GoldMulitipleLevel);
+        /// 设置全局金币数量
+        PlayerPrefs.SetInt(appSetting.goldDataName_PlayerPrefs, data.GameGoldValue);
+        /// 更新全局击杀AI球的数量
+        PlayerPrefs.SetInt(appSetting.killAINum_playerprefs, data.GameKillAIValue);
+        ///更新当局游戏进度
+        PlayerPrefs.SetFloat(appSetting.curGameProgress_playerprefs, data.curGameProgressValue);
+
+        ///更新全局游戏进度
+        if (data.GameProgressValue > PlayerPrefs.GetFloat(appSetting.gameProgress_playerprefs, 0))
+            PlayerPrefs.SetFloat(appSetting.gameProgress_playerprefs, data.GameProgressValue);
+
+        ///游戏复活次数
+        PlayerPrefs.SetInt(appSetting.reviveNum_playerprefs, data.iReviveNum);
+
+        PlayerPrefs.SetInt(appSetting.loginDayNum_playerprefs, data.iLoginDayNum);
 
 
-        init();
     }
-
-
-
 
     void init()
     {
-
-
-
         getMapCompenentInfo();
-        getMapDataInfo();
         getBallSkillsData();
         getGoldIncomeUpgradeData();
         getBallTasksInfo();
@@ -248,26 +232,13 @@ public class GameDataManager : MonoBehaviour
     /// <summary>
     /// 获取地图信息
     /// </summary>
-    private void getMapDataInfo()
+    public static  List<MapData> getMapDataInfo()
     {
-        mapDatas = JsonDataTool.GetListFromJson<MapData>(appSetting.mapDataTableName);
-        ///计算地图组件总数
-        ///
-        for (int i = 0; i < mapDatas.Count; i++)
-        {
-            componentTotalNum += mapDatas[i].compenentNumb;
-        }
-
+        return JsonDataTool.GetListFromJson<MapData>(appSetting.mapDataTableName);
+  
     }
 
-    /// <summary>
-    /// 设置金币数量
-    /// </summary>
-    /// <param name="_udateNum"></param>
-    public void setGoldNum(int _udateNum)
-    {
-        PlayerPrefs.SetInt(appSetting.goldDataName_PlayerPrefs,getGoldNum()+_udateNum);
-    }
+
 
  
 
@@ -275,7 +246,7 @@ public class GameDataManager : MonoBehaviour
     /// 获取金币数量
     /// </summary>
     /// <returns></returns>
-    public int getGoldNum()
+    public static int getGoldNum()
     {
         return PlayerPrefs.GetInt(appSetting.goldDataName_PlayerPrefs,0) ;
     }
@@ -371,6 +342,9 @@ public class GameDataManager : MonoBehaviour
     /// <summary>
     /// 获取小球皮肤任务数据
     /// </summary>
+    /// 
+
+   
     private void getBallTasksInfo()
     {
         BallSkinTaskData = JsonDataTool.GetListFromJson<ballSkinTask>(appSetting.ballSkinTaskTableName);
@@ -409,14 +383,11 @@ public class GameDataManager : MonoBehaviour
             }
             ///创建可修改数据表
             ///
-            setBallTaskGameData(ballTasksGameData);
+            JsonDataTool.SetJsonFromList<ballTask>(appSetting.ballSkinGameDataTableName, ballTasksGameData);
         }
     }
 
-    void setBallTaskGameData(List<ballTask> _tasksGameData)
-    {
-        JsonDataTool.SetJsonFromList<ballTask>(appSetting.ballSkinGameDataTableName, _tasksGameData);
-    }
+
 
     /// <summary>
     /// 获取并且修改小球任务信息表
@@ -424,54 +395,51 @@ public class GameDataManager : MonoBehaviour
     public List<ballTask> get_change_BallSkinTaskGameData()
     {
         List<ballTask> data = JsonDataTool.GetListFromJson<ballTask>(appSetting.ballSkinGameDataTableName);
-        getGameProgress();
-        checkReviveNum();
-        getKillAINum();
-        checkNOT_KillAI_InFirst10P();
+
         foreach (var item in data)
         {
            switch(item.id)
             {
                 case 1:
-                    item.taskProgress = iLoginDayNum / 3;
+                    item.taskProgress = gamedatas.iLoginDayNum / 3;
                     break;
                 case 2:
-                    item.taskProgress = iLoginDayNum / 5;
+                    item.taskProgress = gamedatas.iLoginDayNum / 5;
                     break;
                 case 3:
-                    item.taskProgress = iLoginDayNum / 7;
+                    item.taskProgress = gamedatas.iLoginDayNum / 7;
                     break;
-                case 4:item.taskProgress = iReviveNum / 10;
+                case 4:item.taskProgress = gamedatas.iReviveNum / 10;
                     break;
                 case 5:
-                    item.taskProgress = iReviveNum / 20;
+                    item.taskProgress = gamedatas.iReviveNum / 20;
                     break;
                 case 6:
-                    item.taskProgress = iGameProgress / 10;
+                    item.taskProgress = gamedatas.GameProgressValue / 10;
                     break;
                 case 7:
-                    item.taskProgress = iGameProgress / 30;
+                    item.taskProgress = gamedatas.GameProgressValue / 30;
                     break;
                 case 8:
-                    item.taskProgress = iGameProgress / 50;
+                    item.taskProgress = gamedatas.GameProgressValue / 50;
                     break;
                 case 9:
-                    item.taskProgress = iGameProgress / 80;
+                    item.taskProgress = gamedatas.GameProgressValue / 80;
                     break;
                 case 10:
-                    item.taskProgress = iKillAINum / 10;
+                    item.taskProgress = gamedatas.GameKillAIValue / 10;
                     break;
                 case 11:
-                    item.taskProgress = iNOT_KillAI_InFirst10P / 1;
+                    item.taskProgress = gamedatas.iNOT_KillAI_InFirst10P / 1;
                     break;
                 case 12:
-                    item.taskProgress = iGameProgress / 100;
+                    item.taskProgress = gamedatas.GameProgressValue / 100;
                     break;
 
             }
         }
 
-        setBallTaskGameData(data);
+        JsonDataTool.SetJsonFromList<ballTask>(appSetting.ballSkinGameDataTableName, data);
 
         return data;
     }
@@ -581,12 +549,136 @@ public class GameDataManager : MonoBehaviour
     }
 
 
+}
+
+/// <summary>
+/// 数据类型
+/// </summary>
+public enum DataType
+{
+    
+    _gamedata = 1
 
 
+}
+
+/// <summary>
+/// 游戏状态
+/// </summary>
+public enum GAMESTATE
+{
+    start = 0,
+    game,
+    over
+}
 
 
+public class gamedata : DataBase
+{
+    /// <summary>
+    /// 当局游戏金币数量
+    /// </summary>
+    public int curGameGoldValue;
+
+    /// <summary>
+    /// 当局游戏击杀AI球的数量
+    /// </summary>
+   public int curGameKillAIValue;
+
+    /// <summary>
+    /// 当局游戏进度
+    /// </summary>
+    public float curGameProgressValue;
+
+    /// <summary>
+    /// 全局金币数量
+    /// </summary>
+    public int GameGoldValue;
+
+    /// <summary>
+    /// 全局击杀AI球的数量
+    /// </summary>
+    public int GameKillAIValue;
 
 
+    /// <summary>
+    /// 全局游戏进度
+    /// </summary>
+    public float GameProgressValue;
+
+    /// <summary>
+    /// 金币升级能力等级
+    /// </summary>
+    public int GoldMulitipleLevel;
+
+    /// <summary>
+    /// 小球重力 能力等级
+    /// </summary>
+    public int ballPowerLevel;
+
+    /// <summary>
+    /// 完成地图前10 并且 没有击杀AI
+    /// </summary>
+    public int iNOT_KillAI_InFirst10P;
+
+    /// <summary>
+    /// 游戏复活次数
+    /// </summary>
+    public int iReviveNum;
+
+    /// <summary>
+    /// 游戏登陆天数
+    /// </summary>
+    public int iLoginDayNum;
+
+    /// <summary>
+    /// 游戏状态
+    /// </summary>
+    public GAMESTATE gameState;
+
+    /// <summary>
+    /// 总的组件数量
+    /// </summary>
+    public int mapComponentsNum;
+
+    /// <summary>
+    /// 地图加载进度  已经加载的组件个数 - 
+    /// </summary>
+    public int loadedComponentNum;
+
+    /// <summary>
+    /// 地图加载进度  MapRating -  总组数
+    /// </summary>
+    public int MapRating;
+
+    public override void OnInit()
+    {
+        loadedComponentNum = 0;
+        curGameKillAIValue = 0;
+        curGameGoldValue = 0;
+        curGameProgressValue = 0;
+        GameGoldValue = GameDataManager.getGoldNum();
+        GameKillAIValue = GameDataManager.getKillAINum_total();
+        GameProgressValue = GameDataManager.getGameProgress();
+        GoldMulitipleLevel = GameDataManager.getGoldMultipleLevel();
+        ballPowerLevel = GameDataManager.getBallPowerLevel();
+        iNOT_KillAI_InFirst10P = GameDataManager.getNOT_KillAI_InFirst10P();
+        iReviveNum = GameDataManager.getReviveNum();
+        iLoginDayNum = GameDataManager.getLoginDayNum();
+        gameState = GAMESTATE.start;
+        mapComponentsNum = GameDataManager.getMapComponentNum();
+    }
+
+    public override void Notify()
+    {
+        EventManager._instance.Invoke((int)InDataType, this);
+    }
+
+    public override DataType InDataType
+    {
+
+        get { return DataType._gamedata; }
 
 
+    }
 }

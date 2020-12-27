@@ -24,7 +24,7 @@ public class ballTask
     /// <summary>
     /// 任务进度 默认为0  
     /// </summary>
-    public int taskProgress;
+    public double taskProgress;
 
     /// <summary>
     /// 是否被选择  默认为0 - 没被选择  1- 被选择

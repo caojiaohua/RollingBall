@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 6438725232554129735}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: component
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 5427449882905072965}
   m_Layer: 0
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

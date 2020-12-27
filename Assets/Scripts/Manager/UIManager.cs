@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,20 +7,29 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Text txt_gold;
+    public static UIManager _instance;
 
-
+    private gamedata gamedatas;
     // Start is called before the first frame update
     void Start()
     {
+        _instance = this;
+
+        Debug.Log(gameObject.name);
+        gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
+
+
+        DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
         UIPanelManager panelManager = UIPanelManager.Instance;
         panelManager.PushPanel(UIPanelType.start);
-        set_txt_gold();
+        txt_gold.text = gamedatas.GameGoldValue.ToString();
     }
 
-    public void set_txt_gold()
+    private void OnRefresh(object[] param)
     {
-        txt_gold.text = GameDataManager._instance.getGoldNum().ToString();
+        txt_gold.text = gamedatas.GameGoldValue.ToString();
     }
+
 
 }
