@@ -32,7 +32,7 @@ public class startPanel : BasePanel
     private void Start()
     {
         ////gamedatas = new gamedata();
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
 
 
         #region

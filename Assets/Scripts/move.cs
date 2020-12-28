@@ -13,7 +13,7 @@ public class move : MonoBehaviour
 
 
         //gamedatas = new gamedata();
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
 
@@ -33,8 +33,12 @@ public class move : MonoBehaviour
         
         if (angle != 0)
         {
-            gamedatas.gameState = GAMESTATE.game;
-            gamedatas.Notify();
+            if(gamedatas.gameState == GAMESTATE.start)
+            {
+                gamedatas.gameState = GAMESTATE.game;
+                gamedatas.Notify();
+            }
+           
 
             if (angle < 22.5f && angle > -22.5f)
             {
@@ -97,7 +101,8 @@ public class move : MonoBehaviour
 
     private void RotateMove(Vector3 vet3)
     {
-        transform.eulerAngles = vet3;
+        if(gamedatas.gameState == GAMESTATE.game)
+        transform.localEulerAngles = vet3;
     }
 
 

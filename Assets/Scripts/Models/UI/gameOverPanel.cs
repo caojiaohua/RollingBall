@@ -38,8 +38,6 @@ public class gameOverPanel : BasePanel
     private gamedata gamedatas;
     private void Awake()
     {
-        //gamedatas = new gamedata();
-        Debug.Log(gameObject.name);
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
 
@@ -65,6 +63,9 @@ public class gameOverPanel : BasePanel
     void btn_over_NoAdsClick()
     {
         UIPanelManager.Instance.PushPanel(UIPanelType.start);
+        gamedatas.MapRating = 0;
+        GameControl._instance.setGameMap(gamedatas.MapRating);
+        gamedatas.Notify();
         ball.GetComponent<ballContro>().resetPosition();
         
     }
@@ -107,6 +108,7 @@ public class gameOverPanel : BasePanel
 
     public override void OnEnter()
     {
+        gameObject.SetActive(true);
         continuePanel.SetActive(true);
         overPanel.SetActive(false);
     }
@@ -118,6 +120,7 @@ public class gameOverPanel : BasePanel
 
     public override void OnResume()
     {
+        gameObject.SetActive(true);
         continuePanel.SetActive(true);
     }
 

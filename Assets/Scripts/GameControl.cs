@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class GameControl : MonoBehaviour
 {
-    /// <summary>
-    /// 记录上次游戏进度
-    /// </summary>
-    private float lastGameProgress;
+
 
     List<GameObject> loadedComponent;
     public static GameControl _instance;
@@ -32,8 +29,6 @@ public class GameControl : MonoBehaviour
     {
         _instance = this;
 
-        //gamedatas = new gamedata();
-        Debug.Log(gameObject.name);
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
         Init();
@@ -46,8 +41,13 @@ public class GameControl : MonoBehaviour
     {
         var data = param[0] as gamedata;
 
-        //if(data.MapRating >)
-        setGameMap(gamedatas.MapRating);
+        //if (data.MapRating > loadedRating)
+        //{
+        //    setGameMap(gamedatas.MapRating);
+        //    loadedRating = gamedatas.MapRating;
+        //    Debug.Log(gamedatas.MapRating + "       " + loadedRating) ;
+        //}
+
     }
 
     /// <summary>
@@ -55,7 +55,6 @@ public class GameControl : MonoBehaviour
     /// </summary>
     public void Init()
     {
-        lastGameProgress = 0;
 
         if(loadedComponent != null)
         {
@@ -66,20 +65,22 @@ public class GameControl : MonoBehaviour
         }
         loadedComponent = new List<GameObject>();
 
-        
+        gamedatas.loadedComponentNum = 0;
+        gamedatas.Notify();
     }
     
   
     /// <summary>
     /// 加载地图   分段加载   2
     /// </summary>
-    void setGameMap(int _loadMapProgress)
+   public void setGameMap(int _loadMapProgress)
     {
-        List<GameObject> test = new List<GameObject>();
+        
         mapData = GameDataManager.getMapDataInfo();
         
         if(gamedatas.MapRating == 0)
         {
+            Init();
             GameObject startPoint = checkMapComponentList(GameDataManager._instance.startPointObject);
 
             startPoint.transform.localPosition = new Vector3(0,0,0);
@@ -123,11 +124,11 @@ public class GameControl : MonoBehaviour
                 }
                 GameObject compoment = checkMapComponentList(xx);
 
-                compoment.GetComponent<componentControl>().mapID = i * mapData[i].compenentNumb + j + 1;
+                compoment.GetComponent<componentControl>().mapID = j + gamedatas.loadedComponentNum;
                 compoment.GetComponent<componentControl>().AILevel = mapData[i].AILevel;
                 compoment.GetComponent<componentControl>().AIRating = mapData[i].AIRating;
 
-                compoment.name = (i * mapData[i].compenentNumb + j).ToString();
+                compoment.name =(j + gamedatas.loadedComponentNum).ToString();
 
                 compoment.transform.localPosition = getEndPoint(lastComponent).position - getStartPoint(compoment.transform).position;
 
@@ -160,12 +161,12 @@ public class GameControl : MonoBehaviour
         _gameobject.transform.parent = mapComponentParent;
         loadedComponent.Add(_gameobject);
 
-        if (loadedComponent.Count > 50)
+        if (loadedComponent.Count > 55)
         {
             Destroy(loadedComponent[0]);
             loadedComponent.RemoveAt(0);
         }
-        
+
         return _gameobject;
     }
 

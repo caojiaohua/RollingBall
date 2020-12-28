@@ -18,7 +18,7 @@ public class GameDataManager :MonoBehaviour
         _instance = this;
 
         gamedatas = new gamedata();
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);

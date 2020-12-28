@@ -39,7 +39,7 @@ public  class EventManager : MonoBehaviour
         if (EventListerDict != null && EventListerDict.ContainsKey(key))
         {
             EventListerDict.Remove(key);
-            Debug.Log("移除事件：" + key);
+         //   Debug.Log("移除事件：" + key);
         }
         else
         {
