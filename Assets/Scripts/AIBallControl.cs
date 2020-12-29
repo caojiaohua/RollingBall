@@ -19,7 +19,7 @@ public class AIBallControl : MonoBehaviour
     }
     private MonsterState currentState = MonsterState.STAND;          //默认状态为原地呼吸
 
-    public float[] actionWeight = { 100, 4000 };         //设置待机时各种动作的权重，顺序依次为呼吸、移动
+    public float[] actionWeight = { 1000, 4000 };         //设置待机时各种动作的权重，顺序依次为呼吸、移动
 
     private float lastActTime;          //最近一次指令时间
 
@@ -46,7 +46,7 @@ public class AIBallControl : MonoBehaviour
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
         
-        walkSpeed = 3f;
+        walkSpeed = 2f;
         //随机一个待机动作
         RandomAction();
 
@@ -117,32 +117,29 @@ public class AIBallControl : MonoBehaviour
 
             if (hit.collider.gameObject.name != transform.parent.name)
             {
-                isTurn = true;
-                //if(istest == false)
-                //{
-                //    targetRotation = -targetRotation;
-                //    transform.eulerAngles = targetRotation;
+                
+                    if(istest == false)
+                {
+                    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y - 180,transform.localEulerAngles.z);
+                    istest = true;
+                }
                     
-                //    istest = true;
-                //}
-               
+
             }
             else
             {
-                isTurn = false;
-                //istest = false;
+                istest = false;
             }
+
         }
         else 
         {
-            
-                isTurn = true;
             if (istest == false)
             {
-                targetRotation = new Vector3(0, UnityEngine.Random.Range(1, 360), 0);
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y - 180,transform.localEulerAngles.z);
                 istest = true;
             }
-
+            
         }
 
         switch (currentState)
@@ -158,24 +155,13 @@ public class AIBallControl : MonoBehaviour
 
             //游走，根据状态随机时生成的目标位置修改朝向，并向前移动
             case MonsterState.WALK:
-                if(isTurn == false)
-                {
-                    transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed);
-                    transform.eulerAngles = targetRotation;
-                }
 
-
+                transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed);
                 if (Time.time - lastActTime > 5)
                 {
                     RandomAction();         //随机切换指令
                 }
-                //该状态下的检测指令
-                if (isTurn == true)
-                {
-                    transform.eulerAngles = - targetRotation;
-                    //targetRotation = Quaternion.LookRotation(initPosition - transform.position, Vector3.up);
-                    //transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, 0.2f);
-                }
+
                 break;
         }
 
