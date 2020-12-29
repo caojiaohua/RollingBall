@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 3821867978089939797}
   m_Layer: 0
   m_Name: woodRotate3
-  m_TagString: Untagged
+  m_TagString: cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 4206863279582367547}
   m_Layer: 0
   m_Name: woodRotate1
-  m_TagString: trap
+  m_TagString: cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

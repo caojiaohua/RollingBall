@@ -12,7 +12,7 @@ public class ballContro : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
 
@@ -50,8 +50,18 @@ public class ballContro : MonoBehaviour
             {
                 gamedatas.curGameProgressValue = ((float)xx.mapID / (float)gamedatas.mapComponentsNum) * 100;
 
+                gamedatas.curGameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).distanceIncome * 2.5f);
+                gamedatas.GameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).distanceIncome * 2.5f);
+
+
                 if (gamedatas.loadedComponentNum - xx.mapID <= 10)
+                {
                     gamedatas.MapRating += 2;
+
+                    GameControl._instance.setGameMap(gamedatas.MapRating);
+                    
+                }
+                    
             }
             beforeGameoverPosition = collision.transform;
             gamedatas.Notify();
@@ -60,14 +70,14 @@ public class ballContro : MonoBehaviour
         {
 
         }
-        else if(collision.gameObject.tag == "trap")
+        else if (collision.gameObject.tag == "cube")
         {
             Debug.Log("gameover");
             gamedatas.gameState = GAMESTATE.over;
             UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
             gamedatas.Notify();
         }
-   
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -96,6 +106,7 @@ public class ballContro : MonoBehaviour
         {
             transform.parent.position = new Vector3(0f,0.84f,-2f);
             transform.localPosition = new Vector3(0, 0, 0);
+            transform.localEulerAngles = new Vector3(0, 0, 0);
 
         }
     }

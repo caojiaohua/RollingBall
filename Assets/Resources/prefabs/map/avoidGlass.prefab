@@ -162,7 +162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4389623128945179960}
   - component: {fileID: 4389623128935584472}
-  - component: {fileID: 7579572402323056361}
   - component: {fileID: 5088085948605683776}
   m_Layer: 0
   m_Name: avoidGlass
@@ -210,20 +209,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &7579572402323056361
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4389623128944943384}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!114 &5088085948605683776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +235,7 @@ GameObject:
   - component: {fileID: 4389623128945179962}
   - component: {fileID: 4389623128945982744}
   - component: {fileID: 4389623128946950104}
+  - component: {fileID: 4457494729589942832}
   m_Layer: 0
   m_Name: floor
   m_TagString: Untagged
@@ -316,6 +302,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4457494729589942832
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389623128944943386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300006, guid: f3fbf5907e38c7f45a36c1efdc51576a, type: 3}
 --- !u!1 &4389623128944943388
 GameObject:
   m_ObjectHideFlags: 0

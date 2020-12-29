@@ -16,7 +16,7 @@ public class cameraContorl : MonoBehaviour
     {
         ball = GameObject.Find("ball");
         //gamedatas = new gamedata();
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
 
