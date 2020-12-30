@@ -16,8 +16,13 @@ public class componentControl : MonoBehaviour
     /// AI球生成概率
     /// </summary>
     public string AIRating;
-    private void OnCollisionEnter(Collision collision)
+    GameObject AIBall;
+    private void OnCollisionExit(Collision collision)
     {
+        Debug.Log("clone again");
+        Destroy(AIBall);
+        AIBall = null;
+        cloneAI();
         //if(collision.gameObject.tag == "ball")
         //{
         //    //更新地图进度
@@ -38,20 +43,20 @@ public class componentControl : MonoBehaviour
 
     private void Start()
     {
-        if(mapID != 0)
+        
         cloneAI();
     }
 
     void cloneAI()
     {
-        if(transform.GetComponent<Animator>()== null && mapID != 0)
+        if(transform.GetComponent<Animator>()== null  && AIBall == null && mapID != 0)
         {
             string[] strs_aiLevel = AILevel.Split('|');
             string[] strs_aiRating = AIRating.Split('|');
 
             int randonValue = ConvertHelper.getRandomNumber();
 
-            GameObject AIBall = Instantiate(Resources.Load("prefabs/AIBall")) as GameObject;
+            AIBall = Instantiate(Resources.Load("prefabs/AIBall")) as GameObject;
 
             if (randonValue >= 0 && randonValue < float.Parse(strs_aiRating[0]) * 100)
             {
@@ -67,6 +72,8 @@ public class componentControl : MonoBehaviour
                 AIBall.GetComponent<AIBallControl>().ballData = GameDataManager._instance.getAIBallDataForLevel(int.Parse(strs_aiLevel[2]));
 
             }
+
+
             AIBall.transform.parent = transform;
             AIBall.transform.localPosition = new Vector3(0, 0.87f, 0);
         }

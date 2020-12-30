@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AIBallControl : MonoBehaviour
 {
+    public int randomRotation = 90;
     public AIBallData ballData;
     Rigidbody _rigidbody;
 
@@ -19,7 +20,7 @@ public class AIBallControl : MonoBehaviour
     }
     private MonsterState currentState = MonsterState.STAND;          //默认状态为原地呼吸
 
-    public float[] actionWeight = { 1000, 4000 };         //设置待机时各种动作的权重，顺序依次为呼吸、移动
+    public float[] actionWeight = { 2000, 4000 };         //设置待机时各种动作的权重，顺序依次为呼吸、移动
 
     private float lastActTime;          //最近一次指令时间
 
@@ -63,12 +64,13 @@ public class AIBallControl : MonoBehaviour
         if (number <= actionWeight[0])
         {
             currentState = MonsterState.STAND;
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, UnityEngine.Random.Range(0,360), transform.localEulerAngles.z);
         }
         else if (actionWeight[0] < number && number <= actionWeight[0] + actionWeight[1])
         {
             currentState = MonsterState.WALK;
             //随机一个朝向
-            targetRotation = new Vector3(0, UnityEngine.Random.Range(1, 360), 0);
+            //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, UnityEngine.Random.Range(0,360), transform.localEulerAngles.z);
 
         }
 
@@ -120,7 +122,7 @@ public class AIBallControl : MonoBehaviour
                 
                     if(istest == false)
                 {
-                    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y - 180,transform.localEulerAngles.z);
+                    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y - randomRotation, transform.localEulerAngles.z);
                     istest = true;
                 }
                     
@@ -136,7 +138,7 @@ public class AIBallControl : MonoBehaviour
         {
             if (istest == false)
             {
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y - 180,transform.localEulerAngles.z);
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y - randomRotation, transform.localEulerAngles.z);
                 istest = true;
             }
             
