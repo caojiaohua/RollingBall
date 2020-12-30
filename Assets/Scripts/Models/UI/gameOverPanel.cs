@@ -75,6 +75,11 @@ public class gameOverPanel : BasePanel
     /// </summary>
     void btn_over_DoubleGoldClick()
     {
+        gamedatas.GameGoldValue += gamedatas.curGameGoldValue;
+
+        gamedatas.curGameGoldValue += gamedatas.curGameGoldValue;
+        
+        gamedatas.Notify();
         ball.GetComponent<ballContro>().resetPosition(false);
         UIPanelManager.Instance.PushPanel(UIPanelType.start);
 
@@ -86,7 +91,9 @@ public class gameOverPanel : BasePanel
     void btn_continue_watchAdsClick()
     {
         ball.GetComponent<ballContro>().resetPosition(true);
+        gamedatas.gameState = GAMESTATE.start;
         UIPanelManager.Instance.PushPanel(UIPanelType.joystick);
+        gamedatas.Notify();
 
 
     }

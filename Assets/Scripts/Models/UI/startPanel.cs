@@ -98,11 +98,8 @@ public class startPanel : BasePanel
 
         if(gamedatas.GameGoldValue >= nextLevel_needGold)
         {
-            
-            gamedatas.curGameGoldValue -= nextLevel_needGold;
-            gamedatas.GoldMulitipleLevel += 1;
-
-            
+            gamedatas.GameGoldValue -= nextLevel_needGold;
+            gamedatas.GoldMulitipleLevel += 1;  
         }
         else
         {

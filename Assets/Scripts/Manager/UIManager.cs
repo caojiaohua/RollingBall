@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+   
     public Text txt_gold;
     public static UIManager _instance;
 
@@ -31,5 +32,24 @@ public class UIManager : MonoBehaviour
         txt_gold.text = gamedatas.GameGoldValue.ToString();
     }
 
+
+    //void btnaddClick()
+    //{
+    //    gamedatas.move
+    //}
+    //void btnadd1Click()
+    //{
+
+    //}
+
+    //void btnReduceClick()
+    //{
+
+    //}
+
+    //void btnReduce1Click()
+    //{
+
+    //}
 
 }

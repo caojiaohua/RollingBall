@@ -364,7 +364,7 @@ public class GameDataManager :MonoBehaviour
                         id = BallSkinTaskData[i].id,
                         skinSourceName = BallSkinTaskData[i].skinSourceName,
                         taskInfo = BallSkinTaskData[i].taskInfo,
-                        taskProgress = 100,
+                        taskProgress = 1,
                     });
                 }
                 else
@@ -413,40 +413,136 @@ public class GameDataManager :MonoBehaviour
         {
            switch(item.id)
             {
+                case 0:
+                    item.taskProgress = 1;
+                    break;
                 case 1:
-                    item.taskProgress = gamedatas.iLoginDayNum / 3;
+                    if(gamedatas.iLoginDayNum/3>=1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.iLoginDayNum % 3;
+                    }
+                    
                     break;
                 case 2:
-                    item.taskProgress = gamedatas.iLoginDayNum / 5;
+                    if (gamedatas.iLoginDayNum / 5 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.iLoginDayNum % 5;
+                    }
+                    
                     break;
                 case 3:
-                    item.taskProgress = gamedatas.iLoginDayNum / 7;
+                    if (gamedatas.iLoginDayNum / 7 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.iLoginDayNum % 7;
+                    }                    
                     break;
-                case 4:item.taskProgress = gamedatas.iReviveNum / 10;
+                case 4:
+                    if (gamedatas.iReviveNum / 7 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.iReviveNum % 7;
+                    }
                     break;
                 case 5:
-                    item.taskProgress = gamedatas.iReviveNum / 20;
+                    if (gamedatas.iReviveNum / 20 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.iReviveNum % 20;
+                    }
+                   
                     break;
                 case 6:
-                    item.taskProgress = gamedatas.GameProgressValue / 10;
+                    if (gamedatas.GameProgressValue / 10 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.GameProgressValue % 10;
+                    }
                     break;
                 case 7:
-                    item.taskProgress = gamedatas.GameProgressValue / 30;
+                    if (gamedatas.GameProgressValue / 30 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.GameProgressValue % 30;
+                    }
                     break;
                 case 8:
-                    item.taskProgress = gamedatas.GameProgressValue / 50;
+
+                    if (gamedatas.GameProgressValue / 50 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.GameProgressValue % 50;
+                    }
                     break;
                 case 9:
-                    item.taskProgress = gamedatas.GameProgressValue / 80;
+                    if (gamedatas.GameProgressValue / 80 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.GameProgressValue % 80;
+                    }
                     break;
                 case 10:
-                    item.taskProgress = gamedatas.GameKillAIValue / 10;
+                    if (gamedatas.GameKillAIValue / 10 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.GameKillAIValue % 10;
+                    }
                     break;
                 case 11:
-                    item.taskProgress = gamedatas.iNOT_KillAI_InFirst10P / 1;
+
+                    if (gamedatas.iNOT_KillAI_InFirst10P / 1 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.iNOT_KillAI_InFirst10P % 1;
+                    }
+
+
+                    
                     break;
                 case 12:
-                    item.taskProgress = gamedatas.GameProgressValue / 100;
+                    if (gamedatas.GameProgressValue / 100 >= 1)
+                    {
+                        item.taskProgress = 1;
+                    }
+                    else
+                    {
+                        item.taskProgress = gamedatas.GameProgressValue % 100;
+                    }
                     break;
 
             }
@@ -533,7 +629,7 @@ public class GameDataManager :MonoBehaviour
 
     public static int getCurChooseBallSkinId()
     {
-        return PlayerPrefs.GetInt(appSetting.BallSkinId_playerprefs,1) ;
+        return PlayerPrefs.GetInt(appSetting.BallSkinId_playerprefs,0) ;
     }
 
     private void serCurChooseBallSkinId(int choosedId)

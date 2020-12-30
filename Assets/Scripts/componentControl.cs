@@ -19,10 +19,10 @@ public class componentControl : MonoBehaviour
     GameObject AIBall;
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("clone again");
-        Destroy(AIBall);
-        AIBall = null;
-        cloneAI();
+        //Debug.Log("clone again");
+        //Destroy(AIBall);
+        //AIBall = null;
+        //cloneAI();
         //if(collision.gameObject.tag == "ball")
         //{
         //    //更新地图进度

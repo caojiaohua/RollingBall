@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class move : MonoBehaviour
 {
+    //public Button btnadd;
+    //public Button btnadd1;
+    //public Button btnreduce;
+    //public Button btnreduce1;
+
     private gamedata gamedatas;
     private float moveSpeed;
 

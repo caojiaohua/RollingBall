@@ -46,7 +46,7 @@ public class AIBallControl : MonoBehaviour
 
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
-        
+
         walkSpeed = 2f;
         //随机一个待机动作
         RandomAction();
@@ -64,7 +64,7 @@ public class AIBallControl : MonoBehaviour
         if (number <= actionWeight[0])
         {
             currentState = MonsterState.STAND;
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, UnityEngine.Random.Range(0,360), transform.localEulerAngles.z);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, UnityEngine.Random.Range(0, 360), transform.localEulerAngles.z);
         }
         else if (actionWeight[0] < number && number <= actionWeight[0] + actionWeight[1])
         {
@@ -79,7 +79,7 @@ public class AIBallControl : MonoBehaviour
 
     private void OnRefresh(object[] param)
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -103,7 +103,7 @@ public class AIBallControl : MonoBehaviour
         }
         else if (other.gameObject.tag == "ball")
         {
-           // Debug.Log("game over");
+            // Debug.Log("game over");
         }
     }
 
@@ -111,7 +111,7 @@ public class AIBallControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         fwd = transform.TransformDirection(new Vector3(0, -0.6f, 1f));
         if (Physics.Raycast(transform.position, fwd, out hit, 2f))
         {
@@ -119,13 +119,13 @@ public class AIBallControl : MonoBehaviour
 
             if (hit.collider.gameObject.name != transform.parent.name)
             {
-                
-                    if(istest == false)
+
+                if (istest == false)
                 {
-                    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y - randomRotation, transform.localEulerAngles.z);
+                    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y - 180, transform.localEulerAngles.z);
                     istest = true;
                 }
-                    
+
 
             }
             else
@@ -134,14 +134,14 @@ public class AIBallControl : MonoBehaviour
             }
 
         }
-        else 
+        else
         {
             if (istest == false)
             {
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y - randomRotation, transform.localEulerAngles.z);
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y - 180, transform.localEulerAngles.z);
                 istest = true;
             }
-            
+
         }
 
         switch (currentState)

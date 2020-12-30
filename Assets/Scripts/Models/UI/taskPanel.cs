@@ -71,6 +71,8 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
     {
         gamedatas.curChooseBallSkinId = task.id;
         gamedatas.Notify();
+        btnSelect.transform.GetChild(0).gameObject.SetActive(false);
+        btnSelect.transform.GetChild(1).gameObject.SetActive(true);
     }
 
     float scale = 0;
@@ -311,7 +313,6 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
             {
                 setActive(new List<int> { items.Length / 2, items.Length / 2-1, items.Length / 2+1, items.Length / 2+2 });
                 items[items.Length / 2].transform.position = new Vector3(itemsPosition[itemsPosition.Length / 2].x - (scale) * (itemsPosition[itemsPosition.Length / 2].x - itemsPosition[itemsPosition.Length / 2 - 1].x), ui_position_Midlle.y, 0);
-
 
                 items[items.Length / 2].transform.localScale = new Vector3(1 - scale / 2, 1 - scale / 2, 1 - scale / 2);
 
