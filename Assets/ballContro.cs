@@ -29,6 +29,8 @@ public class ballContro : MonoBehaviour
         transform.GetComponent<Rigidbody>().mass = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).power;
 
         moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).speed;
+
+        transform.GetComponent<MeshRenderer>().material = GameDataManager.getBallSkinForSkinId(gamedatas.curChooseBallSkinId);
     }
 
     private void Update()

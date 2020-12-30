@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,8 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
     public Image img_taskProgress;
     public Image img_taskProgress_bg;
 
+    private gamedata gamedatas;
+
     public Transform tasksParent;
     public override void OnEnter()
     {
@@ -22,10 +25,20 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
     }
     void Start()
     {
+        gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
+
+
+        DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
+
         btnClose.onClick.AddListener(btnCloseClick);
         btnSelect.onClick.AddListener(btnSelectClick);
         getTask();
         init();
+    }
+
+    private void OnRefresh(object[] param)
+    {
+        
     }
 
     void OnDestory()
@@ -56,7 +69,8 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
 
     void btnSelectClick()
     {
-
+        gamedatas.curChooseBallSkinId = task.id;
+        gamedatas.Notify();
     }
 
     float scale = 0;
@@ -77,12 +91,12 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
     private Vector3 ui_position_left;
     private Vector3 ui_position_Midlle;
     private Vector3 ui_position_right;
-
+    ballTask task;
     void UpdateTaskInfoShow()
     {
-        ballTask task = items[items.Length / 2].GetComponent<taskPfbControl>().taskInfo;
+        task = items[items.Length / 2].GetComponent<taskPfbControl>().taskInfo;
        
-        if(task.isSelected == 0)
+        if(task.id != gamedatas.curChooseBallSkinId)
         {
             if (task.taskProgress != 1)
             {
@@ -167,7 +181,7 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
         items = new Transform[ballTasks.Count];
         for (int i = 0; i < ballTasks.Count; i++)
         {
-            Object xx = Resources.Load("ui/taskPfb");
+            UnityEngine.Object xx = Resources.Load("ui/taskPfb");
             GameObject tt = Instantiate(xx) as GameObject;
             items[i] = tt.transform;
             items[i].GetComponent<Image>().color = test();

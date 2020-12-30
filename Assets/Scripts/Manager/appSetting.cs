@@ -23,6 +23,8 @@ public class appSetting : MonoBehaviour
     public static string killAINum_playerprefs = "killAINum";
     public static string BallPowerLevel_playerprefs = "BallPowerLevel";
     public static string GoldMultipleLevel_playerprefs = "curGoldMultipleLevel";
+
+    public static string BallSkinId_playerprefs = "curChooseBallSkinId";
     public static int initGoldNum = 0;
     
 

@@ -68,7 +68,7 @@ public class GameDataManager :MonoBehaviour
     /// </summary>
     private  List<ballSkinTask> BallSkinTaskData;
 
-    private Dictionary<int,Material> ballMaterials;
+    private static Dictionary<int,Material> ballMaterials;
 
     /// <summary>
     /// 金币收益数据
@@ -215,7 +215,7 @@ public class GameDataManager :MonoBehaviour
 
         PlayerPrefs.SetInt(appSetting.loginDayNum_playerprefs, data.iLoginDayNum);
 
-
+        serCurChooseBallSkinId(gamedatas.curChooseBallSkinId);
     }
 
     void init()
@@ -365,7 +365,6 @@ public class GameDataManager :MonoBehaviour
                         skinSourceName = BallSkinTaskData[i].skinSourceName,
                         taskInfo = BallSkinTaskData[i].taskInfo,
                         taskProgress = 100,
-                        isSelected = 1
                     });
                 }
                 else
@@ -376,7 +375,6 @@ public class GameDataManager :MonoBehaviour
                         skinSourceName = BallSkinTaskData[i].skinSourceName,
                         taskInfo = BallSkinTaskData[i].taskInfo,
                         taskProgress = 0,
-                        isSelected = 0
                     });
                 }
             
@@ -387,7 +385,22 @@ public class GameDataManager :MonoBehaviour
         }
     }
 
-
+    private void setBallSkinIdToBallSkinGamedataTable(int choosedSkinId )
+    {
+        List<ballTask> data = JsonDataTool.GetListFromJson<ballTask>(appSetting.ballSkinGameDataTableName);
+        foreach (var item in data)
+        {
+            if (item.id == choosedSkinId)
+            {
+                item.isSelected = 1;
+            }
+            else
+            {
+                item.isSelected = 0;
+            }
+        }
+        JsonDataTool.SetJsonFromList<ballTask>(appSetting.ballSkinGameDataTableName, data);
+    }
 
     /// <summary>
     /// 获取并且修改小球任务信息表
@@ -437,6 +450,7 @@ public class GameDataManager :MonoBehaviour
                     break;
 
             }
+           
         }
 
         JsonDataTool.SetJsonFromList<ballTask>(appSetting.ballSkinGameDataTableName, data);
@@ -449,7 +463,7 @@ public class GameDataManager :MonoBehaviour
     /// </summary>
     /// <param name="skinId"></param>
     /// <returns></returns>
-    public Material getBallSkinForSkinId(int skinId = 0)
+    public static Material getBallSkinForSkinId(int skinId = 0)
     {
         foreach (var item in ballMaterials)
         {
@@ -515,6 +529,16 @@ public class GameDataManager :MonoBehaviour
     private void getAIBallData()
     {
         AIBallDatas = JsonDataTool.GetListFromJson<AIBallData>(appSetting.AIBallDataTableName);
+    }
+
+    public static int getCurChooseBallSkinId()
+    {
+        return PlayerPrefs.GetInt(appSetting.BallSkinId_playerprefs,1) ;
+    }
+
+    private void serCurChooseBallSkinId(int choosedId)
+    {
+        PlayerPrefs.SetInt(appSetting.BallSkinId_playerprefs, choosedId);
     }
 
 
@@ -651,6 +675,11 @@ public class gamedata : DataBase
     /// </summary>
     public int MapRating;
 
+    /// <summary>
+    /// 当前选择的小球皮肤的ID
+    /// </summary>
+    public int curChooseBallSkinId;
+
     public override void OnInit()
     {
         loadedComponentNum = 0;
@@ -667,6 +696,7 @@ public class gamedata : DataBase
         iLoginDayNum = GameDataManager.getLoginDayNum();
         gameState = GAMESTATE.start;
         mapComponentsNum = GameDataManager.getMapComponentNum();
+        curChooseBallSkinId = GameDataManager.getCurChooseBallSkinId();
     }
 
     public override void Notify()
