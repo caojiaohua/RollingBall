@@ -9,15 +9,11 @@ public class AIBallData
     /// <summary>
     /// AI球等级
     /// </summary>
-    public int level;
+    public int Level;
 
     /// <summary>
     /// 速度
     /// </summary>
     public double speed;
 
-    /// <summary>
-    /// AI球的重力
-    /// </summary>
-    public double power;
 }

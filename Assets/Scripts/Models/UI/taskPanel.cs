@@ -109,7 +109,7 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
                 btnSelect.gameObject.SetActive(false);
 
                 txt_taskInfo.text = task.taskInfo;
-                txt_taskProgress.text = task.taskProgress.ToString() + "%";
+                txt_taskProgress.text = (task.taskProgress *100).ToString() + "%";
                 img_taskProgress.fillAmount = (float)task.taskProgress / 1;
             }
             else

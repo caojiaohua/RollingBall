@@ -10,15 +10,14 @@ public class move : MonoBehaviour
     //public Button btnreduce;
     //public Button btnreduce1;
 
+    public bool isMove;
     private gamedata gamedatas;
     private float moveSpeed;
 
     private void Start()
     {
 
-
-        //gamedatas = new gamedata();
-        //Debug.Log(gameObject.name);
+        isMove = true;
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
 
@@ -27,71 +26,24 @@ public class move : MonoBehaviour
 
     private void OnRefresh(object[] param)
     {
-        moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).speed;
+        //moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).speed;
     }
-
+    Vector3 test;
     public void onJoystickValueChanged(Vector2 eventPointerData)
     {
 #if UNITY_IOS || UNITY_ANDROID
         float angle = Vector2.SignedAngle(new Vector2(1, 0), eventPointerData);
-        
-        
+
+        //transform.GetChild(0).GetComponent<Rigidbody>().AddForce(new Vector3(-eventPointerData.x,0, -eventPointerData.y)*1,ForceMode.Impulse);
         if (angle != 0)
         {
-            if(gamedatas.gameState == GAMESTATE.start)
+            if (gamedatas.gameState == GAMESTATE.start)
             {
                 gamedatas.gameState = GAMESTATE.game;
                 gamedatas.Notify();
             }
-           
-
-            if (angle < 22.5f && angle > -22.5f)
-            {
-                //右
-                RotateMove(new Vector3(0, -90, 0));
-
-            }
-            else if (angle < -22.5f && angle > -67.5f)
-            {
-                //右下
-                RotateMove(new Vector3(0, -45, 0));
-
-            }
-            else if (angle < -67.5f && angle > -112.5f)
-            {
-                //下
-                RotateMove(new Vector3(0, 0, 0));
-
-            }
-            else if (angle < -112.5f && angle > -157.5f)
-            {
-                //左下
-                RotateMove(new Vector3(0, 45, 0));
-
-            }
-            else if (angle < -157.5f || angle > 157.5f)
-            {
-                //左
-                RotateMove(new Vector3(0, 90, 0));
-
-            }
-            else if (angle < 157.5f && angle > 112.5f)
-            {
-                //左上
-                RotateMove(new Vector3(0, 135, 0));
-
-            }
-            else if (angle < 112.5f && angle > 67.5f)
-            {
-                //上
-                RotateMove(new Vector3(0, 180, 0));
-
-            }
-            else if (angle < 67.5f && angle > 22.5f)
-            {
-                //右上
-                RotateMove(new Vector3(0, -135, 0));
-            }
+            //test = new Vector3(0, (-angle - 90), 0);
+            RotateMove(new Vector3(0, (-angle - 90), 0));
         }
 
 #endif
@@ -99,15 +51,26 @@ public class move : MonoBehaviour
 
     private void Update()
     {
-        if(gamedatas.gameState == GAMESTATE.game)
-            transform.Translate(0, 0, moveSpeed * Time.deltaTime);
+        if (gamedatas.gameState == GAMESTATE.game )
+            if(isMove == false)
+            {
+                if((transform.localEulerAngles.y-360 >90f || transform.localEulerAngles.y-360 < -90f))
+                {
+                    transform.Translate(0, 0, moveSpeed * Time.deltaTime);
+                }
+            }
+            else
+            {
+                transform.Translate(0, 0, moveSpeed * Time.deltaTime);
+            }
+            
     }
 
 
     private void RotateMove(Vector3 vet3)
     {
-        if(gamedatas.gameState == GAMESTATE.game)
-        transform.localEulerAngles = vet3;
+        if (gamedatas.gameState == GAMESTATE.game)
+            transform.localEulerAngles = vet3;
     }
 
 

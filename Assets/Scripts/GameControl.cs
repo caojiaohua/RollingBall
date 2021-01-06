@@ -34,19 +34,13 @@ public class GameControl : MonoBehaviour
         Init();
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
-        setGameMap(gamedatas.MapRating);
+        setGameMap();
     }
 
     private void OnRefresh(object[] param)
     {
         var data = param[0] as gamedata;
 
-        //if (data.MapRating > loadedRating)
-        //{
-        //    setGameMap(gamedatas.MapRating);
-        //    loadedRating = gamedatas.MapRating;
-        //    Debug.Log(gamedatas.MapRating + "       " + loadedRating) ;
-        //}
 
     }
 
@@ -73,7 +67,7 @@ public class GameControl : MonoBehaviour
     /// <summary>
     /// 加载地图   分段加载   2
     /// </summary>
-   public void setGameMap(int _loadMapProgress)
+   public void setGameMap()
     {
         
         mapData = GameDataManager.getMapDataInfo();
@@ -89,57 +83,57 @@ public class GameControl : MonoBehaviour
 
             startPoint.GetComponent<componentControl>().mapID = 0;
         }
-        for(int i = gamedatas.MapRating; i< gamedatas.MapRating + 2;i++)
-        {
-            int gerenalComponent = mapData[i].gernaralComponentRating;
-            int lowerComponent = mapData[i].lowerCompnenetRating;
-            int middleComponent = mapData[i].middleComponentRating;
-            int seniorComponent = mapData[i].seniorComponentRating;
-            for (int j = 0;j<mapData[i].compenentNumb;j++)
+
+            for (int i = gamedatas.MapRating; i < gamedatas.MapRating + 1; i++)
             {
-                int randomNum = ConvertHelper.getRandomNumber();
-                Object xx = null;
-                if(randomNum >=0 && randomNum < gerenalComponent)
+                int gerenalComponent = mapData[i].gernaralComponentRating;
+                int lowerComponent = mapData[i].lowerCompnenetRating;
+                int middleComponent = mapData[i].middleComponentRating;
+                int seniorComponent = mapData[i].seniorComponentRating;
+                for (int j = 0; j < mapData[i].compenentNumb; j++)
                 {
-                    xx = GameDataManager._instance.getGeneralComponentObject();
-                }
-                else if(randomNum >= gerenalComponent && randomNum < (lowerComponent+gerenalComponent))
-                {
-                    xx = GameDataManager._instance.getLowerComponentObject();
+                    int randomNum = ConvertHelper.getRandomNumber();
+                    Object xx = null;
+                    if (randomNum >= 0 && randomNum < gerenalComponent)
+                    {
+                        xx = GameDataManager._instance.getGeneralComponentObject();
+                    }
+                    else if (randomNum >= gerenalComponent && randomNum < (lowerComponent + gerenalComponent))
+                    {
+                        xx = GameDataManager._instance.getLowerComponentObject();
+
+                    }
+                    else if (randomNum >= (gerenalComponent + lowerComponent) && randomNum < (lowerComponent + gerenalComponent + middleComponent))
+                    {
+                        xx = GameDataManager._instance.getMiddleComponentObject();
+
+                    }
+                    else if (randomNum >= (gerenalComponent + lowerComponent + middleComponent) && randomNum < (lowerComponent + gerenalComponent + middleComponent + seniorComponent))
+                    {
+                        xx = GameDataManager._instance.getSeniorComponentObject();
+
+                    }
+                    if (xx == null)
+                    {
+                        Debug.Log(xx.name);
+                    }
+                    GameObject compoment = checkMapComponentList(xx);
+
+                    compoment.GetComponent<componentControl>().mapID = j + gamedatas.loadedComponentNum+1;
+                    compoment.GetComponent<componentControl>().AILevel = mapData[i].AILevel;
+                    compoment.GetComponent<componentControl>().AIRating = mapData[i].AIRating;
+
+                    compoment.name = (j + gamedatas.loadedComponentNum+1).ToString();
+
+                    compoment.transform.localPosition = getEndPoint(lastComponent).position - getStartPoint(compoment.transform).position;
+
+                    lastComponent = compoment.transform;
 
                 }
-                else if(randomNum >= (gerenalComponent+lowerComponent) && randomNum < (lowerComponent + gerenalComponent+middleComponent))
-                {
-                    xx = GameDataManager._instance.getMiddleComponentObject();
 
-                }
-                else if(randomNum >= (gerenalComponent + lowerComponent+middleComponent) && randomNum < (lowerComponent + gerenalComponent + middleComponent+seniorComponent))
-                {
-                    xx = GameDataManager._instance.getSeniorComponentObject();
-
-                }
-                if(xx ==  null)
-                {
-                    Debug.Log(xx.name);
-                }
-                GameObject compoment = checkMapComponentList(xx);
-
-                compoment.GetComponent<componentControl>().mapID = j + gamedatas.loadedComponentNum;
-                compoment.GetComponent<componentControl>().AILevel = mapData[i].AILevel;
-                compoment.GetComponent<componentControl>().AIRating = mapData[i].AIRating;
-
-                compoment.name =(j + gamedatas.loadedComponentNum).ToString();
-
-                compoment.transform.localPosition = getEndPoint(lastComponent).position - getStartPoint(compoment.transform).position;
-
-                lastComponent = compoment.transform;
-               
+                gamedatas.loadedComponentNum += mapData[i].compenentNumb;
+                gamedatas.Notify();
             }
-
-            gamedatas.loadedComponentNum += mapData[i].compenentNumb;
-            gamedatas.Notify();
-        }
-
         
         if (gamedatas.MapRating == mapData.Count-1)
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AIBallControl : MonoBehaviour
 {
+    public bool isMove;
     public int randomRotation = 90;
     public AIBallData ballData;
     Rigidbody _rigidbody;
@@ -37,9 +38,9 @@ public class AIBallControl : MonoBehaviour
 
     private void Awake()
     {
+        isMove = true;
         initPosition = transform.position;
         _rigidbody = transform.GetComponent<Rigidbody>();
-        _rigidbody.mass = (float)ballData.power;
 
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
@@ -86,6 +87,19 @@ public class AIBallControl : MonoBehaviour
     {
         if (other.gameObject.tag == "cube")
         {
+
+            if(gamedatas.sound == 1)
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+            }
+            if(gamedatas.vibrate == 1)
+            {
+                #if UNITY_ANDROID
+
+                 Handheld.Vibrate();
+
+                #endif
+            }
             ///更新金币
             ///
             gamedatas.GameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).killEnemyIncome);
@@ -98,7 +112,7 @@ public class AIBallControl : MonoBehaviour
 
 
             gamedatas.Notify();
-            Destroy(gameObject);
+            Destroy(gameObject,1.0f);
 
         }
         else if (other.gameObject.tag == "ball")
@@ -111,61 +125,64 @@ public class AIBallControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        fwd = transform.TransformDirection(new Vector3(0, -0.6f, 1f));
-        if (Physics.Raycast(transform.position, fwd, out hit, 2f))
+        if(isMove == true)
         {
-            Debug.DrawLine(transform.position, hit.point, Color.red);
-
-            if (hit.collider.gameObject.name != transform.parent.name)
+            fwd = transform.TransformDirection(new Vector3(0, -0.6f, 1f));
+            if (Physics.Raycast(transform.position, fwd, out hit, 2f))
             {
+                Debug.DrawLine(transform.position, hit.point, Color.red);
 
+                if (hit.collider.gameObject.name != transform.parent.name)
+                {
+
+                    if (istest == false)
+                    {
+                        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y - 180, transform.localEulerAngles.z);
+                        istest = true;
+                    }
+
+
+                }
+                else
+                {
+                    istest = false;
+                }
+
+            }
+            else
+            {
                 if (istest == false)
                 {
                     transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y - 180, transform.localEulerAngles.z);
                     istest = true;
                 }
 
-
             }
-            else
+
+            switch (currentState)
             {
-                istest = false;
+                //待机状态，等待actRestTme后重新随机指令
+                case MonsterState.STAND:
+                    if (Time.time - lastActTime > 0.3f)
+                    {
+                        RandomAction();         //随机切换指令
+                    }
+                    break;
+
+
+                //游走，根据状态随机时生成的目标位置修改朝向，并向前移动
+                case MonsterState.WALK:
+
+                    transform.Translate(Vector3.forward * Time.deltaTime * (float)ballData.speed);
+                    if (Time.time - lastActTime > 5)
+                    {
+                        RandomAction();         //随机切换指令
+                    }
+
+                    break;
             }
-
         }
-        else
-        {
-            if (istest == false)
-            {
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y - 180, transform.localEulerAngles.z);
-                istest = true;
-            }
-
-        }
-
-        switch (currentState)
-        {
-            //待机状态，等待actRestTme后重新随机指令
-            case MonsterState.STAND:
-                if (Time.time - lastActTime > 0.3f)
-                {
-                    RandomAction();         //随机切换指令
-                }
-                break;
-
-
-            //游走，根据状态随机时生成的目标位置修改朝向，并向前移动
-            case MonsterState.WALK:
-
-                transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed);
-                if (Time.time - lastActTime > 5)
-                {
-                    RandomAction();         //随机切换指令
-                }
-
-                break;
-        }
+        
 
     }
 

@@ -12,23 +12,20 @@ public class ballContro : MonoBehaviour
 
     private void Start()
     {
-        //Debug.Log(gameObject.name);
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
 
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
-        transform.GetComponent<Rigidbody>().mass = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).power;
+        
 
-        moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(GameDataManager.getBallPowerLevel()).speed;
+        //moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(GameDataManager.getBallPowerLevel()).speed;
 
     }
 
     private void OnRefresh(object[] param)
     {
-        transform.GetComponent<Rigidbody>().mass = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).power;
-
-        moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).speed;
+        //moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).speed;
 
         transform.GetComponent<MeshRenderer>().material = GameDataManager.getBallSkinForSkinId(gamedatas.curChooseBallSkinId);
     }
@@ -36,7 +33,7 @@ public class ballContro : MonoBehaviour
     private void Update()
     {
         if (gamedatas.gameState == GAMESTATE.game)
-            transform.Rotate(Vector3.right * moveSpeed, Space.Self);
+            transform.Rotate(Vector3.right * moveSpeed * 2, Space.Self);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,34 +47,80 @@ public class ballContro : MonoBehaviour
             //更新地图进度
             if (gamedatas.gameState == GAMESTATE.game && xx != null )
             {
-                gamedatas.curGameProgressValue = ((float)xx.mapID / (float)gamedatas.mapComponentsNum) * 100;
+                if(((float)xx.mapID / (float)gamedatas.mapComponentsNum) * 100 > gamedatas.curGameProgressValue)
+                {
+                    transform.parent.GetComponent<move>().isMove = true;
+                    gamedatas.curGameProgressValue = ((float)xx.mapID / (float)gamedatas.mapComponentsNum) * 100;
+                    gamedatas.GameProgressValue = ((float)xx.mapID / (float)gamedatas.mapComponentsNum) * 100;
 
-                gamedatas.curGameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).distanceIncome * 2.5f);
-                gamedatas.GameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).distanceIncome * 2.5f);
+                    gamedatas.curGameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).distanceIncome * 2.5f);
+                    gamedatas.GameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).distanceIncome * 2.5f);
+                }
+                else
+                {
+                    if(gamedatas.curGameProgressValue /100 * (float)gamedatas.mapComponentsNum - xx.mapID >=3 )
+                    {
+                        transform.parent.GetComponent<move>().isMove = false;
+                    }
+                    else
+                    {
+                        transform.parent.GetComponent<move>().isMove = true;
+                    }
+                }
+
+
+                //if()
+                if (gamedatas.curGameProgressValue >=10 && gamedatas.curGameKillAIValue == 0)
+                {
+                    gamedatas.iNOT_KillAI_InFirst10P = 1;
+                }
+
 
 
                 if (gamedatas.loadedComponentNum - xx.mapID <= 10)
                 {
-                    gamedatas.MapRating += 2;
-
-                    GameControl._instance.setGameMap(gamedatas.MapRating);
+                    gamedatas.MapRating += 1;
+                    gamedatas.Notify();
+                    GameControl._instance.setGameMap();
                     
                 }
                     
             }
+            if(collision.gameObject.transform.parent.GetComponent<Animator>() == null)
             beforeGameoverPosition = collision.transform;
+
             gamedatas.Notify();
         }
-        else if (collision.gameObject.tag == "aiball")
+        else if (collision.gameObject.tag == "AIBall")
         {
-
+            //collision.gameObject.GetComponent<AIBallControl>().isMove = false;
+            //collision.gameObject.GetComponent<Rigidbody>().AddForce(0,0,0.05f);
         }
         else if (collision.gameObject.tag == "cube")
         {
-            Debug.Log("gameover");
-            gamedatas.gameState = GAMESTATE.over;
-            UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
-            gamedatas.Notify();
+            
+            if(gamedatas.gameState != GAMESTATE.over)
+            {
+                
+                Debug.Log("gameover");
+                gamedatas.gameState = GAMESTATE.over;
+                UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
+                gamedatas.Notify();
+            }
+            
+        }
+        else if(collision.gameObject.tag == "end")
+        {
+            
+            if (gamedatas.gameState != GAMESTATE.over)
+            {
+                Debug.Log("success");
+                collision.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("end");
+                gamedatas.gameState = GAMESTATE.over;
+                UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
+                gamedatas.Notify();
+            }
+
         }
 
     }
@@ -86,10 +129,15 @@ public class ballContro : MonoBehaviour
     {
         if (other.gameObject.tag == "cube")
         {
-            Debug.Log("gameover");
-            gamedatas.gameState = GAMESTATE.over;
-            UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
-            gamedatas.Notify();
+            if (gamedatas.gameState != GAMESTATE.over)
+            {
+               
+                Debug.Log("gameover");
+                gamedatas.gameState = GAMESTATE.over;
+                UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
+                gamedatas.Notify();
+            }
+                
         }
     }
 
@@ -103,7 +151,23 @@ public class ballContro : MonoBehaviour
     public void resetPosition(bool isPlace = false)
     {
         if(isPlace)
-        transform.localPosition = new Vector3(0,0,0);
+        {
+            if(beforeGameoverPosition!= null)
+            {
+                transform.parent.position = new Vector3(beforeGameoverPosition.localPosition.x, 0.84f, beforeGameoverPosition.localPosition.z);
+                transform.localPosition = new Vector3(0, 0, 0);
+                transform.localEulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.parent.position = new Vector3(0f, 0.84f, -2f);
+                transform.localPosition = new Vector3(0, 0, 0);
+                transform.localEulerAngles = new Vector3(0, 0, 0);
+            }
+           
+            
+        }
+        
         else
         {
             transform.parent.position = new Vector3(0f,0.84f,-2f);

@@ -25,7 +25,9 @@ public class UIManager : MonoBehaviour
         UIPanelManager panelManager = UIPanelManager.Instance;
         panelManager.PushPanel(UIPanelType.start);
         txt_gold.text = gamedatas.GameGoldValue.ToString();
+
     }
+  
 
     private void OnRefresh(object[] param)
     {
@@ -33,23 +35,5 @@ public class UIManager : MonoBehaviour
     }
 
 
-    //void btnaddClick()
-    //{
-    //    gamedatas.move
-    //}
-    //void btnadd1Click()
-    //{
-
-    //}
-
-    //void btnReduceClick()
-    //{
-
-    //}
-
-    //void btnReduce1Click()
-    //{
-
-    //}
 
 }

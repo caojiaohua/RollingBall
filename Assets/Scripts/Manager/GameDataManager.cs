@@ -81,7 +81,7 @@ public class GameDataManager :MonoBehaviour
     /// </summary>
     public static  float getGameProgress()
     {
-        return PlayerPrefs.GetInt(appSetting.gameProgress_playerprefs,0);
+        return PlayerPrefs.GetFloat(appSetting.gameProgress_playerprefs);
         
     }
 
@@ -187,9 +187,19 @@ public class GameDataManager :MonoBehaviour
         return PlayerPrefs.GetInt(appSetting.BallPowerLevel_playerprefs,1);
     }
 
+    /// <summary>
+    /// streamingAssets to persistentPath
+    /// </summary>
+    private void setGameDataFilesToAndroidPath()
+    {
+        #if UNITY_ANDROID
 
 
- 
+
+
+        #endif
+    }
+
 
     private void OnRefresh(object[] param)
     {
@@ -423,7 +433,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.iLoginDayNum % 3;
+                        item.taskProgress = System.Math.Round((double)gamedatas.iLoginDayNum / 3, 2);
                     }
                     
                     break;
@@ -434,7 +444,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.iLoginDayNum % 5;
+                        item.taskProgress = System.Math.Round((double)gamedatas.iLoginDayNum / 5, 2);
                     }
                     
                     break;
@@ -445,17 +455,17 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.iLoginDayNum % 7;
+                        item.taskProgress = System.Math.Round((double)gamedatas.iLoginDayNum / 7, 2);
                     }                    
                     break;
                 case 4:
-                    if (gamedatas.iReviveNum / 7 >= 1)
+                    if (gamedatas.iReviveNum / 10 >= 1)
                     {
                         item.taskProgress = 1;
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.iReviveNum % 7;
+                        item.taskProgress = System.Math.Round((double)gamedatas.iReviveNum / 10, 2);
                     }
                     break;
                 case 5:
@@ -465,7 +475,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.iReviveNum % 20;
+                        item.taskProgress = System.Math.Round((double)gamedatas.iReviveNum / 20, 2);
                     }
                    
                     break;
@@ -476,7 +486,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.GameProgressValue % 10;
+                        item.taskProgress = System.Math.Round((double)gamedatas.GameProgressValue / 10, 2);
                     }
                     break;
                 case 7:
@@ -486,7 +496,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.GameProgressValue % 30;
+                        item.taskProgress = System.Math.Round((double)gamedatas.GameProgressValue / 30, 2);
                     }
                     break;
                 case 8:
@@ -497,7 +507,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.GameProgressValue % 50;
+                        item.taskProgress = System.Math.Round((double)gamedatas.GameProgressValue / 50, 2);
                     }
                     break;
                 case 9:
@@ -507,7 +517,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.GameProgressValue % 80;
+                        item.taskProgress = System.Math.Round((double)gamedatas.GameProgressValue / 80, 2);
                     }
                     break;
                 case 10:
@@ -517,7 +527,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.GameKillAIValue % 10;
+                        item.taskProgress = System.Math.Round((double)gamedatas.GameKillAIValue / 10, 2);
                     }
                     break;
                 case 11:
@@ -528,7 +538,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.iNOT_KillAI_InFirst10P % 1;
+                        item.taskProgress = 0;
                     }
 
 
@@ -541,7 +551,7 @@ public class GameDataManager :MonoBehaviour
                     }
                     else
                     {
-                        item.taskProgress = gamedatas.GameProgressValue % 100;
+                        item.taskProgress = System.Math.Round((double)gamedatas.GameProgressValue / 100, 2);
                     }
                     break;
 
@@ -646,7 +656,7 @@ public class GameDataManager :MonoBehaviour
     {
         foreach (var item in AIBallDatas)
         {
-            if (item.level == _level)
+            if (item.Level == _level)
                 return item;
         }
         return null;
@@ -732,7 +742,7 @@ public class gamedata : DataBase
     public int GoldMulitipleLevel;
 
     /// <summary>
-    /// 小球重力 能力等级
+    /// 小球降速等级
     /// </summary>
     public int ballPowerLevel;
 
@@ -776,6 +786,16 @@ public class gamedata : DataBase
     /// </summary>
     public int curChooseBallSkinId;
 
+    /// <summary>
+    /// 音效开关0  关 1 开
+    /// </summary>
+    public int sound;
+
+    /// <summary>
+    /// 震动开关  0  关 1 开
+    /// </summary>
+    public int vibrate;
+
     public override void OnInit()
     {
         loadedComponentNum = 0;
@@ -793,6 +813,8 @@ public class gamedata : DataBase
         gameState = GAMESTATE.start;
         mapComponentsNum = GameDataManager.getMapComponentNum();
         curChooseBallSkinId = GameDataManager.getCurChooseBallSkinId();
+        sound = 1;
+        vibrate = 1;
     }
 
     public override void Notify()

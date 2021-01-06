@@ -17,7 +17,7 @@ public class componentControl : MonoBehaviour
     /// </summary>
     public string AIRating;
     GameObject AIBall;
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("clone again");
         //Destroy(AIBall);

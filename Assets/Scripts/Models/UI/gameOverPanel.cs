@@ -64,8 +64,10 @@ public class gameOverPanel : BasePanel
     {
         UIPanelManager.Instance.PushPanel(UIPanelType.start);
         gamedatas.MapRating = 0;
-        GameControl._instance.setGameMap(gamedatas.MapRating);
+        gamedatas.curGameProgressValue = 0;
         gamedatas.Notify();
+        GameControl._instance.setGameMap();
+        
         ball.GetComponent<ballContro>().resetPosition();
         
     }
@@ -78,7 +80,8 @@ public class gameOverPanel : BasePanel
         gamedatas.GameGoldValue += gamedatas.curGameGoldValue;
 
         gamedatas.curGameGoldValue += gamedatas.curGameGoldValue;
-        
+
+        gamedatas.curGameProgressValue = 0;
         gamedatas.Notify();
         ball.GetComponent<ballContro>().resetPosition(false);
         UIPanelManager.Instance.PushPanel(UIPanelType.start);
@@ -92,6 +95,7 @@ public class gameOverPanel : BasePanel
     {
         ball.GetComponent<ballContro>().resetPosition(true);
         gamedatas.gameState = GAMESTATE.start;
+        gamedatas.iReviveNum += 1;
         UIPanelManager.Instance.PushPanel(UIPanelType.joystick);
         gamedatas.Notify();
 
@@ -116,8 +120,19 @@ public class gameOverPanel : BasePanel
     public override void OnEnter()
     {
         gameObject.SetActive(true);
-        continuePanel.SetActive(true);
-        overPanel.SetActive(false);
+        if(gamedatas.curGameProgressValue == 100)
+        {
+            continuePanel.SetActive(false);
+            overPanel.SetActive(true);
+        }
+        else
+        {
+            continuePanel.SetActive(true);
+            overPanel.SetActive(false);
+        }
+        if(gamedatas.sound == 1)
+        gameObject.GetComponent<AudioSource>().Play();
+
     }
 
     public override void OnPause()

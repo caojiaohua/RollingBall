@@ -168,7 +168,7 @@ Animator:
   m_GameObject: {fileID: 8914092517621653764}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a13d9d907bcbfdf4c811990b7604d2f0, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a497f65fdd0ba04082fbe064ec1b202, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 564626265}
   m_Layer: 0
   m_Name: crossRotate2_2
-  m_TagString: Untagged
+  m_TagString: component
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

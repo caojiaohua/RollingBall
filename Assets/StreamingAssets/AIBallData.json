@@ -1,254 +1,204 @@
 {
   "target": [
     {
-      "level": 1,
-      "speed": 0.5,
-      "power": 0.5
+      "Level": 1,
+      "speed": 0.7
     },
     {
-      "level": 2,
-      "speed": 0.5,
-      "power": 0.8
+      "Level": 2,
+      "speed": 0.75
     },
     {
-      "level": 3,
-      "speed": 0.5,
-      "power": 1
+      "Level": 3,
+      "speed": 0.8
     },
     {
-      "level": 4,
-      "speed": 0.8,
-      "power": 1.1
+      "Level": 4,
+      "speed": 0.85
     },
     {
-      "level": 5,
-      "speed": 0.8,
-      "power": 1.18
+      "Level": 5,
+      "speed": 0.9
     },
     {
-      "level": 6,
-      "speed": 0.8,
-      "power": 1.23
+      "Level": 6,
+      "speed": 0.95
     },
     {
-      "level": 7,
-      "speed": 0.8,
-      "power": 1.28
+      "Level": 7,
+      "speed": 1
     },
     {
-      "level": 8,
-      "speed": 0.8,
-      "power": 1.33
+      "Level": 8,
+      "speed": 1.05
     },
     {
-      "level": 9,
-      "speed": 0.8,
-      "power": 1.38
+      "Level": 9,
+      "speed": 1.1
     },
     {
-      "level": 10,
-      "speed": 0.8,
-      "power": 1.43
+      "Level": 10,
+      "speed": 1.15
     },
     {
-      "level": 11,
-      "speed": 1,
-      "power": 1.48
+      "Level": 11,
+      "speed": 1.2
     },
     {
-      "level": 12,
-      "speed": 1,
-      "power": 1.53
+      "Level": 12,
+      "speed": 1.23
     },
     {
-      "level": 13,
-      "speed": 1,
-      "power": 1.58
+      "Level": 13,
+      "speed": 1.26
     },
     {
-      "level": 14,
-      "speed": 1,
-      "power": 1.63
+      "Level": 14,
+      "speed": 1.29
     },
     {
-      "level": 15,
-      "speed": 1,
-      "power": 1.68
+      "Level": 15,
+      "speed": 1.32
     },
     {
-      "level": 16,
-      "speed": 1,
-      "power": 1.73
+      "Level": 16,
+      "speed": 1.35
     },
     {
-      "level": 17,
-      "speed": 1,
-      "power": 1.78
+      "Level": 17,
+      "speed": 1.38
     },
     {
-      "level": 18,
-      "speed": 1,
-      "power": 1.83
+      "Level": 18,
+      "speed": 1.41
     },
     {
-      "level": 19,
-      "speed": 1,
-      "power": 1.88
+      "Level": 19,
+      "speed": 1.44
     },
     {
-      "level": 20,
-      "speed": 1,
-      "power": 1.93
+      "Level": 20,
+      "speed": 1.47
     },
     {
-      "level": 21,
-      "speed": 1.1,
-      "power": 1.98
+      "Level": 21,
+      "speed": 1.5
     },
     {
-      "level": 22,
-      "speed": 1.1,
-      "power": 2.03
+      "Level": 22,
+      "speed": 1.53
     },
     {
-      "level": 23,
-      "speed": 1.1,
-      "power": 2.08
+      "Level": 23,
+      "speed": 1.56
     },
     {
-      "level": 24,
-      "speed": 1.1,
-      "power": 2.13
+      "Level": 24,
+      "speed": 1.59
     },
     {
-      "level": 25,
-      "speed": 1.1,
-      "power": 2.18
+      "Level": 25,
+      "speed": 1.62
     },
     {
-      "level": 26,
-      "speed": 1.1,
-      "power": 2.23
+      "Level": 26,
+      "speed": 1.65
     },
     {
-      "level": 27,
-      "speed": 1.1,
-      "power": 2.28
+      "Level": 27,
+      "speed": 1.68
     },
     {
-      "level": 28,
-      "speed": 1.1,
-      "power": 2.33
+      "Level": 28,
+      "speed": 1.71
     },
     {
-      "level": 29,
-      "speed": 1.1,
-      "power": 2.38
+      "Level": 29,
+      "speed": 1.74
     },
     {
-      "level": 30,
-      "speed": 1.1,
-      "power": 2.43
+      "Level": 30,
+      "speed": 1.77
     },
     {
-      "level": 31,
-      "speed": 1.2,
-      "power": 2.48
+      "Level": 31,
+      "speed": 1.8
     },
     {
-      "level": 32,
-      "speed": 1.2,
-      "power": 2.53
+      "Level": 32,
+      "speed": 1.83
     },
     {
-      "level": 33,
-      "speed": 1.2,
-      "power": 2.58
+      "Level": 33,
+      "speed": 1.86
     },
     {
-      "level": 34,
-      "speed": 1.2,
-      "power": 2.63
+      "Level": 34,
+      "speed": 1.89
     },
     {
-      "level": 35,
-      "speed": 1.2,
-      "power": 2.68
+      "Level": 35,
+      "speed": 1.92
     },
     {
-      "level": 36,
-      "speed": 1.2,
-      "power": 2.73
+      "Level": 36,
+      "speed": 1.95
     },
     {
-      "level": 37,
-      "speed": 1.2,
-      "power": 2.78
+      "Level": 37,
+      "speed": 1.98
     },
     {
-      "level": 38,
-      "speed": 1.2,
-      "power": 2.83
+      "Level": 38,
+      "speed": 2.01
     },
     {
-      "level": 39,
-      "speed": 1.2,
-      "power": 2.88
+      "Level": 39,
+      "speed": 2.04
     },
     {
-      "level": 40,
-      "speed": 1.2,
-      "power": 2.93
+      "Level": 40,
+      "speed": 2.07
     },
     {
-      "level": 41,
-      "speed": 1.3,
-      "power": 2.98
+      "Level": 41,
+      "speed": 2.1
     },
     {
-      "level": 42,
-      "speed": 1.3,
-      "power": 3.03
+      "Level": 42,
+      "speed": 2.13
     },
     {
-      "level": 43,
-      "speed": 1.3,
-      "power": 3.08
+      "Level": 43,
+      "speed": 2.16
     },
     {
-      "level": 44,
-      "speed": 1.3,
-      "power": 3.13
+      "Level": 44,
+      "speed": 2.19
     },
     {
-      "level": 45,
-      "speed": 1.3,
-      "power": 3.18
+      "Level": 45,
+      "speed": 2.22
     },
     {
-      "level": 46,
-      "speed": 1.3,
-      "power": 3.23
+      "Level": 46,
+      "speed": 2.25
     },
     {
-      "level": 47,
-      "speed": 1.3,
-      "power": 3.28
+      "Level": 47,
+      "speed": 2.28
     },
     {
-      "level": 48,
-      "speed": 1.3,
-      "power": 3.33
+      "Level": 48,
+      "speed": 2.31
     },
     {
-      "level": 49,
-      "speed": 1.3,
-      "power": 3.38
+      "Level": 49,
+      "speed": 2.34
     },
     {
-      "level": 50,
-      "speed": 1.3,
-      "power": 3.43
+      "Level": 50,
+      "speed": 2.37
     }
   ]
 }

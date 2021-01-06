@@ -25,7 +25,7 @@ public class JoystickPanel : BasePanel
     private void OnRefresh(object[] param)
     {
         txt_KillAInNum.text = gamedatas.curGameKillAIValue.ToString();
-        txt_gameProgress.text = gamedatas.curGameProgressValue.ToString()+" %";
+        txt_gameProgress.text = gamedatas.curGameProgressValue.ToString("F2")+" %";
     }
 
     public override void OnEnter()
