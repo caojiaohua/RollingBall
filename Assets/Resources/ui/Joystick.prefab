@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5753339637973763248
 RectTransform:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3283872421991093729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -370,7 +370,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
   txt_gameProgress: {fileID: 751306045381470603}
-  txt_KillAInNum: {fileID: 4450118371764937040}
 --- !u!225 &1701803458124259688
 CanvasGroup:
   m_ObjectHideFlags: 0

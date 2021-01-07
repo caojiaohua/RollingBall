@@ -11,14 +11,14 @@ using UnityEngine;
 public class GameDataManager :MonoBehaviour
 {
 
-    private gamedata gamedatas;
+    private  gamedata gamedatas;
     public static GameDataManager _instance;
     void  Awake()
     {
         _instance = this;
 
         gamedatas = new gamedata();
-        //Debug.Log(gameObject.name);
+
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
@@ -106,7 +106,7 @@ public class GameDataManager :MonoBehaviour
     /// 获取地图总数
     /// </summary>
     /// <returns></returns>
-    public static int getMapComponentNum()
+    public int getMapComponentNum()
     {
         List<MapData> mapDatas = getMapDataInfo();
         int num = 0;
@@ -187,18 +187,7 @@ public class GameDataManager :MonoBehaviour
         return PlayerPrefs.GetInt(appSetting.BallPowerLevel_playerprefs,1);
     }
 
-    /// <summary>
-    /// streamingAssets to persistentPath
-    /// </summary>
-    private void setGameDataFilesToAndroidPath()
-    {
-        #if UNITY_ANDROID
 
-
-
-
-        #endif
-    }
 
 
     private void OnRefresh(object[] param)
@@ -247,15 +236,33 @@ public class GameDataManager :MonoBehaviour
     /// <summary>
     /// 获取地图信息
     /// </summary>
-    public static  List<MapData> getMapDataInfo()
+    public  List<MapData> getMapDataInfo()
     {
-        return JsonDataTool.GetListFromJson<MapData>(appSetting.mapDataTableName);
-  
+            return JsonDataTool.GetListFromJson<MapData>(appSetting.mapDataTableName);
+    }
+
+    public List<MapData> getTestMapDataInfo()
+    {
+            return JsonDataTool.GetListFromJson<MapData>(appSetting.test_mapDataTableName);
     }
 
 
+    /// <summary>
+    /// 获取地图总数
+    /// </summary>
+    /// <returns></returns>
+    public int getTestMapComponentNum()
+    {
+        List<MapData> mapDatas = getTestMapDataInfo();
+        int num = 0;
+        foreach (var item in mapDatas)
+        {
+            num += item.compenentNumb;
+        }
 
- 
+        return num;
+    }
+
 
     /// <summary>
     /// 获取金币数量
@@ -714,6 +721,12 @@ public enum GAMESTATE
 
 public class gamedata : DataBase
 {
+
+    /// <summary>
+    /// 是否开启测试模式
+    /// </summary>
+    public bool isTest;
+
     /// <summary>
     /// 当局游戏金币数量
     /// </summary>
@@ -799,6 +812,7 @@ public class gamedata : DataBase
 
     public override void OnInit()
     {
+        isTest = false;
         loadedComponentNum = 0;
 
         curGameGoldValue = 0;
@@ -812,12 +826,14 @@ public class gamedata : DataBase
         iReviveNum = GameDataManager.getReviveNum();
         iLoginDayNum = GameDataManager.getLoginDayNum();
         gameState = GAMESTATE.start;
-        mapComponentsNum = GameDataManager.getMapComponentNum();
+        mapComponentsNum = GameDataManager._instance.getMapComponentNum();
         curChooseBallSkinId = GameDataManager.getCurChooseBallSkinId();
 
         sound = GameDataManager.getSoundState();
         vibrate = GameDataManager.getVibrateState();
         ballMoveSpeed = 3.0f;
+
+        
     }
 
     public override void Notify()

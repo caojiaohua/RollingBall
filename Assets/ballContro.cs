@@ -24,6 +24,14 @@ public class ballContro : MonoBehaviour
     {
 
         transform.GetComponent<MeshRenderer>().material = GameDataManager.getBallSkinForSkinId(gamedatas.curChooseBallSkinId);
+        if(gamedatas.isTest == true)
+        {
+            gamedatas.mapComponentsNum = GameDataManager._instance.getTestMapComponentNum();
+        }
+        else if (gamedatas.isTest == false)
+        {
+            gamedatas.mapComponentsNum = GameDataManager._instance.getMapComponentNum();
+        }
     }
 
     private void Update()

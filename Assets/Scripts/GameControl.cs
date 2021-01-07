@@ -69,10 +69,12 @@ public class GameControl : MonoBehaviour
     /// </summary>
    public void setGameMap()
     {
-        
-        mapData = GameDataManager.getMapDataInfo();
-        
-        if(gamedatas.MapRating == 0)
+        if(gamedatas.isTest == false)
+        mapData = GameDataManager._instance.getMapDataInfo();
+        else
+            mapData = GameDataManager._instance.getTestMapDataInfo();
+
+        if (gamedatas.MapRating == 0)
         {
             Init();
             GameObject startPoint = checkMapComponentList(GameDataManager._instance.startPointObject);

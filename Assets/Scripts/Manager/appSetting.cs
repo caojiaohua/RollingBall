@@ -32,6 +32,7 @@ public class appSetting : MonoBehaviour
 
 
     public static string mapDataTableName = "mapData";
+    public static string test_mapDataTableName = "test_mapData";
     public static string mapComponentTableName = "mapCompoment";
     public static string goldIncomeUpgardeTableName = "goldIncomeUpgrade";
     public static string ballSkinTaskTableName = "ballSkinTask";

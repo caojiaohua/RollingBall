@@ -29,12 +29,15 @@ public class startPanel : BasePanel
 
     private gamedata gamedatas;
 
+    public GameObject testObj;
+    public Toggle toggleTest;
+
+    Button btnadd;
+    Button btnreduce;
+    Text txtSpeed;
+
     private void Start()
     {
-        ////gamedatas = new gamedata();
-        //Debug.Log(gameObject.name);
-
-
         #region
         txt_goldLevel.text = gamedatas.GoldMulitipleLevel.ToString();
         txt_goldUpgradePrice.text = GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).price.ToString();
@@ -42,13 +45,45 @@ public class startPanel : BasePanel
         txt_powerUpgradePrice.text = GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).price.ToString();
         #endregion
 
-        
+        #region  test model
+        toggleTest.isOn = gamedatas.isTest;
+        toggleTest.onValueChanged.AddListener(toggleTestClick);
+        btnadd = testObj.transform.GetChild(0).GetComponent<Button>();
+        btnreduce = testObj.transform.GetChild(1).GetComponent<Button>();
+        txtSpeed = testObj.transform.GetChild(2).GetComponent<Text>();
+        txtSpeed.text = gamedatas.ballMoveSpeed.ToString();
+        btnadd.onClick.AddListener(btnaddClick);
+        btnreduce.onClick.AddListener(btnreduceClick);
+        #endregion
+
         btnSetting.onClick.AddListener(OnSettingButtonClick);
         btnTask.onClick.AddListener(OnTaskButtonClick);
         btnStart.onClick.AddListener(OnStartButtonClick);
         btnUpgradeCoin.onClick.AddListener(btnUpgradeCoinClick);
         btnUpgradePower.onClick.AddListener(btnUpgradePowerClick);
+
         
+
+    }
+
+    private void toggleTestClick(bool arg0)
+    {
+        gamedatas.isTest = arg0;
+        gamedatas.Notify();
+    }
+
+    private void btnaddClick()
+    {
+        gamedatas.ballMoveSpeed += 0.1f;
+        txtSpeed.text = gamedatas.ballMoveSpeed.ToString();
+        gamedatas.Notify();
+    }
+
+    private void btnreduceClick()
+    {
+        gamedatas.ballMoveSpeed += 0.1f;
+        txtSpeed.text = gamedatas.ballMoveSpeed.ToString();
+        gamedatas.Notify();
     }
 
     private void OnRefresh(object[] param)
@@ -60,6 +95,15 @@ public class startPanel : BasePanel
         txt_goldUpgradePrice.text = GameDataManager._instance.getGoldUpgradeForLevel(user.GoldMulitipleLevel).price.ToString();
         txt_powerLevel.text = user.aiBallReduceSpeedLevel.ToString();
         txt_powerUpgradePrice.text = GameDataManager._instance.getBallSkillForLevel(user.aiBallReduceSpeedLevel).price.ToString();
+
+        if (gamedatas.isTest == true)
+        {
+            testObj.SetActive(true);
+        }
+        else
+        {
+            testObj.SetActive(false);
+        }
 
     }
 
@@ -144,10 +188,14 @@ public class startPanel : BasePanel
         ///
         gamedatas.curGameGoldValue = 0;
 
-
-
-
-        //GameControl._instance.Init();
+        if(gamedatas.isTest == true)
+        {
+            testObj.SetActive(true);
+        }
+        else
+        {
+            testObj.SetActive(false);
+        }
 
     }
     

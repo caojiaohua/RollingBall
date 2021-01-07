@@ -16,7 +16,6 @@ public class UIManager : MonoBehaviour
     {
         _instance = this;
 
-        //Debug.Log(gameObject.name);
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
 
