@@ -186,19 +186,14 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
             UnityEngine.Object xx = Resources.Load("ui/taskPfb");
             GameObject tt = Instantiate(xx) as GameObject;
             items[i] = tt.transform;
-            items[i].GetComponent<Image>().color = test();
+            items[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("skin/"+ballTasks[i].skinSourceName);
             items[i].GetComponent<taskPfbControl>().taskInfo = ballTasks[i];
             items[i].parent = tasksParent;
         }
         setActive(new List<int> { items.Length / 2, items.Length / 2 - 1, items.Length / 2 + 1 });
         UpdateTaskInfoShow();
     }
-    System.Random rd = new System.Random();
-    Color test()
-    {
-       
-        return new Color(rd.Next(0,255)/255f, rd.Next(0, 255)/255f, rd.Next(0, 255)/255f);
-    }
+
 
   
 

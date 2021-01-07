@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ballContro : MonoBehaviour
 {
-    public float moveSpeed;
 
     Transform beforeGameoverPosition;
     private gamedata gamedatas;
@@ -17,15 +16,12 @@ public class ballContro : MonoBehaviour
 
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
-        
 
-        //moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(GameDataManager.getBallPowerLevel()).speed;
 
     }
 
     private void OnRefresh(object[] param)
     {
-        //moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).speed;
 
         transform.GetComponent<MeshRenderer>().material = GameDataManager.getBallSkinForSkinId(gamedatas.curChooseBallSkinId);
     }
@@ -33,7 +29,7 @@ public class ballContro : MonoBehaviour
     private void Update()
     {
         if (gamedatas.gameState == GAMESTATE.game)
-            transform.Rotate(Vector3.right * moveSpeed * 2, Space.Self);
+            transform.Rotate(Vector3.right * gamedatas.ballMoveSpeed, Space.Self);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -69,11 +65,7 @@ public class ballContro : MonoBehaviour
                 }
 
 
-                //if()
-                if (gamedatas.curGameProgressValue >=10 && gamedatas.curGameKillAIValue == 0)
-                {
-                    gamedatas.iNOT_KillAI_InFirst10P = 1;
-                }
+                
 
 
 
@@ -91,23 +83,16 @@ public class ballContro : MonoBehaviour
 
             gamedatas.Notify();
         }
-        else if (collision.gameObject.tag == "AIBall")
+        else if (collision.gameObject.tag == "gameover")
         {
-            //collision.gameObject.GetComponent<AIBallControl>().isMove = false;
-            //collision.gameObject.GetComponent<Rigidbody>().AddForce(0,0,0.05f);
-        }
-        else if (collision.gameObject.tag == "cube")
-        {
-            
-            if(gamedatas.gameState != GAMESTATE.over)
+            if (gamedatas.gameState != GAMESTATE.over)
             {
-                
+
                 Debug.Log("gameover");
                 gamedatas.gameState = GAMESTATE.over;
                 UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
                 gamedatas.Notify();
             }
-            
         }
         else if(collision.gameObject.tag == "end")
         {
@@ -127,7 +112,7 @@ public class ballContro : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "cube")
+        if (other.gameObject.tag == "gameover")
         {
             if (gamedatas.gameState != GAMESTATE.over)
             {

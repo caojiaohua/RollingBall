@@ -21,6 +21,8 @@ ModelImporter:
     100030: //RootNode
     100032: end
     100034: start
+    100036: left
+    100038: right
     400000: floor
     400002: move
     400004: move_10
@@ -39,6 +41,8 @@ ModelImporter:
     400030: //RootNode
     400032: end
     400034: start
+    400036: left
+    400038: right
     2100000: floor
     2100002: Roadblocks
     2300000: floor

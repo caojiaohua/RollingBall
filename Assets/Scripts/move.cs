@@ -12,11 +12,10 @@ public class move : MonoBehaviour
 
     public bool isMove;
     private gamedata gamedatas;
-    private float moveSpeed;
+
 
     private void Start()
     {
-
         isMove = true;
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
@@ -26,7 +25,7 @@ public class move : MonoBehaviour
 
     private void OnRefresh(object[] param)
     {
-        //moveSpeed = (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).speed;
+        
     }
     Vector3 test;
     public void onJoystickValueChanged(Vector2 eventPointerData)
@@ -34,7 +33,6 @@ public class move : MonoBehaviour
 #if UNITY_IOS || UNITY_ANDROID
         float angle = Vector2.SignedAngle(new Vector2(1, 0), eventPointerData);
 
-        //transform.GetChild(0).GetComponent<Rigidbody>().AddForce(new Vector3(-eventPointerData.x,0, -eventPointerData.y)*1,ForceMode.Impulse);
         if (angle != 0)
         {
             if (gamedatas.gameState == GAMESTATE.start)
@@ -42,7 +40,7 @@ public class move : MonoBehaviour
                 gamedatas.gameState = GAMESTATE.game;
                 gamedatas.Notify();
             }
-            //test = new Vector3(0, (-angle - 90), 0);
+
             RotateMove(new Vector3(0, (-angle - 90), 0));
         }
 
@@ -56,12 +54,12 @@ public class move : MonoBehaviour
             {
                 if((transform.localEulerAngles.y-360 >90f || transform.localEulerAngles.y-360 < -90f))
                 {
-                    transform.Translate(0, 0, moveSpeed * Time.deltaTime);
+                    transform.Translate(0, 0, gamedatas.ballMoveSpeed * Time.deltaTime);
                 }
             }
             else
             {
-                transform.Translate(0, 0, moveSpeed * Time.deltaTime);
+                transform.Translate(0, 0, gamedatas.ballMoveSpeed * Time.deltaTime);
             }
             
     }

@@ -17,25 +17,7 @@ public class componentControl : MonoBehaviour
     /// </summary>
     public string AIRating;
     GameObject AIBall;
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Debug.Log("clone again");
-        //Destroy(AIBall);
-        //AIBall = null;
-        //cloneAI();
-        //if(collision.gameObject.tag == "ball")
-        //{
-        //    //更新地图进度
-        //    if (GameDataManager._instance.gameState == GAMESTATE.game)
-        //        JoystickPanel._instance.setGameProgress(mapID);
-        //    GameControl._instance.checkMapProgress(mapID);
-        //}
-        //else if(collision.gameObject.tag == "aiball")
-        //{
 
-        //}
-
-    }
 
 
 

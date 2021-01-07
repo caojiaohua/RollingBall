@@ -106,7 +106,7 @@ Animator:
   m_GameObject: {fileID: 5870495954949703300}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0e1e8607f6b87ca4392128bb5cf98dc9, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43ad1580350d2a1458b45b3ffd1df971, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 9037434786706160068}
   m_Layer: 0
   m_Name: mechanism_2
-  m_TagString: cube
+  m_TagString: gameover
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

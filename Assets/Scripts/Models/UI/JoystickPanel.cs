@@ -11,7 +11,7 @@ public class JoystickPanel : BasePanel
     public Joystick joystick;
 
     public Text txt_gameProgress;
-    public Text txt_KillAInNum;
+
 
     private gamedata gamedatas;
     private void Start()
@@ -24,7 +24,7 @@ public class JoystickPanel : BasePanel
 
     private void OnRefresh(object[] param)
     {
-        txt_KillAInNum.text = gamedatas.curGameKillAIValue.ToString();
+       
         txt_gameProgress.text = gamedatas.curGameProgressValue.ToString("F2")+" %";
     }
 
@@ -41,7 +41,7 @@ public class JoystickPanel : BasePanel
         joystick.OnValueChanged.AddListener(ball.onJoystickValueChanged);
 
         ///初始化信息显示
-        txt_KillAInNum.text = gamedatas.curGameKillAIValue.ToString();
+
         txt_gameProgress.text = gamedatas.curGameProgressValue.ToString();
     }
 

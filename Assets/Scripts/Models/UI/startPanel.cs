@@ -38,8 +38,8 @@ public class startPanel : BasePanel
         #region
         txt_goldLevel.text = gamedatas.GoldMulitipleLevel.ToString();
         txt_goldUpgradePrice.text = GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).price.ToString();
-        txt_powerLevel.text = gamedatas.ballPowerLevel.ToString();
-        txt_powerUpgradePrice.text = GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).price.ToString();
+        txt_powerLevel.text = gamedatas.aiBallReduceSpeedLevel.ToString();
+        txt_powerUpgradePrice.text = GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).price.ToString();
         #endregion
 
         
@@ -58,8 +58,8 @@ public class startPanel : BasePanel
 
         txt_goldLevel.text = user.GoldMulitipleLevel.ToString();
         txt_goldUpgradePrice.text = GameDataManager._instance.getGoldUpgradeForLevel(user.GoldMulitipleLevel).price.ToString();
-        txt_powerLevel.text = user.ballPowerLevel.ToString();
-        txt_powerUpgradePrice.text = GameDataManager._instance.getBallSkillForLevel(user.ballPowerLevel).price.ToString();
+        txt_powerLevel.text = user.aiBallReduceSpeedLevel.ToString();
+        txt_powerUpgradePrice.text = GameDataManager._instance.getBallSkillForLevel(user.aiBallReduceSpeedLevel).price.ToString();
 
     }
 
@@ -117,11 +117,11 @@ public class startPanel : BasePanel
     {
         ///获取升级到下一级需要多少金币
         ///
-        int nextLevel_needGold = GameDataManager._instance.getBallSkillForLevel(gamedatas.ballPowerLevel).price;
+        int nextLevel_needGold = GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).price;
 
         if (gamedatas.GameGoldValue >= nextLevel_needGold)
         {
-            gamedatas.ballPowerLevel += 1;
+            gamedatas.aiBallReduceSpeedLevel += 1;
             gamedatas.GameGoldValue -= nextLevel_needGold;   
         }
         else
@@ -143,7 +143,7 @@ public class startPanel : BasePanel
         ///开始界面的数据 更新
         ///
         gamedatas.curGameGoldValue = 0;
-        gamedatas.curGameKillAIValue = 0;
+
 
 
 

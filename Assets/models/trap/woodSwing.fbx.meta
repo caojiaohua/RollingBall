@@ -11,6 +11,7 @@ ModelImporter:
     100010: //RootNode
     100012: end
     100014: start
+    100016: mechanism_1
     400000: floor
     400002: mechanism
     400004: mechanism_2
@@ -19,20 +20,24 @@ ModelImporter:
     400010: //RootNode
     400012: end
     400014: start
+    400016: mechanism_1
     2100000: mechanism
     2100002: floor
     2300000: floor
     2300002: mechanism_2
     2300004: mechanism_3
     2300006: mechanism_4
+    2300008: mechanism_1
     3300000: floor
     3300002: mechanism_2
     3300004: mechanism_3
     3300006: mechanism_4
+    3300008: mechanism_1
     4300000: mechanism_2
     4300002: mechanism_3
     4300004: mechanism_4
     4300006: floor
+    4300008: mechanism_1
     7400000: CINEMA_4D___
     9500000: //RootNode
   externalObjects: {}

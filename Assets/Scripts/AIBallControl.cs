@@ -44,11 +44,10 @@ public class AIBallControl : MonoBehaviour
 
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
-
+        walkSpeed = ((float)ballData.speed - (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).speedDown);
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
 
-        walkSpeed = 2f;
         //随机一个待机动作
         RandomAction();
 
@@ -80,46 +79,9 @@ public class AIBallControl : MonoBehaviour
 
     private void OnRefresh(object[] param)
     {
-
+        walkSpeed = ((float)ballData.speed - (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).speedDown);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "cube")
-        {
-
-            if(gamedatas.sound == 1)
-            {
-                gameObject.GetComponent<AudioSource>().Play();
-            }
-            if(gamedatas.vibrate == 1)
-            {
-                #if UNITY_ANDROID
-
-                 Handheld.Vibrate();
-
-                #endif
-            }
-            ///更新金币
-            ///
-            gamedatas.GameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).killEnemyIncome);
-            gamedatas.curGameGoldValue += (int)(GameDataManager._instance.getGoldUpgradeForLevel(gamedatas.GoldMulitipleLevel).killEnemyIncome);
-
-            ///更新杀敌数
-            ///
-            gamedatas.curGameKillAIValue += 1;
-            gamedatas.GameKillAIValue += 1;
-
-
-            gamedatas.Notify();
-            Destroy(gameObject,1.0f);
-
-        }
-        else if (other.gameObject.tag == "ball")
-        {
-            // Debug.Log("game over");
-        }
-    }
 
     bool istest = false;
     // Update is called once per frame
@@ -173,7 +135,7 @@ public class AIBallControl : MonoBehaviour
                 //游走，根据状态随机时生成的目标位置修改朝向，并向前移动
                 case MonsterState.WALK:
 
-                    transform.Translate(Vector3.forward * Time.deltaTime * (float)ballData.speed);
+                    transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed);
                     if (Time.time - lastActTime > 5)
                     {
                         RandomAction();         //随机切换指令

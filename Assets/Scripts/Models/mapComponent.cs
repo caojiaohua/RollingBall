@@ -32,5 +32,10 @@ namespace Assets.Scripts.Models
         /// </summary>
         public string componentResourceName;
 
+        /// <summary>
+        /// 是否生成AI
+        /// </summary>
+        public int genAI;
+
     }
 }

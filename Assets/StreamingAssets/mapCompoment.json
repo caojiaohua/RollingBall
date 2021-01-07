@@ -4,151 +4,232 @@
       "mapComponentType": 1,
       "componentDifficulty": 4,
       "discription": "小球起点",
-      "componentResourceName": "startingPoint"
+      "componentResourceName": "startingPoint",
+      "genAI": 0
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 5,
       "discription": "小球终点",
-      "componentResourceName": "destination"
+      "componentResourceName": "destination",
+      "genAI": 0
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 0,
       "discription": "",
-      "componentResourceName": "straightRoad350"
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 2,
       "discription": "",
-      "componentResourceName": "narrowRoad230"
+      "componentResourceName": "narrowRoad230",
+      "genAI": 0
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 0,
       "discription": "",
-      "componentResourceName": "sBend1"
+      "componentResourceName": "sBend1",
+      "genAI": 1
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 0,
       "discription": "",
-      "componentResourceName": "sBend2"
+      "componentResourceName": "sBend2",
+      "genAI": 1
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 1,
       "discription": "",
-      "componentResourceName": "sBend3"
+      "componentResourceName": "sBend3",
+      "genAI": 1
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 0,
       "discription": "",
-      "componentResourceName": "cBend1"
+      "componentResourceName": "cBend",
+      "genAI": 1
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 0,
       "discription": "",
-      "componentResourceName": "cBend2"
+      "componentResourceName": "cBend2",
+      "genAI": 1
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 0,
       "discription": "",
-      "componentResourceName": "skewBend"
+      "componentResourceName": "skewBend",
+      "genAI": 1
     },
     {
       "mapComponentType": 1,
       "componentDifficulty": 0,
       "discription": "",
-      "componentResourceName": "sBend4"
+      "componentResourceName": "sBend4",
+      "genAI": 1
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 1,
-      "discription": "",
-      "componentResourceName": "woodShake"
+      "discription": "接触橙色区域闯关失败",
+      "componentResourceName": "woodShake",
+      "genAI": 1
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 1,
-      "discription": "",
-      "componentResourceName": "woodRotate"
+      "discription": "接触橙色区域闯关失败",
+      "componentResourceName": "woodRotate",
+      "genAI": 1
     },
     {
       "mapComponentType": 3,
       "componentDifficulty": 2,
       "discription": "小球经过玻璃时玻璃会塌陷",
-      "componentResourceName": "avoidGlass"
+      "componentResourceName": "avoidGlass",
+      "genAI": 0
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 1,
-      "discription": "",
-      "componentResourceName": "crossRotate1"
+      "discription": "橙色物块会把小球推开",
+      "componentResourceName": "crossRotate1",
+      "genAI": 0
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 2,
       "discription": "",
-      "componentResourceName": "crossRotate2"
-    },
-    {
-      "mapComponentType": 4,
-      "componentDifficulty": 1,
-      "discription": "小球可通过两边格子跳跃",
-      "componentResourceName": "jump1"
+      "componentResourceName": "crossRotate2",
+      "genAI": 0
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 1,
       "discription": "",
-      "componentResourceName": "pieceMove1"
+      "componentResourceName": "pieceMove1",
+      "genAI": 0
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 3,
       "discription": "",
-      "componentResourceName": "pieceMove2"
+      "componentResourceName": "pieceMove2",
+      "genAI": 0
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 2,
-      "discription": "",
-      "componentResourceName": "triMove"
+      "discription": "橙色物块会把小球推开",
+      "componentResourceName": "triMove",
+      "genAI": 0
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 3,
-      "discription": "",
-      "componentResourceName": "triMove2"
+      "discription": "橙色物块会把小球推开",
+      "componentResourceName": "triMove2",
+      "genAI": 0
+    },
+    {
+      "mapComponentType": 2,
+      "componentDifficulty": 2,
+      "discription": "橙色物块会把小球推开",
+      "componentResourceName": "triRotate",
+      "genAI": 0
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 2,
       "discription": "",
-      "componentResourceName": "triRotate"
-    },
-    {
-      "mapComponentType": 2,
-      "componentDifficulty": 2,
-      "discription": "",
-      "componentResourceName": "woodMove"
+      "componentResourceName": "woodMove",
+      "genAI": 0
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 1,
-      "discription": "",
-      "componentResourceName": "woodSwing"
+      "discription": "橙色物块会把小球推开",
+      "componentResourceName": "woodSwing",
+      "genAI": 1
     },
     {
       "mapComponentType": 2,
       "componentDifficulty": 3,
       "discription": "",
-      "componentResourceName": "pieceMove3"
+      "componentResourceName": "pieceMove3",
+      "genAI": 0
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 1
     }
   ]
 }

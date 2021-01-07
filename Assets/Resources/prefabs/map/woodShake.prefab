@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 5914970508921701884}
   m_Layer: 0
   m_Name: trap43
-  m_TagString: cube
+  m_TagString: gameover
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

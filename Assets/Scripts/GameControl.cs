@@ -191,4 +191,29 @@ public class GameControl : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// 玩家退出游戏的时候回收内存
+    /// </summary>
+    private void OnApplicationQuit()
+    {
+
+        ///清空asset内存
+        ///
+        //GameDataManager._instance.clearAllObject();
+
+        //foreach (var item in loadedComponent)
+        //{
+        //    Destroy(item);
+        //}
+
+
+      
+
+        //System.GC.Collect();
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        
+    }
 }

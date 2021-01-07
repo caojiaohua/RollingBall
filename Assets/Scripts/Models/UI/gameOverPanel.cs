@@ -26,7 +26,7 @@ public class gameOverPanel : BasePanel
 
 
     public Text txt_gameProgress;
-    public Text txt_killAINum;
+
     public Text txt_goldNum;
 
     public Button btn_over_DoubleGold;
@@ -111,7 +111,7 @@ public class gameOverPanel : BasePanel
         overPanel.gameObject.SetActive(true);
 
         txt_gameProgress.text = gamedatas.curGameProgressValue.ToString() + "%";
-        txt_killAINum.text = gamedatas.curGameKillAIValue.ToString();
+
         txt_goldNum.text = gamedatas.curGameGoldValue.ToString();
 
 

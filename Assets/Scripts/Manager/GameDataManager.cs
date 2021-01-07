@@ -182,7 +182,7 @@ public class GameDataManager :MonoBehaviour
     /// 获取小球power 等级
     /// </summary>
     /// <returns></returns>
-    public static int getBallPowerLevel()
+    public static int getAiBallReduceSpeedLevel()
     {
         return PlayerPrefs.GetInt(appSetting.BallPowerLevel_playerprefs,1);
     }
@@ -206,13 +206,12 @@ public class GameDataManager :MonoBehaviour
         var data = param[0] as gamedata;
 
         ///小球重力  等级
-        PlayerPrefs.SetInt(appSetting.BallPowerLevel_playerprefs,data.ballPowerLevel);
+        PlayerPrefs.SetInt(appSetting.BallPowerLevel_playerprefs,data.aiBallReduceSpeedLevel);
         ///金币收益能力  等级
         PlayerPrefs.SetInt(appSetting.GoldMultipleLevel_playerprefs, data.GoldMulitipleLevel);
         /// 设置全局金币数量
         PlayerPrefs.SetInt(appSetting.goldDataName_PlayerPrefs, data.GameGoldValue);
-        /// 更新全局击杀AI球的数量
-        PlayerPrefs.SetInt(appSetting.killAINum_playerprefs, data.GameKillAIValue);
+
         ///更新当局游戏进度
         PlayerPrefs.SetFloat(appSetting.curGameProgress_playerprefs, data.curGameProgressValue);
 
@@ -223,9 +222,15 @@ public class GameDataManager :MonoBehaviour
         ///游戏复活次数
         PlayerPrefs.SetInt(appSetting.reviveNum_playerprefs, data.iReviveNum);
 
+        ///登录天数
         PlayerPrefs.SetInt(appSetting.loginDayNum_playerprefs, data.iLoginDayNum);
 
+        ///更新小球皮肤的选择
         serCurChooseBallSkinId(gamedatas.curChooseBallSkinId);
+
+        PlayerPrefs.SetInt(appSetting.SoundState_playerprefs, data.sound);
+
+        PlayerPrefs.SetInt(appSetting.VibrateState_playerprefs, data.vibrate);
     }
 
     void init()
@@ -349,11 +354,27 @@ public class GameDataManager :MonoBehaviour
 
     }
 
-    /// <summary>
-    /// 获取小球皮肤任务数据
-    /// </summary>
-    /// 
 
+    public void clearAllObject()
+    {
+        foreach (var item in gerneralCompentObject)
+        {
+            Resources.UnloadAsset(item);
+        }
+        foreach (var item in lowerCompentObject)
+        {
+            Resources.UnloadAsset(item);
+        }
+        foreach (var item in middleCompentObject)
+        {
+            Resources.UnloadAsset(item);
+        }
+        foreach (var item in seniorCompentObject)
+        {
+            Resources.UnloadAsset(item);
+        }
+        Resources.UnloadUnusedAssets();
+    }
    
     private void getBallTasksInfo()
     {
@@ -521,30 +542,6 @@ public class GameDataManager :MonoBehaviour
                     }
                     break;
                 case 10:
-                    if (gamedatas.GameKillAIValue / 10 >= 1)
-                    {
-                        item.taskProgress = 1;
-                    }
-                    else
-                    {
-                        item.taskProgress = System.Math.Round((double)gamedatas.GameKillAIValue / 10, 2);
-                    }
-                    break;
-                case 11:
-
-                    if (gamedatas.iNOT_KillAI_InFirst10P / 1 >= 1)
-                    {
-                        item.taskProgress = 1;
-                    }
-                    else
-                    {
-                        item.taskProgress = 0;
-                    }
-
-
-                    
-                    break;
-                case 12:
                     if (gamedatas.GameProgressValue / 100 >= 1)
                     {
                         item.taskProgress = 1;
@@ -554,7 +551,6 @@ public class GameDataManager :MonoBehaviour
                         item.taskProgress = System.Math.Round((double)gamedatas.GameProgressValue / 100, 2);
                     }
                     break;
-
             }
            
         }
@@ -679,6 +675,19 @@ public class GameDataManager :MonoBehaviour
     }
 
 
+    public static int getVibrateState()
+    {
+        return PlayerPrefs.GetInt(appSetting.VibrateState_playerprefs, 1);
+    }
+
+
+
+    public static int getSoundState()
+    {
+        return PlayerPrefs.GetInt(appSetting.SoundState_playerprefs, 1);
+    }
+
+
 }
 
 /// <summary>
@@ -710,10 +719,7 @@ public class gamedata : DataBase
     /// </summary>
     public int curGameGoldValue;
 
-    /// <summary>
-    /// 当局游戏击杀AI球的数量
-    /// </summary>
-   public int curGameKillAIValue;
+
 
     /// <summary>
     /// 当局游戏进度
@@ -725,10 +731,6 @@ public class gamedata : DataBase
     /// </summary>
     public int GameGoldValue;
 
-    /// <summary>
-    /// 全局击杀AI球的数量
-    /// </summary>
-    public int GameKillAIValue;
 
 
     /// <summary>
@@ -744,12 +746,9 @@ public class gamedata : DataBase
     /// <summary>
     /// 小球降速等级
     /// </summary>
-    public int ballPowerLevel;
+    public int aiBallReduceSpeedLevel; 
 
-    /// <summary>
-    /// 完成地图前10 并且 没有击杀AI
-    /// </summary>
-    public int iNOT_KillAI_InFirst10P;
+
 
     /// <summary>
     /// 游戏复活次数
@@ -796,25 +795,29 @@ public class gamedata : DataBase
     /// </summary>
     public int vibrate;
 
+    public float ballMoveSpeed;
+
     public override void OnInit()
     {
         loadedComponentNum = 0;
-        curGameKillAIValue = 0;
+
         curGameGoldValue = 0;
         curGameProgressValue = 0;
         GameGoldValue = GameDataManager.getGoldNum();
-        GameKillAIValue = GameDataManager.getKillAINum_total();
+
         GameProgressValue = GameDataManager.getGameProgress();
         GoldMulitipleLevel = GameDataManager.getGoldMultipleLevel();
-        ballPowerLevel = GameDataManager.getBallPowerLevel();
-        iNOT_KillAI_InFirst10P = GameDataManager.getNOT_KillAI_InFirst10P();
+        aiBallReduceSpeedLevel = GameDataManager.getAiBallReduceSpeedLevel();
+
         iReviveNum = GameDataManager.getReviveNum();
         iLoginDayNum = GameDataManager.getLoginDayNum();
         gameState = GAMESTATE.start;
         mapComponentsNum = GameDataManager.getMapComponentNum();
         curChooseBallSkinId = GameDataManager.getCurChooseBallSkinId();
-        sound = 1;
-        vibrate = 1;
+
+        sound = GameDataManager.getSoundState();
+        vibrate = GameDataManager.getVibrateState();
+        ballMoveSpeed = 3.0f;
     }
 
     public override void Notify()

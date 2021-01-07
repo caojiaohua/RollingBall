@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1882947152216744571}
   m_Layer: 0
   m_Name: AIBall
-  m_TagString: AIBall
+  m_TagString: gameover
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +112,8 @@ MonoBehaviour:
   isMove: 0
   randomRotation: 90
   ballData:
-    level: 0
+    Level: 0
     speed: 0
-    power: 0
   actionWeight:
   - 3000
   - 4000
