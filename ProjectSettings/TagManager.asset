@@ -6,6 +6,12 @@ TagManager:
   tags:
   - startPoint
   - endPosition
+  - component
+  - AIBall
+  - ball
+  - trap
+  - cube
+  - end
   layers:
   - Default
   - TransparentFX
