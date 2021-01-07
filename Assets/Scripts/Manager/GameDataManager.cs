@@ -45,6 +45,8 @@ public class GameDataManager :MonoBehaviour
 
     [HideInInspector]
     public Object endPointObject;
+    [HideInInspector]
+    public Object AIObject;
 
 
     /// <summary>
@@ -229,7 +231,7 @@ public class GameDataManager :MonoBehaviour
         getGoldIncomeUpgradeData();
         getBallTasksInfo();
         getAIBallData();
-
+        AIObject = Resources.Load("prefabs/AIBall");
 
     }
 
@@ -288,6 +290,7 @@ public class GameDataManager :MonoBehaviour
         if (MapCompenentData != null)
         {
             gerneralCompentObject = new List<Object>();
+            
             lowerCompentObject = new List<Object>();
             middleCompentObject = new List<Object>();
             seniorCompentObject = new List<Object>();

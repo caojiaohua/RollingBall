@@ -64,6 +64,7 @@ public class gameOverPanel : BasePanel
     {
         UIPanelManager.Instance.PushPanel(UIPanelType.start);
         gamedatas.MapRating = 0;
+
         gamedatas.curGameProgressValue = 0;
         gamedatas.Notify();
         GameControl._instance.setGameMap();
@@ -81,8 +82,11 @@ public class gameOverPanel : BasePanel
 
         gamedatas.curGameGoldValue += gamedatas.curGameGoldValue;
 
+        gamedatas.MapRating = 0;
+
         gamedatas.curGameProgressValue = 0;
         gamedatas.Notify();
+        GameControl._instance.setGameMap();
         ball.GetComponent<ballContro>().resetPosition(false);
         UIPanelManager.Instance.PushPanel(UIPanelType.start);
 

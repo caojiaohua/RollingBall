@@ -224,6 +224,7 @@ MonoBehaviour:
   mapID: 0
   AILevel: 
   AIRating: 
+  genAI: 0
 --- !u!1 &4389623128944943386
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ public class GameControl : MonoBehaviour
     private void OnRefresh(object[] param)
     {
         var data = param[0] as gamedata;
-
+        Debug.Log(data.isTest);
 
     }
 
@@ -69,10 +69,8 @@ public class GameControl : MonoBehaviour
     /// </summary>
    public void setGameMap()
     {
-        if(gamedatas.isTest == false)
-        mapData = GameDataManager._instance.getMapDataInfo();
-        else
-            mapData = GameDataManager._instance.getTestMapDataInfo();
+        if(gamedatas.isTest == false)mapData = GameDataManager._instance.getMapDataInfo();
+        else mapData = GameDataManager._instance.getTestMapDataInfo();
 
         if (gamedatas.MapRating == 0)
         {
@@ -85,7 +83,8 @@ public class GameControl : MonoBehaviour
 
             startPoint.GetComponent<componentControl>().mapID = 0;
         }
-
+         if(gamedatas.MapRating < mapData.Count-1)
+        {
             for (int i = gamedatas.MapRating; i < gamedatas.MapRating + 1; i++)
             {
                 int gerenalComponent = mapData[i].gernaralComponentRating;
@@ -121,11 +120,12 @@ public class GameControl : MonoBehaviour
                     }
                     GameObject compoment = checkMapComponentList(xx);
 
-                    compoment.GetComponent<componentControl>().mapID = j + gamedatas.loadedComponentNum+1;
+                    compoment.GetComponent<componentControl>().mapID = j + gamedatas.loadedComponentNum + 1;
                     compoment.GetComponent<componentControl>().AILevel = mapData[i].AILevel;
                     compoment.GetComponent<componentControl>().AIRating = mapData[i].AIRating;
 
-                    compoment.name = (j + gamedatas.loadedComponentNum+1).ToString();
+
+                    compoment.name = (j + gamedatas.loadedComponentNum + 1).ToString();
 
                     compoment.transform.localPosition = getEndPoint(lastComponent).position - getStartPoint(compoment.transform).position;
 
@@ -136,8 +136,8 @@ public class GameControl : MonoBehaviour
                 gamedatas.loadedComponentNum += mapData[i].compenentNumb;
                 gamedatas.Notify();
             }
-        
-        if (gamedatas.MapRating == mapData.Count-1)
+        }
+         if (gamedatas.MapRating == mapData.Count-1)
         {
             GameObject endPoint = checkMapComponentList(GameDataManager._instance.endPointObject);
 

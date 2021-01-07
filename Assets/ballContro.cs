@@ -79,6 +79,7 @@ public class ballContro : MonoBehaviour
 
                 if (gamedatas.loadedComponentNum - xx.mapID <= 10)
                 {
+                    
                     gamedatas.MapRating += 1;
                     gamedatas.Notify();
                     GameControl._instance.setGameMap();
@@ -108,7 +109,7 @@ public class ballContro : MonoBehaviour
             if (gamedatas.gameState != GAMESTATE.over)
             {
                 Debug.Log("success");
-                collision.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("end");
+                //collision.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("end");
                 gamedatas.gameState = GAMESTATE.over;
                 UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
                 gamedatas.Notify();

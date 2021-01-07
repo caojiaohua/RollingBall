@@ -56,7 +56,7 @@ ModelImporter:
       name: CINEMA_4D___
       takeName: CINEMA_4D___
       firstFrame: 0
-      lastFrame: 75
+      lastFrame: 200
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -64,7 +64,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

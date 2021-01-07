@@ -26,7 +26,7 @@
     },
     {
       "id": 4,
-      "skinSourceName": "dragonRgg",
+      "skinSourceName": "dragonEgg",
       "Discription": "游戏累计复活10次",
       "taskInfo": "revive 10 time"
     },
@@ -44,7 +44,7 @@
     },
     {
       "id": 7,
-      "skinSourceName": "mummypaint",
+      "skinSourceName": "mummy",
       "Discription": "完成地图30%路程",
       "taskInfo": "Complete at least 30% of the map"
     },
@@ -62,18 +62,6 @@
     },
     {
       "id": 10,
-      "skinSourceName": "submarine",
-      "Discription": "击杀10个AI球",
-      "taskInfo": "Kill 10 enemies in a game"
-    },
-    {
-      "id": 11,
-      "skinSourceName": "earth",
-      "Discription": "完成10%路程且不杀AI球",
-      "taskInfo": "Complete 10% with 0 kill"
-    },
-    {
-      "id": 12,
       "skinSourceName": "paint",
       "Discription": "完成地图100%路程",
       "taskInfo": "Complete 100% of the map"

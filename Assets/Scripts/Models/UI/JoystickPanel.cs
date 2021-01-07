@@ -42,7 +42,7 @@ public class JoystickPanel : BasePanel
 
         ///初始化信息显示
 
-        txt_gameProgress.text = gamedatas.curGameProgressValue.ToString();
+        txt_gameProgress.text = gamedatas.curGameProgressValue.ToString("F2") + " %";
     }
 
     public override void OnPause()

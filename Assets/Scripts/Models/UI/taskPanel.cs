@@ -114,7 +114,8 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
             }
             else
             {
-                txt_taskInfo.gameObject.SetActive(false);
+                txt_taskInfo.gameObject.SetActive(true);
+                txt_taskInfo.text = task.taskInfo;
                 txt_taskProgress.gameObject.SetActive(false);
                 img_taskProgress.gameObject.SetActive(false);
                 img_taskProgress_bg.gameObject.SetActive(false);
@@ -127,7 +128,8 @@ public class taskPanel : BasePanel, IBeginDragHandler, IEndDragHandler, IDragHan
         }
         else
         {
-            txt_taskInfo.gameObject.SetActive(false);
+            txt_taskInfo.gameObject.SetActive(true);
+            txt_taskInfo.text = task.taskInfo;
             txt_taskProgress.gameObject.SetActive(false);
             img_taskProgress.gameObject.SetActive(false);
             img_taskProgress_bg.gameObject.SetActive(false);

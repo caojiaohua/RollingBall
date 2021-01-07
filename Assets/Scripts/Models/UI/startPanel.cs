@@ -69,7 +69,9 @@ public class startPanel : BasePanel
     private void toggleTestClick(bool arg0)
     {
         gamedatas.isTest = arg0;
+            gamedatas.MapRating = 0;
         gamedatas.Notify();
+        GameControl._instance.setGameMap();
     }
 
     private void btnaddClick()

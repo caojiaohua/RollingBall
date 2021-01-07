@@ -16,6 +16,12 @@ public class componentControl : MonoBehaviour
     /// AI球生成概率
     /// </summary>
     public string AIRating;
+
+    /// <summary>
+    /// 是否生成障碍球
+    /// </summary>
+    public int genAI;
+
     GameObject AIBall;
 
 
@@ -38,7 +44,7 @@ public class componentControl : MonoBehaviour
 
             int randonValue = ConvertHelper.getRandomNumber();
 
-            AIBall = Instantiate(Resources.Load("prefabs/AIBall")) as GameObject;
+            AIBall = Instantiate(GameDataManager._instance.AIObject) as GameObject; 
 
             if (randonValue >= 0 && randonValue < float.Parse(strs_aiRating[0]) * 100)
             {

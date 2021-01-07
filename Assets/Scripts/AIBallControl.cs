@@ -31,7 +31,7 @@ public class AIBallControl : MonoBehaviour
     private RaycastHit hit;
     private bool isTurn;
     private Vector3 targetRotation;//怪物的目标朝向
-    private float walkSpeed;
+    public float walkSpeed;
 
     Vector3 initPosition;
 
@@ -44,7 +44,7 @@ public class AIBallControl : MonoBehaviour
 
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
-        walkSpeed = ((float)ballData.speed - (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).speedDown);
+        //walkSpeed = ((float)ballData.speed - (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).speedDown);
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
 
@@ -57,6 +57,7 @@ public class AIBallControl : MonoBehaviour
     /// </summary>
     void RandomAction()
     {
+        walkSpeed = ((float)ballData.speed - (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).speedDown);
         //更新行动时间
         lastActTime = Time.time;
         //根据权重随机
@@ -79,7 +80,8 @@ public class AIBallControl : MonoBehaviour
 
     private void OnRefresh(object[] param)
     {
-        walkSpeed = ((float)ballData.speed - (float)GameDataManager._instance.getBallSkillForLevel(gamedatas.aiBallReduceSpeedLevel).speedDown);
+        
+        
     }
 
 
