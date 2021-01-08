@@ -40,7 +40,7 @@ public class GameControl : MonoBehaviour
     private void OnRefresh(object[] param)
     {
         var data = param[0] as gamedata;
-        Debug.Log(data.isTest);
+        
 
     }
 

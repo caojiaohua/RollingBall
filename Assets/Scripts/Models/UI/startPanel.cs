@@ -83,7 +83,7 @@ public class startPanel : BasePanel
 
     private void btnreduceClick()
     {
-        gamedatas.ballMoveSpeed += 0.1f;
+        gamedatas.ballMoveSpeed -= 0.1f;
         txtSpeed.text = gamedatas.ballMoveSpeed.ToString();
         gamedatas.Notify();
     }
