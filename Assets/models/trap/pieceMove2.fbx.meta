@@ -17,6 +17,7 @@ ModelImporter:
     100022: end
     100024: floor_1
     100026: start
+    100028: mechanism_2
     400000: floor
     400002: mechanism
     400004: move
@@ -31,6 +32,7 @@ ModelImporter:
     400022: end
     400024: floor_1
     400026: start
+    400028: mechanism_2
     2100000: Roadblocks
     2100002: floor
     2300000: floor

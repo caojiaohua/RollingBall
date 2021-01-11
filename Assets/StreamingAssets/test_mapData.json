@@ -2,7 +2,7 @@
   "target": [
     {
       "levelRating": "0-20",
-      "compenentNumb": 20,
+      "compenentNumb": 10,
       "gernaralComponentRating": 80,
       "lowerCompnenetRating": 10,
       "middleComponentRating": 10,
@@ -12,7 +12,7 @@
     },
     {
       "levelRating": "20-40",
-      "compenentNumb": 20,
+      "compenentNumb": 10,
       "gernaralComponentRating": 70,
       "lowerCompnenetRating": 5,
       "middleComponentRating": 15,
@@ -22,7 +22,7 @@
     },
     {
       "levelRating": "40-60",
-      "compenentNumb": 20,
+      "compenentNumb": 10,
       "gernaralComponentRating": 60,
       "lowerCompnenetRating": 20,
       "middleComponentRating": 10,
@@ -32,7 +32,7 @@
     },
     {
       "levelRating": "60-80",
-      "compenentNumb": 20,
+      "compenentNumb": 10,
       "gernaralComponentRating": 60,
       "lowerCompnenetRating": 10,
       "middleComponentRating": 10,
@@ -42,7 +42,7 @@
     },
     {
       "levelRating": "80-100",
-      "compenentNumb": 20,
+      "compenentNumb": 10,
       "gernaralComponentRating": 55,
       "lowerCompnenetRating": 15,
       "middleComponentRating": 20,

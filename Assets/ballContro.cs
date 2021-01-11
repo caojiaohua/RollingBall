@@ -7,6 +7,7 @@ public class ballContro : MonoBehaviour
 {
 
     Transform beforeGameoverPosition;
+    
     private gamedata gamedatas;
 
     private void Start()
@@ -87,8 +88,13 @@ public class ballContro : MonoBehaviour
                 }
                     
             }
-            if(collision.gameObject.transform.parent.GetComponent<Animator>() == null)
-            beforeGameoverPosition = collision.transform;
+            //if(collision.gameObject.transform.parent.GetComponent<Animator>() == null)
+            //{
+            //    beforeGameoverPosition = collision.transform;
+            //    gamedatas.beforeGameOverMapID = xx.mapID;
+                
+            //}
+           
 
             gamedatas.Notify();
         }
@@ -98,6 +104,12 @@ public class ballContro : MonoBehaviour
             {
 
                 Debug.Log("gameover");
+
+                beforeGameoverPosition = collision.transform.GetComponent<gameoverCube>().mapComponent;
+                gamedatas.beforeGameOverMapID = collision.transform.GetComponent<gameoverCube>().mapComponent.gameObject.GetComponent<componentControl>().mapID;
+                
+                
+
                 gamedatas.gameState = GAMESTATE.over;
                 UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
                 gamedatas.Notify();
@@ -109,7 +121,7 @@ public class ballContro : MonoBehaviour
             if (gamedatas.gameState != GAMESTATE.over)
             {
                 Debug.Log("success");
-                //collision.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("end");
+                collision.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("end");
                 gamedatas.gameState = GAMESTATE.over;
                 UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
                 gamedatas.Notify();
@@ -148,7 +160,13 @@ public class ballContro : MonoBehaviour
         {
             if(beforeGameoverPosition!= null)
             {
-                transform.parent.position = new Vector3(beforeGameoverPosition.localPosition.x, 0.84f, beforeGameoverPosition.localPosition.z);
+                Vector3 gameoverPoint_startPoint = new Vector3();
+                foreach(var item in beforeGameoverPosition.GetComponentsInChildren<Transform>())
+                {
+                    if (item.gameObject.tag == "startPoint")
+                        gameoverPoint_startPoint = item.transform.position;
+                }
+                transform.parent.position = new Vector3(gameoverPoint_startPoint.x, 0.84f, gameoverPoint_startPoint.z);
                 transform.localPosition = new Vector3(0, 0, 0);
                 transform.localEulerAngles = new Vector3(0, 0, 0);
             }
@@ -158,7 +176,8 @@ public class ballContro : MonoBehaviour
                 transform.localPosition = new Vector3(0, 0, 0);
                 transform.localEulerAngles = new Vector3(0, 0, 0);
             }
-           
+
+            
             
         }
         

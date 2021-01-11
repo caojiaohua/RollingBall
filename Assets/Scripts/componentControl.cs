@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class componentControl : MonoBehaviour
 {
-
+    private gamedata gamedatas;
     public int mapID = 0;
     /// <summary>
     /// AI球等级
@@ -31,8 +32,32 @@ public class componentControl : MonoBehaviour
 
     private void Start()
     {
-        
+        gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
+
+
+        DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
         cloneAI();
+        foreach (var item in transform.GetComponentsInChildren<Transform>())
+        {
+            if(item.gameObject.tag == "gameover")
+            {
+                item.gameObject.AddComponent<gameoverCube>();
+                item.gameObject.GetComponent<gameoverCube>().mapComponent = transform;
+            }
+        }
+       
+    }
+
+    private void OnRefresh(object[] param)
+    {
+        if(gamedatas.gameState == GAMESTATE.over)
+        {
+            if(mapID == gamedatas.beforeGameOverMapID - 1 || mapID == gamedatas.beforeGameOverMapID  || mapID == gamedatas.beforeGameOverMapID +1 )
+            {
+                if(AIBall != null)
+                Destroy(AIBall);
+            }
+        }
     }
 
     void cloneAI()

@@ -813,8 +813,10 @@ public class gamedata : DataBase
 
     public float ballMoveSpeed;
 
+    public int beforeGameOverMapID;
     public override void OnInit()
     {
+        beforeGameOverMapID = 0;
         isTest = false;
         loadedComponentNum = 0;
 

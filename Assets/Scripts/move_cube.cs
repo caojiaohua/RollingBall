@@ -15,7 +15,7 @@ public class move_cube : MonoBehaviour
     void Update()
     {
         if(ball.transform.position.y>=0.8f)
-        transform.position = new Vector3(ball.transform.position.x,ball.transform.position.y -2,ball.transform.position.z);
+        transform.position = new Vector3(ball.transform.position.x,ball.transform.position.y -5,ball.transform.position.z);
     }
 
     

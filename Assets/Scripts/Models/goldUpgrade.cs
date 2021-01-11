@@ -22,10 +22,7 @@ namespace Assets.Scripts.Models
         /// </summary>
         public double distanceIncome;
 
-        /// <summary>
-        /// 击杀一个敌人可以获得的金币
-        /// </summary>
-        public double killEnemyIncome;
+    
         
         /// <summary>
         /// 升级消耗
