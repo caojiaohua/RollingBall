@@ -122,6 +122,8 @@ public class ballContro : MonoBehaviour
             {
                 Debug.Log("success");
                 collision.gameObject.transform.GetChild(0).GetComponent<Animator>().Play("end");
+                gamedatas.curGameGoldValue *= 3;
+                //gamedatas.curGameGoldValue *= 3;
                 gamedatas.gameState = GAMESTATE.over;
                 UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
                 gamedatas.Notify();

@@ -50,9 +50,10 @@ public class move : MonoBehaviour
     private void Update()
     {
         if (gamedatas.gameState == GAMESTATE.game )
-            if(isMove == false)
+        {
+            if (isMove == false)
             {
-                if((transform.localEulerAngles.y-360 >90f || transform.localEulerAngles.y-360 < -90f))
+                if ((transform.localEulerAngles.y - 360 > 90f || transform.localEulerAngles.y - 360 < -90f))
                 {
                     transform.Translate(0, 0, gamedatas.ballMoveSpeed * Time.deltaTime);
                 }
@@ -61,6 +62,8 @@ public class move : MonoBehaviour
             {
                 transform.Translate(0, 0, gamedatas.ballMoveSpeed * Time.deltaTime);
             }
+        }
+           
             
     }
 
