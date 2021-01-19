@@ -35,9 +35,17 @@ public class GameDataManager :MonoBehaviour
     /// 所有的组件 资源加载
     /// </summary>
     private List<Object> gerneralCompentObject;
+    private List<int> gerneralCompentGenAI;
+
     private List<Object> lowerCompentObject;
+    private List<int> lowerCompentGenAI;
+
     private List<Object> middleCompentObject;
+    private List<int> middleCompentGenAI;
+
     private List<Object> seniorCompentObject;
+    private List<int> seniorCompentGenAI;
+
 
     [HideInInspector]
     public Object startPointObject;
@@ -295,21 +303,31 @@ public class GameDataManager :MonoBehaviour
             middleCompentObject = new List<Object>();
             seniorCompentObject = new List<Object>();
 
+
+            lowerCompentGenAI = new List<int>();
+            middleCompentGenAI = new List<int>();
+            seniorCompentGenAI = new List<int>();
+            gerneralCompentGenAI = new List<int>();
+
             for (int i = 0; i < MapCompenentData.Count; i++)
             {
                 switch(MapCompenentData[i].componentDifficulty)
                 {
                     case (int)enumcomponentDifficultyType.general:
                         gerneralCompentObject.Add(Resources.Load("prefabs/map/" + MapCompenentData[i].componentResourceName));
+                        gerneralCompentGenAI.Add(MapCompenentData[i].genAI);
                         break;
                     case (int)enumcomponentDifficultyType.lower:
                         lowerCompentObject.Add(Resources.Load("prefabs/map/" + MapCompenentData[i].componentResourceName));
+                        lowerCompentGenAI.Add(MapCompenentData[i].genAI);
                         break;
                     case (int)enumcomponentDifficultyType.middle:
                         middleCompentObject.Add(Resources.Load("prefabs/map/" + MapCompenentData[i].componentResourceName));
+                        middleCompentGenAI.Add(MapCompenentData[i].genAI);
                         break;
                     case (int)enumcomponentDifficultyType.senior:
                         seniorCompentObject.Add(Resources.Load("prefabs/map/" + MapCompenentData[i].componentResourceName));
+                        seniorCompentGenAI.Add(MapCompenentData[i].genAI);
                         break;
 
                     case (int)enumcomponentDifficultyType.startPoint:
@@ -329,38 +347,55 @@ public class GameDataManager :MonoBehaviour
     /// 随机获取普通组件
     /// </summary>
     /// <returns></returns>
-    public  Object getGeneralComponentObject()
+    public componentInfo getGeneralComponentObject()
     {
-        int x = ConvertHelper.getRandomNumber(0, gerneralCompentObject.Count - 1);
-        return gerneralCompentObject[x];
+        int rdNum = ConvertHelper.getRandomNumber(0, gerneralCompentObject.Count - 1);
+        return new componentInfo
+        {
+            obj = gerneralCompentObject[rdNum],
+            genAI = gerneralCompentGenAI[rdNum]
+        };
     }
 
     /// <summary>
     /// 获取低级组件
     /// </summary>
     /// <returns></returns>
-    public Object getLowerComponentObject()
+    public componentInfo getLowerComponentObject()
     {
-        return lowerCompentObject[ConvertHelper.getRandomNumber(0, lowerCompentObject.Count-1)];
-
+        int rdNum = ConvertHelper.getRandomNumber(0, lowerCompentObject.Count - 1);
+        return new componentInfo
+        {
+            obj = lowerCompentObject[rdNum],
+            genAI = lowerCompentGenAI[rdNum]
+        };
     }
     /// <summary>
     /// 随机获取中级组件
     /// </summary>
     /// <returns></returns>
-    public Object getMiddleComponentObject()
+    public componentInfo getMiddleComponentObject()
     {
-        return middleCompentObject[ConvertHelper.getRandomNumber(0, middleCompentObject.Count-1)];
-
+        int rdNum = ConvertHelper.getRandomNumber(0, middleCompentObject.Count - 1);
+        return new componentInfo
+        {
+            obj = middleCompentObject[rdNum],
+            genAI = middleCompentGenAI[rdNum]
+        };
     }
 
     /// <summary>
     /// 随机获取高级组件
     /// </summary>
     /// <returns></returns>
-    public Object getSeniorComponentObject()
+    public componentInfo getSeniorComponentObject()
     {
-        return seniorCompentObject[ConvertHelper.getRandomNumber(0, seniorCompentObject.Count-1)];
+        int rdNum = ConvertHelper.getRandomNumber(0, seniorCompentObject.Count - 1);
+        return new componentInfo
+        {
+            obj = seniorCompentObject[rdNum],
+            genAI = seniorCompentGenAI[rdNum]
+    };
 
     }
 
@@ -853,4 +888,10 @@ public class gamedata : DataBase
 
 
     }
+}
+
+public class componentInfo
+{
+    public Object obj;
+    public int genAI;
 }

@@ -11,12 +11,15 @@ public class move : MonoBehaviour
     //public Button btnreduce1;
 
     public bool isMove;
+    public bool isMove_test;
     private gamedata gamedatas;
 
 
     private void Start()
     {
         isMove = true;
+        isMove_test = true;
+
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
 
 
@@ -55,12 +58,14 @@ public class move : MonoBehaviour
             {
                 if ((transform.localEulerAngles.y - 360 > 90f || transform.localEulerAngles.y - 360 < -90f))
                 {
+                    if(isMove_test == true)
                     transform.Translate(0, 0, gamedatas.ballMoveSpeed * Time.deltaTime);
                 }
             }
             else
             {
-                transform.Translate(0, 0, gamedatas.ballMoveSpeed * Time.deltaTime);
+                if (isMove_test == true)
+                    transform.Translate(0, 0, gamedatas.ballMoveSpeed * Time.deltaTime);
             }
         }
            

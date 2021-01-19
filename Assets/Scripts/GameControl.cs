@@ -94,7 +94,7 @@ public class GameControl : MonoBehaviour
                 for (int j = 0; j < mapData[i].compenentNumb; j++)
                 {
                     int randomNum = ConvertHelper.getRandomNumber();
-                    Object xx = null;
+                    componentInfo xx = null;
                     if (randomNum >= 0 && randomNum < gerenalComponent)
                     {
                         xx = GameDataManager._instance.getGeneralComponentObject();
@@ -116,13 +116,14 @@ public class GameControl : MonoBehaviour
                     }
                     if (xx == null)
                     {
-                        Debug.Log(xx.name);
+                        Debug.Log(xx.obj.name);
                     }
-                    GameObject compoment = checkMapComponentList(xx);
+                    GameObject compoment = checkMapComponentList(xx.obj);
 
                     compoment.GetComponent<componentControl>().mapID = j + gamedatas.loadedComponentNum + 1;
                     compoment.GetComponent<componentControl>().AILevel = mapData[i].AILevel;
                     compoment.GetComponent<componentControl>().AIRating = mapData[i].AIRating;
+                    compoment.GetComponent<componentControl>().genAI = xx.genAI;
 
 
                     compoment.name = (j + gamedatas.loadedComponentNum + 1).ToString();

@@ -45,6 +45,8 @@ public class ballContro : MonoBehaviour
     {
         if (collision.gameObject.tag == "component")
         {
+            
+            transform.parent.GetComponent<move>().isMove_test = true;
             componentControl xx = collision.gameObject.GetComponent<componentControl>();
             if (xx == null)
                 xx = collision.transform.parent.GetComponent<componentControl>();
@@ -74,10 +76,6 @@ public class ballContro : MonoBehaviour
                 }
 
 
-                
-
-
-
                 if (gamedatas.loadedComponentNum - xx.mapID <= 10)
                 {
                     
@@ -88,12 +86,14 @@ public class ballContro : MonoBehaviour
                 }
                     
             }
-            //if(collision.gameObject.transform.parent.GetComponent<Animator>() == null)
-            //{
-            //    beforeGameoverPosition = collision.transform;
-            //    gamedatas.beforeGameOverMapID = xx.mapID;
+          
+            if(collision.transform.GetComponent<componentControl>() == null )
+                beforeGameoverPosition = collision.transform.parent;
+            else
+                beforeGameoverPosition = collision.transform;
+            gamedatas.beforeGameOverMapID = xx.mapID;
                 
-            //}
+ 
            
 
             gamedatas.Notify();
@@ -104,7 +104,7 @@ public class ballContro : MonoBehaviour
             {
 
                 Debug.Log("gameover");
-
+                ///无论是碰到陷阱还是AI
                 beforeGameoverPosition = collision.transform.GetComponent<gameoverCube>().mapComponent;
                 gamedatas.beforeGameOverMapID = collision.transform.GetComponent<gameoverCube>().mapComponent.gameObject.GetComponent<componentControl>().mapID;
                 
@@ -128,6 +128,12 @@ public class ballContro : MonoBehaviour
                 UIPanelManager.Instance.PushPanel(UIPanelType.gameover);
                 gamedatas.Notify();
             }
+
+        }
+        else if (collision.gameObject.tag == "test")
+        {
+           
+           
 
         }
 

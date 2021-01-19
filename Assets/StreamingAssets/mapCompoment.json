@@ -89,7 +89,7 @@
       "componentDifficulty": 1,
       "discription": "接触橙色区域闯关失败",
       "componentResourceName": "woodRotate",
-      "genAI": 1
+      "genAI": 0
     },
     {
       "mapComponentType": 3,
@@ -173,7 +173,7 @@
       "componentDifficulty": 0,
       "discription": "",
       "componentResourceName": "straightRoad350",
-      "genAI": 1
+      "genAI": 0
     },
     {
       "mapComponentType": 1,
@@ -187,7 +187,14 @@
       "componentDifficulty": 0,
       "discription": "",
       "componentResourceName": "straightRoad350",
-      "genAI": 1
+      "genAI": 0
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 0
     },
     {
       "mapComponentType": 1,
@@ -201,7 +208,14 @@
       "componentDifficulty": 0,
       "discription": "",
       "componentResourceName": "straightRoad350",
-      "genAI": 1
+      "genAI": 0
+    },
+    {
+      "mapComponentType": 1,
+      "componentDifficulty": 0,
+      "discription": "",
+      "componentResourceName": "straightRoad350",
+      "genAI": 0
     },
     {
       "mapComponentType": 1,
@@ -215,21 +229,7 @@
       "componentDifficulty": 0,
       "discription": "",
       "componentResourceName": "straightRoad350",
-      "genAI": 1
-    },
-    {
-      "mapComponentType": 1,
-      "componentDifficulty": 0,
-      "discription": "",
-      "componentResourceName": "straightRoad350",
-      "genAI": 1
-    },
-    {
-      "mapComponentType": 1,
-      "componentDifficulty": 0,
-      "discription": "",
-      "componentResourceName": "straightRoad350",
-      "genAI": 1
+      "genAI": 0
     }
   ]
 }

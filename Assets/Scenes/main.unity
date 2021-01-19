@@ -829,6 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMove: 0
+  isMove_test: 0
 --- !u!4 &967713706
 Transform:
   m_ObjectHideFlags: 0

@@ -62,7 +62,8 @@ public class componentControl : MonoBehaviour
 
     void cloneAI()
     {
-        if(transform.GetComponent<Animator>()== null  && AIBall == null && mapID != 0)
+        //if(transform.GetComponent<Animator>()== null  && AIBall == null && mapID != 0)
+        if(genAI == 1)
         {
             string[] strs_aiLevel = AILevel.Split('|');
             string[] strs_aiRating = AIRating.Split('|');
