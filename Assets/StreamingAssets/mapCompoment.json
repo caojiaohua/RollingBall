@@ -1,14 +1,14 @@
 {
   "target": [
     {
-      "mapComponentType": 1,
+      "mapComponentType": 2,
       "componentDifficulty": 4,
       "discription": "小球起点",
       "componentResourceName": "startingPoint",
       "genAI": 0
     },
     {
-      "mapComponentType": 1,
+      "mapComponentType": 2,
       "componentDifficulty": 5,
       "discription": "小球终点",
       "componentResourceName": "destination",
@@ -43,7 +43,7 @@
       "genAI": 1
     },
     {
-      "mapComponentType": 1,
+      "mapComponentType": 2,
       "componentDifficulty": 1,
       "discription": "",
       "componentResourceName": "sBend3",

@@ -94,36 +94,15 @@ public class GameControl : MonoBehaviour
                 for (int j = 0; j < mapData[i].compenentNumb; j++)
                 {
                     int randomNum = ConvertHelper.getRandomNumber();
-                    componentInfo xx = null;
-                    if (randomNum >= 0 && randomNum < gerenalComponent)
-                    {
-                        xx = GameDataManager._instance.getGeneralComponentObject();
-                    }
-                    else if (randomNum >= gerenalComponent && randomNum < (lowerComponent + gerenalComponent))
-                    {
-                        xx = GameDataManager._instance.getLowerComponentObject();
-
-                    }
-                    else if (randomNum >= (gerenalComponent + lowerComponent) && randomNum < (lowerComponent + gerenalComponent + middleComponent))
-                    {
-                        xx = GameDataManager._instance.getMiddleComponentObject();
-
-                    }
-                    else if (randomNum >= (gerenalComponent + lowerComponent + middleComponent) && randomNum < (lowerComponent + gerenalComponent + middleComponent + seniorComponent))
-                    {
-                        xx = GameDataManager._instance.getSeniorComponentObject();
-
-                    }
-                    if (xx == null)
-                    {
-                        Debug.Log(xx.obj.name);
-                    }
-                    GameObject compoment = checkMapComponentList(xx.obj);
+                    Object xx = null;
+                    xx = GameDataManager._instance.getnoAnimaComponentObject();
+                    
+                    GameObject compoment = checkMapComponentList(xx);
 
                     compoment.GetComponent<componentControl>().mapID = j + gamedatas.loadedComponentNum + 1;
                     compoment.GetComponent<componentControl>().AILevel = mapData[i].AILevel;
                     compoment.GetComponent<componentControl>().AIRating = mapData[i].AIRating;
-                    compoment.GetComponent<componentControl>().genAI = xx.genAI;
+                    
 
 
                     compoment.name = (j + gamedatas.loadedComponentNum + 1).ToString();
@@ -153,6 +132,10 @@ public class GameControl : MonoBehaviour
     /// </summary>
     GameObject checkMapComponentList(Object _object)
     {
+        if(_object == null)
+        {
+            Debug.Log("1");
+        }
          GameObject _gameobject =  Instantiate(_object) as GameObject;
 
         _gameobject.transform.parent = mapComponentParent;

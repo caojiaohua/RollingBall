@@ -12,7 +12,6 @@ public class componentControl : MonoBehaviour
     /// </summary>
     public string AILevel;
 
-
     /// <summary>
     /// AI球生成概率
     /// </summary>
@@ -26,14 +25,23 @@ public class componentControl : MonoBehaviour
     GameObject AIBall;
 
 
-
-
+    public Transform boxParent;
+    MeshRenderer[] boxes;
 
 
     private void Start()
     {
         gamedatas = DataManager._instance.Get(DataType._gamedata) as gamedata;
-
+        
+        if(boxParent != null)
+        {
+            boxes = boxParent.GetComponentsInChildren<MeshRenderer>();
+            foreach (var item in boxes)
+            {
+                item.material.color = new Color((float)ConvertHelper.getRandomNumber(0, 255) / 255f, (float)ConvertHelper.getRandomNumber(0, 255) / 255f, (float)ConvertHelper.getRandomNumber(0, 255) / 255f);
+            }
+        }
+   
 
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
         cloneAI();
@@ -62,7 +70,7 @@ public class componentControl : MonoBehaviour
 
     void cloneAI()
     {
-        //if(transform.GetComponent<Animator>()== null  && AIBall == null && mapID != 0)
+        
         if(genAI == 1)
         {
             string[] strs_aiLevel = AILevel.Split('|');

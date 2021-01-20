@@ -15,4 +15,6 @@ namespace Assets.Scripts.EnumFlags
         startPoint = 4,
         endPoint = 5
     }
+
+
 }

@@ -29,11 +29,15 @@ public class GameDataManager :MonoBehaviour
     }
 
 
-    
+
 
     /// <summary>
     /// 所有的组件 资源加载
     /// </summary>
+    /// 
+
+    private List<Object> noAnimaComponentObject;
+
     private List<Object> gerneralCompentObject;
     private List<int> gerneralCompentGenAI;
 
@@ -302,7 +306,7 @@ public class GameDataManager :MonoBehaviour
             lowerCompentObject = new List<Object>();
             middleCompentObject = new List<Object>();
             seniorCompentObject = new List<Object>();
-
+            noAnimaComponentObject = new List<Object>();
 
             lowerCompentGenAI = new List<int>();
             middleCompentGenAI = new List<int>();
@@ -338,9 +342,24 @@ public class GameDataManager :MonoBehaviour
                         endPointObject = Resources.Load("prefabs/map/" + MapCompenentData[i].componentResourceName);
                         break;
                 }
-              
+
+                switch (MapCompenentData[i].mapComponentType)
+                {
+                    case 1:
+                        noAnimaComponentObject.Add(Resources.Load("prefabs/map/" + MapCompenentData[i].componentResourceName));
+                        break;
+                }
+
+
             }
         }
+    }
+
+
+    public Object getnoAnimaComponentObject()
+    {
+        int rdNum = ConvertHelper.getRandomNumber(0, noAnimaComponentObject.Count - 1);
+        return noAnimaComponentObject[rdNum];
     }
 
     /// <summary>
@@ -871,7 +890,7 @@ public class gamedata : DataBase
 
         sound = GameDataManager.getSoundState();
         vibrate = GameDataManager.getVibrateState();
-        ballMoveSpeed = 3.0f;
+        ballMoveSpeed = 1.0f;
 
         
     }

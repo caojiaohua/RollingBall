@@ -44,7 +44,7 @@ public class gameOverPanel : BasePanel
         DataManager._instance.AddDataWatch(DataType._gamedata, OnRefresh);
 
 
-        ball = GameObject.Find("ball").transform.GetChild(0).gameObject;
+        ball = GameObject.Find("ball").transform.GetChild(1).gameObject;
         btn_continue_watchAds.onClick.AddListener(btn_continue_watchAdsClick);
         btn_continue_noAds.onClick.AddListener(btn_continue_noAdsClick);
 
@@ -69,7 +69,7 @@ public class gameOverPanel : BasePanel
         gamedatas.Notify();
         GameControl._instance.setGameMap();
         
-        ball.GetComponent<ballContro>().resetPosition();
+        ball.GetComponent<heroControl>().resetPosition();
         
     }
 
@@ -87,7 +87,7 @@ public class gameOverPanel : BasePanel
         gamedatas.curGameProgressValue = 0;
         gamedatas.Notify();
         GameControl._instance.setGameMap();
-        ball.GetComponent<ballContro>().resetPosition(false);
+        ball.GetComponent<heroControl>().resetPosition(false);
         UIPanelManager.Instance.PushPanel(UIPanelType.start);
 
         
@@ -97,7 +97,7 @@ public class gameOverPanel : BasePanel
     /// </summary>
     void btn_continue_watchAdsClick()
     {
-        ball.GetComponent<ballContro>().resetPosition(true);
+        ball.GetComponent<heroControl>().resetPosition(true);
         gamedatas.gameState = GAMESTATE.start;
         gamedatas.iReviveNum += 1;
         UIPanelManager.Instance.PushPanel(UIPanelType.joystick);
