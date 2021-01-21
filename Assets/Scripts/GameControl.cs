@@ -83,7 +83,7 @@ public class GameControl : MonoBehaviour
 
             startPoint.GetComponent<componentControl>().mapID = 0;
         }
-         if(gamedatas.MapRating < mapData.Count-1)
+        if(gamedatas.MapRating < mapData.Count)
         {
             for (int i = gamedatas.MapRating; i < gamedatas.MapRating + 1; i++)
             {
@@ -138,7 +138,7 @@ public class GameControl : MonoBehaviour
                 gamedatas.Notify();
             }
         }
-         if (gamedatas.MapRating == mapData.Count-1)
+         if (gamedatas.MapRating == mapData.Count)
         {
             GameObject endPoint = checkMapComponentList(GameDataManager._instance.endPointObject);
 

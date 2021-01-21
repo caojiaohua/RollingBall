@@ -851,6 +851,7 @@ public class gamedata : DataBase
     public int beforeGameOverMapID;
     public override void OnInit()
     {
+        MapRating = 0;
         beforeGameOverMapID = 0;
         isTest = false;
         loadedComponentNum = 0;
@@ -871,7 +872,7 @@ public class gamedata : DataBase
 
         sound = GameDataManager.getSoundState();
         vibrate = GameDataManager.getVibrateState();
-        ballMoveSpeed = 3.0f;
+        ballMoveSpeed = 3.5f;
 
         
     }
